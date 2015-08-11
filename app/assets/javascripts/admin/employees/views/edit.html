@@ -1,0 +1,216 @@
+<div class="panel panel-default" ng-controller='UpdateEmployeesController'>
+  <div class="panel-heading">Update Existing Entry</div>
+    <div class="panel panel-default employee-list">
+      <div class="panel-body scrolling">
+        <table id='objects-list' class="table table-bordered table-striped scrolling">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Contact No.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-index='{{$index + (currentPage - 1) * itemsPerPage}}' ng-repeat='employee in employees | offset:(currentPage-1)*itemsPerPage | limitTo:itemsPerPage'>
+              <td>{{employee.firstName}}</td>
+              <td>{{employee.lastName}}</td>
+              <td>{{employee.contactNo}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination total-items='employees.length' ng-model='currentPage' items-per-page='itemsPerPage' max-size="5" data-previous-text="&laquo;" data-next-text="&raquo;">
+        </pagination>
+      </div>
+    </div>
+
+    <form name='form' class="form-horizontal update" ng-submit='update(employees[$index])' ng-show="show_form">
+
+      <div class="panel panel-default update-employee">
+        <div class="update_form">
+          <div class="alert alert-success" role="alert" ng-show="alert">You successfully updated an employee.</div>
+          <div class="col-sm-12">
+            <!-- Firs column -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.entry_no' class="control-label">Entry No.</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='currentUser.entry_no' type='text' ng-model='currentUser.entryNo' class="form-control" disabled/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.first_name' class="control-label">First Name</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='currentUser.first_name' type='text' ng-model='currentUser.firstName' class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-5">
+                  <label for='currentUser.middle_name' class="control-label">Father's/Spouses Name</label>
+                </div>
+                <div class="col-sm-5">
+                  <input name='currentUser.middle_name' type='text' ng-model='currentUser.middleName' class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.last_name' class="control-label">Last Name</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='currentUser.last_name' type='text' ng-model='currentUser.lastName' class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.birthday' class="control-label">Date of birth</label>
+                </div>
+                <div class="col-sm-6">
+                  <div class="input-group">
+                    <input name='currentUser.birthday' ng-model='currentUser.birthday' class="form-control" date-options />
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.gender' class="control-label">Gender</label>
+                </div>
+                <div class="col-sm-6">
+                  <label for='currentUser.gender.male' class="radio-inline">
+                    <input type="radio" id="currentUser.gender.male" value="male" ng-model="currentUser.gender">Male
+                  </label>
+                  <label for='currentUser.gender.female' class="radio-inline">
+                    <input type="radio" id="currentUser.gender.female" value="female" ng-model="currentUser.gender">Female
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.status' class="control-label">Marital Status</label>
+                </div>
+                <div class="col-sm-6">
+                  <select name='currentUser.status' ng-model='currentUser.status' class="form-control">
+                    <option value="1">Married</option>
+                    <option value="2">Not Married</option>
+                  </select>
+                </div>
+              </div>
+
+              <years ng-model='currentUser.year' title='Year of Joining'></years>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.paid_type' class="control-label">Paid type</label>
+                </div>
+                <div class="col-sm-6">
+                  <select name="currentUser.paid_type" class="form-control" ng-model="currentUser.paidTypeId">
+                    <option ng-repeat="paid in paid_types" value='{{paid.id}}'>{{paid.title}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-2" ng-controller="CreatePaidTypesController">
+                  <a ng-click="openForm('sm')" class="btn btn-default">
+                    <i class="fa fa-folder-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- End First Column -->
+
+            <!-- Second Column -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.address' class="control-label">Address</label>
+                </div>
+                <div class="col-sm-6">
+                  <textarea name="currentUser.address" ng-model="currentUser.address" class="form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.contact_no' class="control-label">Contact No.</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='currentUser.contact_no' type='text' ng-model='currentUser.contactNo' class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.qualification' class="control-label">Qualification</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='currentUser.qualification' type='text' ng-model='currentUser.qualification' class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="currentUser.section" class="control-label">Section</label>
+                </div>
+                <div class="col-sm-6">
+                  <select name="currentUser.section" class="form-control" ng-model="currentUser.sectionId">
+                    <option ng-repeat="section in sections" value='{{section.id}}'>{{section.title}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-2" ng-controller="CreateSectionsController">
+                  <a ng-click="openForm('sm')" class="btn btn-default">
+                    <i class="fa fa-folder-plus"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="currentUser.pay_band" class="control-label">Pay Band</label>
+                </div>
+                <div class="col-sm-6">
+                  <select name="currentUser.pay_band" class="form-control" ng-model="currentUser.payBandId">
+                    <option ng-repeat="pay in pay_bands" value='{{pay.id}}'>{{pay.title}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-2" ng-controller="CreatePayBandsController">
+                  <a ng-click="openForm('sm')" class="btn btn-default">
+                    <i class="fa fa-folder-plus"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='currentUser.salary' class="control-label">Salary</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='currentUser.salary' type='text' ng-model='currentUser.salary' class="form-control" />
+                </div>
+              </div>
+            </div>
+            <!-- End Second Column -->
+          </div>
+        </div>
+      </div>
+      <div class="ui buttons padding">
+        <a href="#" ng-click="previous()" class="btn btn-default">&lt;&lt; Previous Record</a>
+        <button type="submit" class="btn btn-default">Save and Continue</button>
+        <a href="#" ng-click="next()" class="btn btn-default" ng-disabled='employees.length === 0'>Next Record &gt;&gt;</a>
+      </div>
+    </form>
+    <div class="ui buttons padding" ng-hide="clicked">
+      <button type="submit" class="btn btn-default" ng-disabled='employees.length === 0'>&lt;&lt; Previous Record</button>
+      <button type="submit" class="btn btn-default" ng-disabled='employees.length === 0'>Save and Continue</button>
+      <button type="submit" class="btn btn-default" ng-disabled='employees.length === 0'>Next Record &gt;&gt;</button>
+    </div>
+  </div>
+</div>

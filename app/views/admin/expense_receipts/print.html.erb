@@ -1,0 +1,48 @@
+<%= stylesheet_link_tag "application" %>
+<div class="container">
+  <div class="page-header">
+    <h1 style="text-align: center">Expense Vouchers</h1>
+  </div>
+
+  <p class="lead" style="text-align: center">Authorized By: <%= @expense_receipt.authorized_by.full_name %>
+    <br />
+    Expense By: <%= @expense_receipt.expense_by.full_name %>
+  </p>
+
+  <div class="update_form">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default receipt" style="width: 95%; margin: 20px auto;">
+          <div class="panel panel-default">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th width="25%" style="text-align: center;">Expense Made</th>
+                  <th width="25%" style="text-align: center;">Nature of Expense</th>
+                  <th width="25%" style="text-align: center;">Payment Made to</th>
+                  <th width="25%" style="text-align: center;">Amount Rs.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center;"><%= @expense_receipt.expense_made%></td>
+                  <td style="text-align: center;"><%= @expense_receipt.nature.title %></td>
+                  <td style="text-align: center;"><%= @expense_receipt.payment_made %>
+                  <td style="text-align: center;"><%= @expense_receipt.amount %>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer" style="text-align: center; margin-top: 50px;">
+    <div class="container">
+      <p class="text-muted">Created at <%= @expense_receipt.created_at.strftime("%d/%m/%Y") %></p>
+    </div>
+  </footer>
+</div>
+
+
+

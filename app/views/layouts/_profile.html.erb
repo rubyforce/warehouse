@@ -1,0 +1,9 @@
+<ul class="nav navbar-nav navbar-right">
+  <% unless current_user.present? %>
+    <li>
+      <a class="sign-in fancybox.ajax" href="<%= new_user_session_path %>">Sign In</a>
+    </li>
+  <% else %>
+    <li><%= link_to('Log Out', destroy_user_session_path, :method => :delete)%>
+  <% end %>
+</ul>

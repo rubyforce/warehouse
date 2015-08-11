@@ -1,0 +1,13 @@
+<div class="panel panel-default" ng-controller="DeleteStudentsController">
+  <div class="panel-heading">Delete Entry</div>
+    <div class="alert-message">
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully removed the student.</div>
+    </div>
+
+    <students-list></students-list>
+
+    <div class="ui buttons padding">
+      <button type="submit" class="btn btn-default" ng-click="remove()" ng-disabled="clicked">Delete Student</button>
+    </div>
+  </div>
+</div>

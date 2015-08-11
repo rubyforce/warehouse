@@ -1,0 +1,5 @@
+<% if object.errors.present? %>
+  <% e.errors.full_messages.each do |err| %>
+    <%= err %>
+  <% end %>
+<% end %>

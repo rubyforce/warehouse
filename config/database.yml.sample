@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: greenarea_development
+  pool: 5
+  username: greenarea
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: greenarea_test
+  pool: 5
+  username: greenarea
+  password:

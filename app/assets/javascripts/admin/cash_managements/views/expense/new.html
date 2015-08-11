@@ -1,0 +1,85 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Create Expense Voucher</div>
+  <div class="panel-body">
+    <form name='form' ng-controller='CreateExpenseController' class="form-horizontal" ng-submit='create()'>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new expense voucher.</div>
+      <div class="col-sm-12">
+        <!-- First Column -->
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='expense_receipt.expense_made' class="control-label">Expense Made</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='expense_receipt.expense_made' type='text' ng-model='expense_receipt.expense_made' class="form-control" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='expense_receipt.nature' class="control-label">Nature of Expense</label>
+            </div>
+            <div class="col-sm-6">
+              <select name='expense_receipt.nature' ng-model='expense_receipt.nature_id' class="form-control" required>
+                <option ng-repeat="nature in natures" value="{{nature.id}}">{{nature.title}}</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <a href="" class="btn btn-default" ng-click="openForm('sm')" ng-controller="CreateNaturesController">
+                <i class="fa fa-folder-plus"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='expense_receipt.payment_made' class="control-label">Payment Made to</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='expense_receipt.payment_made' type='text' ng-model='expense_receipt.payment_made' class="form-control" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='expense_receipt.authorized_by' class="control-label">Authorized By</label>
+            </div>
+            <div class="col-sm-6">
+              <select name='expense_receipt.authorized_by' ng-model='expense_receipt.authorized_by_id' class="form-control" required>
+                <option ng-repeat="employee in employees" value="{{employee.id}}">{{employee.firstName}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='expense_receipt.amount' class="control-label ">Amount</label>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group">
+                <div class="input-group-addon">Rs.</div>
+                <input type="text" class="form-control" name="expense_receipt.amount" ng-model='expense_receipt.amount' required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='expense_receipt.expense_by' class="control-label">Expense By</label>
+            </div>
+            <div class="col-sm-6">
+              <select name='expense_receipt.expense_by' ng-model='expense_receipt.expense_by_id' class="form-control" required>
+                <option ng-repeat="employee in employees" value="{{employee.id}}">{{employee.firstName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- End First Column -->
+
+      <div class="ui buttons padding">
+        <a class="btn btn-default" ng-click="create()" ng-disabled="form.$invalid" id="btnPrint">CREATE EXPENSE AND PRINT</a>
+      </div>
+    </form>
+  </div>
+</div>

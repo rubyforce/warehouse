@@ -1,0 +1,189 @@
+<div class="panel panel-default">
+  <div class="panel-heading">New Employee Entry</div>
+  <div class="panel-body">
+    <form name='form' ng-controller='CreateEmployeesController' class="form-horizontal" ng-submit='create()'>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new employee.</div>
+      <div class="col-sm-12">
+        <!-- First Column -->
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.entry_no' class="control-label">Entry No.</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='employee.entry_no' type='text' ng-model='employee.entry_no' class="form-control" />
+            </div>
+            <div class="col-sm-2">
+              <a ng-click="generate()" class="btn btn-default">
+                <i class="fa fa-refresh"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.first_name' class="control-label">First Name</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='employee.first_name' type='text' ng-model='employee.first_name' class="form-control" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-5">
+              <label for='employee.middle_name' class="control-label">Father's/Spouses Name</label>
+            </div>
+            <div class="col-sm-5">
+              <input name='employee.middle_name' type='text' ng-model='employee.middle_name' class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.last_name' class="control-label">Last Name</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='employee.last_name' type='text' ng-model='employee.last_name' class="form-control" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.birthday' class="control-label">Date of birth</label>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group">
+                <input name='employee.birthday' ng-model='employee.birthday' class="form-control" date-options />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.gender' class="control-label">Gender</label>
+            </div>
+            <div class="col-sm-6">
+              <label for='employee.gender.male' class="radio-inline">
+                <input type="radio" id="employee.gender.male" value="male" ng-model="employee.gender">Male
+              </label>
+              <label for='employee.gender.female' class="radio-inline">
+                <input type="radio" id="employee.gender.female" value="female" ng-model="employee.gender">Female
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.status' class="control-label">Marital Status</label>
+            </div>
+            <div class="col-sm-6">
+              <select name='employee.status' ng-model='employee.status' class="form-control">
+                <option value="1">Married</option>
+                <option value="2">Not Married</option>
+              </select>
+            </div>
+          </div>
+
+          <years ng-model='employee.year' title='Year of Joining'></years>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.paid_type' class="control-label">Paid type</label>
+            </div>
+            <div class="col-sm-6">
+              <select name="employee.paid_type" class="form-control" ng-model="employee.paid_type_id">
+                <option ng-repeat="paid in paid_types" value='{{paid.id}}'>{{paid.title}}</option>
+              </select>
+            </div>
+            <div class="col-sm-2" ng-controller="CreatePaidTypesController">
+              <a ng-click="openForm('sm')" class="btn btn-default">
+                <i class="fa fa-folder-plus"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- End First Column -->
+
+        <!-- Second Column -->
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.address' class="control-label">Address</label>
+            </div>
+            <div class="col-sm-6">
+              <textarea name="employee.address" ng-model="employee.address" class="form-control"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.contact_no' class="control-label">Contact No.</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='employee.contact_no' type='text' ng-model='employee.contact_no' class="form-control" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.qualification' class="control-label">Qualification</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='employee.qualification' type='text' ng-model='employee.qualification' class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for="employee.section" class="control-label">Section</label>
+            </div>
+            <div class="col-sm-6">
+              <select name="employee.section" class="form-control" ng-model="employee.section_id">
+                <option ng-repeat="section in sections" value='{{section.id}}'>{{section.title}}</option>
+              </select>
+            </div>
+            <div class="col-sm-2" ng-controller="CreateSectionsController">
+              <a ng-click="openForm('sm')" class="btn btn-default">
+                <i class="fa fa-folder-plus"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for="employee.pay_band" class="control-label">Pay Band</label>
+            </div>
+            <div class="col-sm-6">
+              <select name="employee.pay_band" class="form-control" ng-model="employee.pay_band_id">
+                <option ng-repeat="pay in pay_bands" value='{{pay.id}}'>{{pay.title}}</option>
+              </select>
+            </div>
+            <div class="col-sm-2" ng-controller="CreatePayBandsController">
+              <a ng-click="openForm('sm')" class="btn btn-default">
+                <i class="fa fa-folder-plus"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='employee.salary' class="control-label">Salary</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='employee.salary' type='text' ng-model='employee.salary' class="form-control" />
+            </div>
+          </div>
+        </div>
+        <!-- End Second Column -->
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Save and Continue</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

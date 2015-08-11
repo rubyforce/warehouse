@@ -1,0 +1,151 @@
+.divider {
+  margin-top: 100px;
+}
+.btn.btn-success.right {
+  float: right;
+}
+.form-group.radio_button {
+  width: 70%;
+  margin: 20px auto;
+  padding: 0px;
+}
+.ui.buttons {
+  text-align: center;
+}
+.text-bottom {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: -60px;
+}
+.panel.panel-default {
+  border-radius: 0px;
+}
+.nav-tabs.nav-justified > li > a {
+  border-bottom: none;
+  border-radius: 0 0 0 0;
+}
+.nav-tabs.nav-justified > li > a:hover {
+  background: #fff;
+}
+.btn {
+  border-radius: 0px;
+}
+.panel.panel-default.employee-list {
+  width: 95%;
+  margin: 25px auto;
+}
+.panel-body.scrolling {
+  max-height: 350px;
+  overflow-y: auto;
+}
+table tbody td {
+  cursor: pointer;
+}
+.list-group-item:first-child {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.list-group-item:last-child {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.panel.panel-default.update-employee {
+  position: relative;
+  width: 95%;
+  margin: 25px auto;
+  height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.panel.panel-default.fees {
+  position: relative;
+  width: 95%;
+  margin: 25px auto;
+  overflow-y: auto;
+}
+.scroll-bar {
+  position: relative;
+  padding: 10px 10px 10px 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.panel.panel-default.cheque {
+  position: relative;
+  width: 95%;
+  margin: 25px auto;
+  overflow-y: auto;
+}
+.panel-heading.fees {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.panel.panel-default.employee-salary {
+  position: relative;
+  width: 95%;
+  margin: 25px auto;
+  height: 400px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.panel-body.alignment {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 30%;
+  margin: auto;
+
+}
+.form-control {
+  border-radius: 0px;
+}
+.ui.buttons.padding {
+  padding-bottom: 15px;
+}
+.table-bordered a {
+  text-decoration: none;
+}
+form .update_form {
+  padding: 20px;
+}
+.alert-message {
+  width: 95%;
+  margin: 10px auto;
+}
+.panel.panel-default.student-list {
+  width: 95%;
+  margin: 25px auto;
+}
+.panel.panel-default.update-student {
+  position: relative;
+  width: 95%;
+  margin: 25px auto;
+  height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.alert {
+  border-radius: 0px;
+}
+.input-group-addon {
+  border-radius: 0px;
+}
+.control-label.weight {
+  font-weight: 100;
+  float: right;
+}
+.select2-choice {
+  width: 247px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+.modal-content {
+  border-radius: 0px;
+}
+.table.meals .center {
+  text-align: center;
+}                                                                                                                                       

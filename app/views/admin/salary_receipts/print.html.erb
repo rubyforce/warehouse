@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag "application" %>
+<div class="container">
+  <div class="page-header">
+    <h1 style="text-align: center">Salary Vouchers</h1>
+  </div>
+
+  <p class="lead" style="text-align: center">Month: <%= @salary_receipt.month.strftime("%B") %> Year: <%= @salary_receipt.year %></p>
+
+  <div class="update_form">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default receipt" style="width: 95%; margin: 20px auto;">
+          <div class="panel panel-default">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th width="25%" style="text-align: center;">Employee Name</th>
+                  <th width="25%" style="text-align: center;">Salary</th>
+                  <th width="25%" style="text-align: center;">Remarks</th>
+                </tr>
+              </thead>
+              <%= render partial: 'employee_salary_receipt', collection: @salary_receipt.employee_salary_receipts %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer" style="text-align: center; margin-top: 50px;">
+    <div class="container">
+      <p class="text-muted">Created at <%= @salary_receipt.created_at.strftime("%d/%m/%Y") %></p>
+    </div>
+  </footer>
+</div>
+
+
+
