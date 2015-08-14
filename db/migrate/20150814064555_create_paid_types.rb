@@ -1,0 +1,9 @@
+class CreatePaidTypes < ActiveRecord::Migration
+  def change
+    create_table :paid_types do |t|
+      t.string :name
+
+      t.timestamps null: false
+    end
+  end
+end
