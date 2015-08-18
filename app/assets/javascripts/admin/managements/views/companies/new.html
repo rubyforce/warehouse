@@ -1,0 +1,71 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Setting up MFG Companies</div>
+  <div class="panel-body">
+    <form name='form' ng-controller='CreateCompaniesController' class="form-horizontal" ng-submit='create()'>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new company.</div>
+      <div class="col-sm-12">
+        <!-- First Column -->
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='company.name' class="control-label">Manufacturer Name</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='company.name' type='text' ng-model='company.name' class="form-control" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='company.address' class="control-label">Address</label>
+            </div>
+            <div class="col-sm-6">
+              <textarea name="company.address" ng-model="company.address" class="form-control"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='company.contactNo' class="control-label">Contact No.</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='company.contactNo' type='text' ng-model='company.contactNo' class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='company.tax' class="control-label">Tax</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='company.tax' type='text' ng-model='company.tax' class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body scrolling" style="height: 350px">
+              <table class="table">
+                <tbody>
+                  <tr ng-repeat='company in companies'>
+                    <td><a ng-click='select(company)'>{{ company.name }}</a></td>
+                    <td><a ng-click='remove(company)'>Remove</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End First Column -->
+
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="button" class="btn btn-default" ng-click='new()'>New</button>
+          <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

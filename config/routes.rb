@@ -2,10 +2,20 @@ Greenarea::Application.routes.draw do
 
   namespace :admin do
     resources :employees
+    resources :paid_types
+    resources :categories
+    resources :ledgers
+    resources :expenses
+    resources :companies
+    resources :warehouses
+    resources :items
+    resources :package_types
+    resources :containers
+    resources :devices
+    resources :vehicles
+    resources :vehicle_companies
 
     resources :dashboards
-
-    resources :paid_types
   end
 
   devise_for :users
