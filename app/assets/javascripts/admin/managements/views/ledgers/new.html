@@ -1,0 +1,62 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Setting up Ledgers</div>
+  <div class="panel-body">
+    <form name='form' ng-controller='CreateLedgersController' class="form-horizontal" ng-submit='create()'>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new ledger.</div>
+      <div class="col-sm-12">
+        <!-- First Column -->
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='ledger.name' class="control-label">Ledger Name</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='ledger.name' type='text' ng-model='ledger.name' class="form-control" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='ledger.address' class="control-label">Address</label>
+            </div>
+            <div class="col-sm-6">
+              <textarea name="ledger.address" ng-model="ledger.address" class="form-control"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='ledger.contactNo' class="control-label">Contact No.</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='ledger.contactNo' type='text' ng-model='ledger.contactNo' class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body scrolling" style="height: 350px">
+              <table class="table">
+                <tbody>
+                  <tr ng-repeat='ledger in ledgers'>
+                    <td><a ng-click='select(ledger)'>{{ ledger.name }}</a></td>
+                    <td><a ng-click='remove(ledger)'>Remove</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End First Column -->
+
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="button" class="btn btn-default" ng-click='new()'>New</button>
+          <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

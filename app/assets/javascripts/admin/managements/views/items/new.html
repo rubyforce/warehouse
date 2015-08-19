@@ -1,0 +1,96 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Setting up Items</div>
+  <div class="panel-body">
+    <form name='form' ng-controller='CreateItemsController' class="form-horizontal" ng-submit='create()'>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new item.</div>
+      <div class="col-sm-12">
+        <!-- First Column -->
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='item.name' class="control-label">Item Name</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='item.name' type='text' ng-model='item.name' class="form-control" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='item.description' class="control-label">MFG Company</label>
+            </div>
+            <div class="col-sm-6">
+              <select name='item.company' ng-model='item.companyId' class="form-control" required>
+                <option ng-repeat="company in companies" value="{{company.id}}">{{company.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='item.min_qty' class="control-label">Min. Qty</label>
+            </div>
+            <div class="col-sm-6">
+              <input name='item.min_qty' type='text' ng-model='item.minQty' class="form-control" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='item.package_type' class="control-label">Packaging Type</label>
+            </div>
+            <div class="col-sm-6">
+              <select name="item.package_type" class="form-control" ng-model="item.packageTypeId">
+                <option ng-repeat="package in package_types" value='{{package.id}}'>{{package.name}}</option>
+              </select>
+            </div>
+            <div class="col-sm-2" ng-controller="CreatePackageTypesController">
+              <a ng-click="openForm('sm')" class="btn btn-default">
+                <i class="fa fa-folder-plus"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label for='item.container' class="control-label">Container</label>
+            </div>
+            <div class="col-sm-6">
+              <select name="item.container" class="form-control" ng-model="item.containerId">
+                <option ng-repeat="container in containers" value='{{container.id}}'>{{container.name}}</option>
+              </select>
+            </div>
+            <div class="col-sm-2" ng-controller="CreateContainersController">
+              <a ng-click="openForm('sm')" class="btn btn-default">
+                <i class="fa fa-folder-plus"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body scrolling" style="height: 350px">
+              <table class="table">
+                <tbody>
+                  <tr ng-repeat='item in items'>
+                    <td><a ng-click='select(item)'>{{ item.name }}</a></td>
+                    <td><a ng-click='remove(item)'>Remove</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End First Column -->
+
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="button" class="btn btn-default" ng-click='new()'>New</button>
+          <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
