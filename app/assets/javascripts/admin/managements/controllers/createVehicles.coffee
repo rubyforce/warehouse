@@ -16,8 +16,15 @@
       _.remove($scope.vehicles, vehicle)
 
     $scope.create = ->
-      new Vehicle($scope.vehicle).create().then (response) ->
-        $scope.vehicles.push(new Vehicle(response))
-        $scope.vehicle = {}
-        $scope.alert = true
+      if $scope.vehicle.id?
+        $scope.vehicle.update().then (response) ->
+          $scope.alert = true
+          $scope.vehicle = response
+      else
+        $scope.vehicle.create().then (response) ->
+          $scope.vehicles.push(new Vehicle(response))
+
+          $scope.alert = true
+          $scope.vehicle = {}
+          $scope.vehicle = response
 ]

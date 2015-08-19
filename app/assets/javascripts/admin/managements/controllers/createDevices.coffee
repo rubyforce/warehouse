@@ -16,8 +16,15 @@
       _.remove($scope.devices, device)
 
     $scope.create = ->
-      new Device($scope.device).create().then (response) ->
-        $scope.devices.push(new Device(response))
-        $scope.device = {}
-        $scope.alert = true
+      if $scope.device.id?
+        $scope.device.update().then (response) ->
+          $scope.alert = true
+          $scope.device = response
+      else
+        $scope.device.create().then (response) ->
+          $scope.devices.push(new Device(response))
+
+          $scope.alert = true
+          $scope.device = {}
+          $scope.device = response
 ]

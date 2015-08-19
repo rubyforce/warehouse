@@ -3,7 +3,7 @@ class Admin::VehiclesController < ApplicationController
 
   def index
     @vehicles = Vehicle.all
-    respond_with @vehicles
+    render :json => @vehicles
   end
 
   def show
@@ -17,7 +17,7 @@ class Admin::VehiclesController < ApplicationController
   end
 
   def create
-    @vehicle = Vehicle.new(params[:vehicle])
+    @vehicle = Vehicle.new(permitted_params)
     @vehicle.save
 
     render :json => @vehicle
@@ -30,7 +30,7 @@ class Admin::VehiclesController < ApplicationController
 
   def update
     @vehicle = Vehicle.find(params[:id])
-    @vehicle.update_attributes(params[:vehicle])
+    @vehicle.update_attributes(permitted_params)
     render :json => @vehicle
   end
 
@@ -38,5 +38,12 @@ class Admin::VehiclesController < ApplicationController
     @vehicle = Vehicle.find(params[:id])
     @vehicle.destroy
     render :json => @vehicle
+  end
+
+  def permitted_params
+    params[:vehicle].delete(:id)
+    params[:vehicle].delete(:created_at)
+    params[:vehicle].delete(:updated_at)
+    params[:vehicle]
   end
 end

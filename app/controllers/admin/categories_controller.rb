@@ -3,7 +3,7 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-    respond_with @categories
+    render :json => @categories
   end
 
   def show
@@ -17,7 +17,7 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(permitted_params)
     @category.save
 
     render :json => @category
@@ -30,7 +30,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    @category.update_attributes(params[:category])
+    @category.update_attributes(permitted_params)
     render :json => @category
   end
 
@@ -38,5 +38,12 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     render :json => @category
+  end
+
+  def permitted_params
+    params[:category].delete(:id)
+    params[:category].delete(:created_at)
+    params[:category].delete(:updated_at)
+    params[:category]
   end
 end

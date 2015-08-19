@@ -3,7 +3,7 @@ class Admin::PaidTypesController < ApplicationController
 
   def index
     @paid_types = PaidType.all
-    respond_with @paid_types
+    render :json => @paid_types
   end
 
   def show

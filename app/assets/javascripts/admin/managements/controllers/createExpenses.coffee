@@ -16,8 +16,15 @@
       _.remove($scope.expenses, expense)
 
     $scope.create = ->
-      new Expense($scope.expense).create().then (response) ->
-        $scope.expenses.push(new Expense(response))
-        $scope.expense = {}
-        $scope.alert = true
+      if $scope.expense.id?
+        $scope.expense.update().then (response) ->
+          $scope.alert = true
+          $scope.expense = response
+      else
+        $scope.expense.create().then (response) ->
+          $scope.expenses.push(new Expense(response))
+
+          $scope.alert = true
+          $scope.expense = {}
+          $scope.expense = response
 ]

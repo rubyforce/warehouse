@@ -3,7 +3,7 @@ class Admin::PackageTypesController < ApplicationController
 
   def index
     @package_types = PackageType.all
-    respond_with @package_types
+    render :json => @package_types
   end
 
   def show

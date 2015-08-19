@@ -3,7 +3,7 @@ class Admin::CompaniesController < ApplicationController
 
   def index
     @companies = Company.all
-    respond_with @companies
+    render :json => @companies
   end
 
   def show
@@ -17,7 +17,7 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(params[:company])
+    @company = Company.new(permitted_params)
     @company.save
 
     render :json => @company
@@ -30,7 +30,7 @@ class Admin::CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
-    @company.update_attributes(params[:company])
+    @company.update_attributes(permitted_params)
     render :json => @company
   end
 
@@ -38,5 +38,12 @@ class Admin::CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @company.destroy
     render :json => @company
+  end
+
+  def permitted_params
+    params[:company].delete(:id)
+    params[:company].delete(:created_at)
+    params[:company].delete(:updated_at)
+    params[:company]
   end
 end

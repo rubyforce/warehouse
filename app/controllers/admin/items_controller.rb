@@ -21,7 +21,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params[:item])
+    @item = Item.new(permitted_params)
     @item.save
     render :json => @item
   end
@@ -33,7 +33,7 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update_attributes(params[:item])
+    @item.update_attributes(permitted_params)
     render :json => @item
   end
 
@@ -41,5 +41,12 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     render :json => @item
+  end
+
+  def permitted_params
+    params[:item].delete(:id)
+    params[:item].delete(:created_at)
+    params[:item].delete(:updated_at)
+    params[:item]
   end
 end

@@ -16,8 +16,15 @@
       _.remove($scope.ledgers, ledger)
 
     $scope.create = ->
-      new Ledger($scope.ledger).create().then (response) ->
-        $scope.ledgers.push(new Ledger(response))
-        $scope.ledger = {}
-        $scope.alert = true
+      if $scope.ledger.id?
+        $scope.ledger.update().then (response) ->
+          $scope.alert = true
+          $scope.ledger = response
+      else
+        $scope.ledger.create().then (response) ->
+          $scope.ledgers.push(new Ledger(response))
+
+          $scope.alert = true
+          $scope.ledger = {}
+          $scope.ledger = response
 ]

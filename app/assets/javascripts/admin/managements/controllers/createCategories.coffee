@@ -24,6 +24,4 @@
           $scope.categories.push(new Category(response))
           $scope.category = {}
           $scope.alert = true
-
-
 ]
