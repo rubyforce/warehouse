@@ -1,0 +1,35 @@
+<div ng-controller='CategoriesController' ui-view='categories'>
+  <div class="text-bottom">
+    <h1>Masters Management</h1>
+  </div>
+
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.categories">Category</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.ledgers">Ledgers</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.expenses">Expenses</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.companies">MFG Companies</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.warehouses">Warehouses</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.items">Items</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.devices">Devices</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="managements.vehicles">Vehicles</a>
+    </li>
+  </ul>
+
+
+  <div ui-view></div>
+</div>
