@@ -17,14 +17,11 @@
 
     $scope.create = ->
       if $scope.category.id?
-        $scope.category.update().then (response) ->
-          $scope.alert = true
-          $scope.category = response
-      else
-        $scope.category.create().then (response) ->
-          $scope.categories.push(new Category(response))
+        $scope.category.update()
 
-          $scope.alert = true
+      else
+        $scope.category.create().then(response) ->
+          $scope.categories.push(new Category(response))
           $scope.category = {}
-          $scope.category = response
+          $scope.alert = true
 ]
