@@ -3,8 +3,6 @@
   ($scope, Device, $timeout) ->
     $scope.alert = false
 
-    $scope.device = new Device()
-
     $scope.select = (device) ->
       $scope.device = device
 
@@ -17,14 +15,12 @@
 
     $scope.create = ->
       if $scope.device.id?
-        $scope.device.update().then (response) ->
-          $scope.alert = true
-          $scope.device = response
+        $scope.device.update()
+
       else
-        $scope.device.create().then (response) ->
+        new Device($scope.device).create().then (response) ->
           $scope.devices.push(new Device(response))
 
-          $scope.alert = true
           $scope.device = {}
-          $scope.device = response
+          $scope.alert = true
 ]

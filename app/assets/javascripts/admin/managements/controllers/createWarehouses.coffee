@@ -3,8 +3,6 @@
   ($scope, Warehouse, $timeout) ->
     $scope.alert = false
 
-    $scope.warehouse = new Warehouse()
-
     $scope.select = (warehouse) ->
       $scope.warehouse = warehouse
 
@@ -17,14 +15,12 @@
 
     $scope.create = ->
       if $scope.warehouse.id?
-        $scope.warehouse.update().then (response) ->
-          $scope.alert = true
-          $scope.warehouse = response
+        $scope.warehouse.update()
+        
       else
-        $scope.warehouse.create().then (response) ->
+        new Warehouse($scope.warehouse).create().then (response) ->
           $scope.warehouses.push(new Warehouse(response))
 
-          $scope.alert = true
           $scope.warehouse = {}
-          $scope.warehouse = response
+          $scope.alert = true
 ]

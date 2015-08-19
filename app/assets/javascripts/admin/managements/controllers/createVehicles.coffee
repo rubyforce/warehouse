@@ -3,8 +3,6 @@
   ($scope, Vehicle, $timeout) ->
     $scope.alert = false
 
-    $scope.vehicle = new Vehicle()
-
     $scope.select = (vehicle) ->
       $scope.vehicle = vehicle
 
@@ -17,14 +15,12 @@
 
     $scope.create = ->
       if $scope.vehicle.id?
-        $scope.vehicle.update().then (response) ->
-          $scope.alert = true
-          $scope.vehicle = response
+        $scope.vehicle.update()
+
       else
-        $scope.vehicle.create().then (response) ->
+        new Vehicle($scope.vehicle).create().then (response) ->
           $scope.vehicles.push(new Vehicle(response))
 
-          $scope.alert = true
           $scope.vehicle = {}
-          $scope.vehicle = response
+          $scope.alert = true
 ]

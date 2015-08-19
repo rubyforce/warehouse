@@ -3,8 +3,6 @@
   ($scope, Item, $timeout) ->
     $scope.alert = false
 
-    $scope.item = new Item()
-
     $scope.select = (item) ->
       $scope.item = item
       $scope.item.company = company_id
@@ -18,14 +16,12 @@
 
     $scope.create = ->
       if $scope.item.id?
-        $scope.item.update().then (response) ->
-          $scope.alert = true
-          $scope.item = response
+        $scope.item.update()
+
       else
-        $scope.item.create().then (response) ->
+        new Item($scope.item).create().then (response) ->
           $scope.items.push(new Item(response))
 
-          $scope.alert = true
           $scope.item = {}
-          $scope.item = response
+          $scope.alert = true
 ]

@@ -3,8 +3,6 @@
   ($scope, Category, $timeout) ->
     $scope.alert = false
 
-    $scope.category = new Category()
-
     $scope.select = (category) ->
       $scope.category = category
 
@@ -20,7 +18,7 @@
         $scope.category.update()
 
       else
-        $scope.category.create().then(response) ->
+        new Category($scope.category).create().then (response) ->
           $scope.categories.push(new Category(response))
           $scope.category = {}
           $scope.alert = true

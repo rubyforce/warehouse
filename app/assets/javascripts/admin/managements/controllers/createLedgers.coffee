@@ -3,8 +3,6 @@
   ($scope, Ledger, $timeout) ->
     $scope.alert = false
 
-    $scope.ledger = new Ledger()
-
     $scope.select = (ledger) ->
       $scope.ledger = ledger
 
@@ -17,14 +15,12 @@
 
     $scope.create = ->
       if $scope.ledger.id?
-        $scope.ledger.update().then (response) ->
-          $scope.alert = true
-          $scope.ledger = response
+        $scope.ledger.update()
+
       else
-        $scope.ledger.create().then (response) ->
+        new Ledger($scope.ledger).create().then (response) ->
           $scope.ledgers.push(new Ledger(response))
 
-          $scope.alert = true
           $scope.ledger = {}
-          $scope.ledger = response
+          $scope.alert = true
 ]

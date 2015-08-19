@@ -3,8 +3,6 @@
   ($scope, Expense, $timeout) ->
     $scope.alert = false
 
-    $scope.expense = new Expense()
-
     $scope.select = (expense) ->
       $scope.expense = expense
 
@@ -17,14 +15,12 @@
 
     $scope.create = ->
       if $scope.expense.id?
-        $scope.expense.update().then (response) ->
-          $scope.alert = true
-          $scope.expense = response
+        $scope.expense.update()
+ 
       else
-        $scope.expense.create().then (response) ->
+        new Expense($scope.expense).create().then (response) ->
           $scope.expenses.push(new Expense(response))
 
-          $scope.alert = true
           $scope.expense = {}
-          $scope.expense = response
+          $scope.alert = true
 ]
