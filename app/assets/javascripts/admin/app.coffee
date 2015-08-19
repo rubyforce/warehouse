@@ -54,6 +54,9 @@ managements.config [
       .state 'managements.vehicles',
         url: "/vehicles/new"
         templateUrl: "admin/managements/views/vehicles/new.html"
+      .state 'managements.rate_master',
+        url: "/rate_master/new"
+        templateUrl: "admin/managements/views/rate_master/new.html"
 ]
 
 @paid_types = angular.module('admin.paid_types', [])

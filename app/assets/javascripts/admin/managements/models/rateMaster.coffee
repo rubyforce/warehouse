@@ -1,0 +1,7 @@
+@managements.factory "RateMaster", [
+  "$http", 'RailsResource', 'railsResourceFactory', 'railsSerializer'
+  ($http, RailsResource, railsResourceFactory, railsSerializer) ->
+    Category = railsResourceFactory
+      url: '/admin/rate_masters'
+      name: 'rate_master'
+]

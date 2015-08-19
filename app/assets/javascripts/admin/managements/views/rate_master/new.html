@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Rate Master</div>
+  <div class="panel-body">
+    <form name='form' ng-controller='CreateRateMasterController' class="form-horizontal" ng-submit='create()'>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new category.</div>
+      <div class="col-sm-12">
+        <!-- First Column -->
+        <h4 style="text-align: center">Set Rates in Following Table</h4>
+        <div style="text-align: center">
+         <label for='coca-cola' class="radio-inline">
+            <input name='coca-cola' id='coca-cola' type="radio" checked>Coca-Cola
+          </label>
+          <label for='pepsi' class="radio-inline">
+            <input name='pepsi' id='pepsi' type="radio">Pepsico
+          </label>
+        </div>
+
+        <div class="panel-body scrolling">
+          <table id='objects-list' class="table table-bordered table-striped scrolling">
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Item Name</th>
+                <th>Rate</th>
+                <th>In Stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination total-items='employees.length' ng-model='currentPage' items-per-page='itemsPerPage' max-size="5" data-previous-text="&laquo;" data-next-text="&raquo;">
+          </pagination>
+        </div>
+      </div>
+      <!-- End First Column -->
+
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="button" class="btn btn-default" ng-disabled='form.$invalid'>Save New Rates</button>
+          <button type="submit" class="btn btn-default">Reset to Last Saved</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
