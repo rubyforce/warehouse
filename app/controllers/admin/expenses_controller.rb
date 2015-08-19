@@ -3,7 +3,7 @@ class Admin::ExpensesController < ApplicationController
 
   def index
     @expenses = Expense.all
-    respond_with @expenses
+    render :json => @expenses
   end
 
   def show

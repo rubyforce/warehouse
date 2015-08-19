@@ -3,7 +3,7 @@ class Admin::ContainersController < ApplicationController
 
   def index
     @containers = Container.all
-    respond_with @containers
+    render :json => @containers
   end
 
   def show

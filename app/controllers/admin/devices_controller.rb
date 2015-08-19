@@ -3,7 +3,7 @@ class Admin::DevicesController < ApplicationController
 
   def index
     @devices = Device.all
-    respond_with @devices
+    render :json => @devices
   end
 
   def show

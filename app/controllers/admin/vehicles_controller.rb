@@ -3,7 +3,7 @@ class Admin::VehiclesController < ApplicationController
 
   def index
     @vehicles = Vehicle.all
-    respond_with @vehicles
+    render :json => @vehicles
   end
 
   def show

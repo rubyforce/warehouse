@@ -3,7 +3,7 @@ class Admin::EmployeesController < ApplicationController
 
   def index
     @employees = Employee.all
-    respond_with @employees
+    render :json => @employees
   end
 
   def show

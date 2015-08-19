@@ -3,7 +3,7 @@ class Admin::WarehousesController < ApplicationController
 
   def index
     @warehouses = Warehouse.all
-    respond_with @warehouses
+    render :json => @warehouses
   end
 
   def show

@@ -3,7 +3,7 @@ class Admin::LedgersController < ApplicationController
 
   def index
     @ledgers = Ledger.all
-    respond_with @ledgers
+    render :json => @ledgers
   end
 
   def show
