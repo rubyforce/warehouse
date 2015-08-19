@@ -17,7 +17,7 @@ class Admin::WarehousesController < ApplicationController
   end
 
   def create
-    @warehouse = Warehouse.new(params[:warehouse])
+    @warehouse = Warehouse.new(permitted_params)
     @warehouse.save
 
     render :json => @warehouse
@@ -30,7 +30,7 @@ class Admin::WarehousesController < ApplicationController
 
   def update
     @warehouse = Warehouse.find(params[:id])
-    @warehouse.update_attributes(params[:warehouse])
+    @warehouse.update_attributes(permitted_params)
     render :json => @warehouse
   end
 
@@ -38,5 +38,12 @@ class Admin::WarehousesController < ApplicationController
     @warehouse = Warehouse.find(params[:id])
     @warehouse.destroy
     render :json => @warehouse
+  end
+
+  def permitted_params
+    params[:warehouse].delete(:id)
+    params[:warehouse].delete(:created_at)
+    params[:warehouse].delete(:updated_at)
+    params[:warehouse]
   end
 end

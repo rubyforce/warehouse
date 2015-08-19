@@ -17,7 +17,7 @@ class Admin::DevicesController < ApplicationController
   end
 
   def create
-    @device = Device.new(params[:device])
+    @device = Device.new(permitted_params)
     @device.save
 
     render :json => @device
@@ -30,7 +30,7 @@ class Admin::DevicesController < ApplicationController
 
   def update
     @device = Device.find(params[:id])
-    @device.update_attributes(params[:device])
+    @device.update_attributes(permitted_params)
     render :json => @device
   end
 
@@ -38,5 +38,12 @@ class Admin::DevicesController < ApplicationController
     @device = Device.find(params[:id])
     @device.destroy
     render :json => @device
+  end
+
+  def permitted_params
+    params[:device].delete(:id)
+    params[:device].delete(:created_at)
+    params[:device].delete(:updated_at)
+    params[:device]
   end
 end

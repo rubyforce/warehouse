@@ -17,7 +17,7 @@ class Admin::LedgersController < ApplicationController
   end
 
   def create
-    @ledger = Ledger.new(params[:ledger])
+    @ledger = Ledger.new(permitted_params)
     @ledger.save
 
     render :json => @ledger
@@ -30,7 +30,7 @@ class Admin::LedgersController < ApplicationController
 
   def update
     @ledger = Ledger.find(params[:id])
-    @ledger.update_attributes(params[:ledger])
+    @ledger.update_attributes(permitted_params)
     render :json => @ledger
   end
 
@@ -38,5 +38,12 @@ class Admin::LedgersController < ApplicationController
     @ledger = Ledger.find(params[:id])
     @ledger.destroy
     render :json => @ledger
+  end
+
+  def permitted_params
+    params[:ledger].delete(:id)
+    params[:ledger].delete(:created_at)
+    params[:ledger].delete(:updated_at)
+    params[:ledger]
   end
 end
