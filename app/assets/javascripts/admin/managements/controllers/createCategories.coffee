@@ -16,8 +16,15 @@
       _.remove($scope.categories, category)
 
     $scope.create = ->
-      new Category($scope.category).create().then (response) ->
-        $scope.categories.push(new Category(response))
-        $scope.category = {}
-        $scope.alert = true
+      if $scope.category.id?
+        $scope.category.update().then (response) ->
+          $scope.alert = true
+          $scope.category = response
+      else
+        $scope.category.create().then (response) ->
+          $scope.categories.push(new Category(response))
+
+          $scope.alert = true
+          $scope.category = {}
+          $scope.category = response
 ]

@@ -16,8 +16,15 @@
       _.remove($scope.warehouses, warehouse)
 
     $scope.create = ->
-      new Warehouse($scope.warehouse).create().then (response) ->
-        $scope.warehouses.push(new Warehouse(response))
-        $scope.warehouse = {}
-        $scope.alert = true
+      if $scope.warehouse.id?
+        $scope.warehouse.update().then (response) ->
+          $scope.alert = true
+          $scope.warehouse = response
+      else
+        $scope.warehouse.create().then (response) ->
+          $scope.warehouses.push(new Warehouse(response))
+
+          $scope.alert = true
+          $scope.warehouse = {}
+          $scope.warehouse = response
 ]
