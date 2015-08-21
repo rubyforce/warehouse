@@ -1,0 +1,139 @@
+<div class="panel panel-default" ng-controller='CreateGrievancesController'>
+  <div class="panel-heading">Stock Return/Grievances</div>
+  <div class="panel-body">
+    <form name='form' class="form-horizontal">
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new daily meal.</div>
+      <!-- First Column -->
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for='date' class="col-sm-1 control-label">Date</label>
+                <div class="col-sm-6">
+                  <div class="input-group">
+                    <input name='date' ng-model='daily_meal.date' class="form-control" date-options />
+
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <h5 style="text-align: right">Return Voucher No. 00001</h5>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div >
+              <div class="col-sm-3" style="text-align: center;">
+               <label class="radio-inline">
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" checked>Return
+                </label>
+              </div>
+              <div class="col-sm-3" style="text-align: center;">
+                <label class="radio-inline">
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Breakage
+                </label>
+              </div>
+              <div class="col-sm-3" style="text-align: center;">
+                <label class="radio-inline">
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Faulty
+                </label>
+              </div>
+              <div class="col-sm-3" style="text-align: center;">
+                <label class="radio-inline">
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Theft
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='meal.meal_id' class="control-label">Item Name</label>
+                </div>
+                <div class="col-sm-6">
+                  <select name='meal.meal_id' ng-model='meal.meal_id' class="form-control" required>
+                    <option ng-repeat="meal in meals" ng-value='{{meal.id}}'></option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <a ng-click="openForm('sm')" class="btn btn-default">
+                    <i class="fa fa-folder-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for='meal.qty' class="control-label">Qty.</label>
+                </div>
+                <div class="col-sm-4">
+                  <input name='meal.qty' type='text' ng-model='meal.qty' class="form-control"/>
+                  <input type="hidden" name='daily_meal.qty' type='text' ng-model='meal.qty' class="form-control"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4" style="text-align: center;">
+              <button type="submit" class="btn btn-default" ng-click='add()'>Add</button>
+              <button type="submit" class="btn btn-default" ng-click='reset()'>Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <br />
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body scrolling">
+          <div class="col-sm-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th width="10%" class="center">S/N</th>
+                  <th class="center" width="30%">Item Name</th>
+                  <th class="center" width="30%">Quantity</th>
+                  <th class="center" width="30%">Type of Return</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="form-group">
+            <label for='reason' class="col-sm-1 control-label">Note</label>
+            <div class="col-sm-4">
+              <textarea name="reason" ng-model="student.reason" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="submit" class="btn btn-default" ng-click="create()">Submit</button>
+          <a ng-click="reset()" class="btn btn-default">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -64,6 +64,16 @@ managements.config [
 @containers = angular.module('admin.containers', [])
 @vehicle_companies = angular.module('admin.vehicle_companies', [])
 
+@grievances = angular.module('admin.grievances', [])
+grievances.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRouterProvider) ->
+    $stateProvider
+      .state 'grievances',
+        url: "/grievances/new"
+        templateUrl: "admin/grievances/views/new.html"
+]
+
 @admin = angular.module('admin', [
   'ui.router',
   'rails',
@@ -78,6 +88,7 @@ managements.config [
   'admin.package_types',
   'admin.containers',
   'admin.vehicle_companies',
+  'admin.grievances',
 
   'admin.directives',
 ])

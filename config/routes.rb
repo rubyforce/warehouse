@@ -15,6 +15,7 @@ Greenarea::Application.routes.draw do
     resources :vehicles
     resources :vehicle_companies
     resources :rate_masters
+    resources :grievances
 
     resources :dashboards
   end
