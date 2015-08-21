@@ -4,6 +4,9 @@ class CreatePaymentVouchers < ActiveRecord::Migration
       t.string  :voucher_no
       t.date    :date
       t.decimal :amount
+      t.boolean :payment_method, default: false
+      t.string  :cheque_no
+      t.string  :bank_name
 
 
       t.timestamps null: false
