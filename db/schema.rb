@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821091851) do
+ActiveRecord::Schema.define(version: 20150821105508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -336,6 +336,14 @@ ActiveRecord::Schema.define(version: 20150821091851) do
 
   create_table "pay_bands", force: :cascade do |t|
     t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_vouchers", force: :cascade do |t|
+    t.string   "voucher_no"
+    t.date     "date"
+    t.decimal  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
