@@ -1,0 +1,17 @@
+<div ng-controller='PaymentVouchersController' ui-view='payment_vouchers'>
+  <div class="text-bottom">
+    <h1>Payment Vouchers</h1>
+  </div>
+
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="payment_vouchers.new">Add New Voucher</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="payment_vouchers.search">Search Voucher</a>
+    </li>
+  </ul>
+
+
+  <div ui-view></div>
+</div>
