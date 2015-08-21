@@ -102,12 +102,22 @@
                   <input name='cash' id='cash' type="radio" value="0" ng-model="receipt.payment_method" ng-init="receipt.payment_method='0'">Cash
                 </label>
                 <label for='bank' class="radio-inline">
-                  <input name='bank' id='bank' type="radio" value="1" ng-model="receipt.payment_method">Bank
+                  <input name='bank' id='bank' type="radio" value="1" ng-model="receipt.payment_method">Cheque No.
                 </label>
               </div>
             </div>
           </div>
           <div class="col-sm-9">
+            <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="col-sm-2">
+                    <label for='bank' class="control-label">Cash</label>
+                  </div>
+                  <div class="col-sm-8">
+                    <input name='bank' type='text' ng-model='receipt.bank_name' class="form-control" ng-disabled="receipt.payment_method != 0" />
+                  </div>
+                </div>
+              </div>
             <div class="row">
               <div class="col-sm-12">
                 <div class="col-sm-6">
