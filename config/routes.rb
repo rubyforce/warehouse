@@ -21,6 +21,9 @@ Greenarea::Application.routes.draw do
       collection do
         get :payment_id
       end
+      member do
+        get :print
+      end
     end
 
     resources :dashboards
