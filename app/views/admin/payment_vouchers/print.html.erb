@@ -89,14 +89,10 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th width="50%" style="text-align: center;">Amount</th>
+                <th width="50%" style="text-align: left;" class="th">Amount</th>
+                <th width="50%" style="text-align: right;" class="th"><%= @payment_voucher.amount %></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: center;"><%= @payment_voucher.amount %></td>
-              </tr>
-            </tbody>
           </table>
         </div>
       </div>
