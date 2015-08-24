@@ -23,6 +23,7 @@
     $scope.reset = ->
       $scope.paymentVoucher = build()
       $scope.paymentVoucher.voucher_no = $scope.r
+      $scope.paymentVoucher.payment_method= 0
 
     $scope.create = ->
       new PaymentVoucher($scope.paymentVoucher).create().then (response) ->
