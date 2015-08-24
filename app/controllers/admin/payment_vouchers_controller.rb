@@ -2,14 +2,30 @@ class Admin::PaymentVouchersController < ApplicationController
   respond_to :json
 
   def index
-    @payment_vouchers = PaymentVoucher.all
+    @payment_vouchers = PaymentVoucher
+
+    if params[:voucher_no].present?
+      @payment_vouchers = @payment_vouchers.where(:voucher_no => params[:voucher_no])
+    end
+
+    @payment_vouchers = @payment_vouchers.all
     render :json => @payment_vouchers.as_json(
       :include => [
         { 
           :employee => {
-            :only => :id,
-            :methods=> :full_name 
+            :only => [:id, :first_name, :last_name],
+            :methods=> [:full_name]
           } 
+        },
+        {
+          :ledger => { 
+            :only=> [:id, :name] 
+          }
+        },
+        {
+          :vehicle_company => {
+            :only => [:id, :name]
+          }
         }
       ]
     )

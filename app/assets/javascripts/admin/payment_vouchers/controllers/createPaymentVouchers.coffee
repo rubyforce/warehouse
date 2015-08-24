@@ -1,4 +1,4 @@
-@grievances.controller 'CreatePaymentVouchersController', [
+@payment_vouchers.controller 'CreatePaymentVouchersController', [
   '$scope', 'PaymentVoucher', '$http', '$timeout', '$location', '$window'
   ($scope, PaymentVoucher, $http, $timeout, $location, $window) ->
     $scope.paymentDate = $.datepicker.formatDate("dd/mm/yy", new Date())
