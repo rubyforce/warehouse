@@ -63,6 +63,10 @@ table tbody td {
   margin: 25px auto;
   overflow-y: auto;
 }
+.header {
+  padding-bottom: 9px;
+  margin: 60px 0 20px;
+}
 .scroll-bar {
   position: relative;
   padding: 10px 10px 10px 10px;
