@@ -51,7 +51,7 @@
         </div>
         <div class="col-sm-6">
           <select name="paymentVoucher.employee_id" class="form-control" ng-model="paymentVoucher.employee_id">
-            <option ng-repeat="employee in employees" value='{{employee.id}}'>{{employee.firstName}}</option>
+            <option ng-repeat="employee in employees" value='{{employee.id}}'>{{employee.fullName()}}</option>
           </select>
         </div>
       </div>

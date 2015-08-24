@@ -6,5 +6,8 @@
         url: '/admin/employees'
         name: 'employee'
 
+    Employee.prototype.fullName = ->
+      _([@firstName, @lastName]).compact().value().join(" ")
+
     Employee
 ]

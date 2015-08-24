@@ -3,7 +3,16 @@ class Admin::PaymentVouchersController < ApplicationController
 
   def index
     @payment_vouchers = PaymentVoucher.all
-    render :json => @payment_vouchers
+    render :json => @payment_vouchers.as_json(
+      :include => [
+        { 
+          :employee => {
+            :only => :id,
+            :methods=> :full_name 
+          } 
+        }
+      ]
+    )
   end
 
   def show
