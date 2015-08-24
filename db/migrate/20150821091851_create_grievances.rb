@@ -3,6 +3,8 @@ class CreateGrievances < ActiveRecord::Migration
     create_table :grievances do |t|
       t.date :date
       t.text :note
+      t.integer :item_id
+      t.decimal :qty
 
       t.timestamps null: false
     end
