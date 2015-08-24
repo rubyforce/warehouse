@@ -10,8 +10,8 @@
             $scope.paymentVoucher.voucher_no = "0001"
           else
             sum = response.id + 1
-            r = numeral(sum/1000).format('0.000').replace(/\./,'')
-            $scope.paymentVoucher.voucher_no = r
+            $scope.r = numeral(sum/1000).format('0.000').replace(/\./,'')
+            $scope.paymentVoucher.voucher_no = $scope.r
 
     $scope.alert = false
 
@@ -22,6 +22,7 @@
 
     $scope.reset = ->
       $scope.paymentVoucher = build()
+      $scope.paymentVoucher.voucher_no = $scope.r
 
     $scope.create = ->
       new PaymentVoucher($scope.paymentVoucher).create().then (response) ->
