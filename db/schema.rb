@@ -154,6 +154,9 @@ ActiveRecord::Schema.define(version: 20150821105508) do
     t.string   "cheque_no"
     t.string   "bank_name"
     t.decimal  "cash"
+    t.string   "ledger_name"
+    t.string   "details"
+    t.integer  "ledger_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end

@@ -28,8 +28,8 @@
           <label for='employee.middle_name' class="control-label">Ledger Name</label>
         </div>
         <div class="col-sm-5">
-          <select name="employee.paid_type" class="form-control" ng-model="employee.paid_type_id">
-            <option ng-repeat="paid in paid_types" value='{{paid.id}}'>{{paid.name}}</option>
+          <select name="paymentVoucher.ledger_name" class="form-control" ng-model="paymentVoucher.ledger_id">
+            <option ng-repeat="ledger in ledgers" value='{{ledger.id}}'>{{ledger.name}}</option>
           </select>
         </div>
       </div>
