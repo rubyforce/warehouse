@@ -45,7 +45,7 @@ class Admin::PaymentVouchersController < ApplicationController
   end
 
 
-  def receipt_id
+  def payment_id
     @payment_voucher = PaymentVoucher.order('id asc').last
     render :json => @payment_voucher
   end

@@ -11,6 +11,8 @@ class CreatePaymentVouchers < ActiveRecord::Migration
       t.string  :ledger_name
       t.string  :details
       t.integer :ledger_id
+      t.integer :employee_id
+      t.integer :vehicle_company_id
 
 
       t.timestamps null: false

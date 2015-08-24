@@ -150,15 +150,17 @@ ActiveRecord::Schema.define(version: 20150821105508) do
     t.string   "voucher_no"
     t.date     "date"
     t.decimal  "amount"
-    t.boolean  "payment_method", default: false
+    t.boolean  "payment_method",     default: false
     t.string   "cheque_no"
     t.string   "bank_name"
     t.decimal  "cash"
     t.string   "ledger_name"
     t.string   "details"
     t.integer  "ledger_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "employee_id"
+    t.integer  "vehicle_company_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "rate_masters", force: :cascade do |t|
