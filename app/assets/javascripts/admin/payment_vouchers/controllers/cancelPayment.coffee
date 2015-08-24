@@ -14,7 +14,6 @@
     $scope.find = ->
       PaymentVoucher.query(voucher_no: $scope.number).then (response) ->
         $scope.payment = response[0]
-        debugger
         if $scope.payment
           $scope.clicked = true
         else
