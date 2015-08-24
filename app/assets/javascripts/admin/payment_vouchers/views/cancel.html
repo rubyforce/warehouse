@@ -21,8 +21,7 @@
           </div>
           <div ng-show="clicked" style="width: 95%; margin: 0 auto">
             <div class="page-header" style="margin: 20px 0 20px;">
-              <button type="submit" class="btn btn-warning" style="float: right" disabled ng-show="receipt.chequeStatus">{{receipt.chequeStatus}}</button>
-              <button type="submit" class="btn btn-danger" style="float: right" disabled ng-show="receipt.status">{{receipt.status}}</button>
+              <button type="submit" class="btn btn-danger" style="float: right" disabled ng-show="payment.status">{{payment.status}}</button>
               <br><br>
             </div>
             <div class="row">
@@ -57,7 +56,7 @@
                     </div>
                     <div class="panel-body" ng-show="cash">
                       <p>
-                        Cash: {{payment.voucherCash}}
+                        Cash: {{payment.Cash}}
                       </p>
                     </div>
                   </div>
