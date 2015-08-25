@@ -54,7 +54,7 @@
             <p>
               Payment to: <%= @payment_voucher.ledger.name %><br>
               Ledger Name: <%= @payment_voucher.expense.name %><br>
-              Details: <br>
+              Details: <%= @payment_voucher.details %><br>
               Payment by: <%= @payment_voucher.employee.full_name %><br>
             </p>
           </div>

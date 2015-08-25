@@ -39,9 +39,7 @@
           <label for='employee.last_name' class="control-label">Details</label>
         </div>
         <div class="col-sm-6">
-          <select name="employee.paid_type" class="form-control" ng-model="employee.paid_type_id">
-            <option ng-repeat="paid in paid_types" value='{{paid.id}}'>{{paid.name}}</option>
-          </select>
+           <input name='paymentVoucher.details' type='text' ng-model='paymentVoucher.details' class="form-control" required>
         </div>
       </div>
 
