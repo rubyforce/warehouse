@@ -1,0 +1,108 @@
+<style>
+  .table-width {
+    width: 100%
+  }
+
+  @page {
+    size: A5;
+    margin: 0;
+  }
+
+  @media print {
+    .second {
+      display: none;
+    }
+    .table-width {
+      width: 85%
+    }
+    .table-bordered, .th, .td
+    {
+      border-collapse:collapse;
+      width:75%;
+      border: 1px solid black;
+      text-align:right;
+    }
+  }
+</style>
+<%= stylesheet_link_tag "application" %>
+<div class="container">
+  <div class="header">
+  </div>
+  <div class="row">
+    <div class="first">
+      <div class="col-xs-7">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <table class="table-width">
+              <thead>
+                <tr>
+                  <th width="50%" style="text-align: left;">
+                    <h4>Voucher No. <%= @payment_voucher.voucher_no %>
+                  </th>
+                  <th width="50%" style="text-align: right;">
+                    <% if @payment_voucher.date.present? %>
+                      <h4> Date <%= @payment_voucher.date.strftime("%d/%m/%Y") %>
+                    <% else %>
+                      <h4> Date <%= @payment_voucher.created_at.strftime("%d/%m/%Y") %>
+                    <% end %>
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div class="panel-body">
+            <p>
+              Payment to: <%= @payment_voucher.vehicle_company.name %><br>
+              Ledger Name: <%= @payment_voucher.ledger.name %><br>
+              Details: <br>
+              Payment by: <%= @payment_voucher.employee.full_name %><br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="second">
+      <div class="col-xs-5 text-right">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>Payment Method</h4>
+          </div>
+          <div class="panel-body">
+            <% if @payment_voucher.cheque_no.present? && @payment_voucher.bank_name.present? %>
+              <p>
+                Cheque No.: <%= @payment_voucher.cheque_no %> <br>
+                Bank Name: <%= @payment_voucher.bank_name %> <br>
+              </p>
+            <% else %>
+              Cash: <%= @payment_voucher.cash %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="update_form">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default" style="">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th width="50%" style="text-align: left;" class="th">Amount</th>
+                <th width="50%" style="text-align: right;" class="th"><%= @payment_voucher.amount %></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer" style="text-align: center; margin-top: 50px;">
+    <div class="container">
+      <hr style="width: 30%;">
+      <p class="text-muted">Signature</p>
+    </div>
+  </footer>
+</div>

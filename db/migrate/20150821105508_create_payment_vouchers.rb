@@ -8,6 +8,11 @@ class CreatePaymentVouchers < ActiveRecord::Migration
       t.string  :cheque_no
       t.string  :bank_name
       t.decimal :cash
+      t.string  :ledger_name
+      t.string  :details
+      t.integer :ledger_id
+      t.integer :employee_id
+      t.integer :vehicle_company_id
 
 
       t.timestamps null: false

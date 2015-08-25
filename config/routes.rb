@@ -16,7 +16,15 @@ Greenarea::Application.routes.draw do
     resources :vehicle_companies
     resources :rate_masters
     resources :grievances
-    resources :payment_vouchers
+
+    resources :payment_vouchers do
+      collection do
+        get :payment_id
+      end
+      member do
+        get :print
+      end
+    end
 
     resources :dashboards
   end

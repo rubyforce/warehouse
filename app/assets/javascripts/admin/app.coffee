@@ -87,7 +87,7 @@ payment_vouchers.config [
         templateUrl: "admin/payment_vouchers/views/new.html"
       .state 'payment_vouchers.search',
         url: "/payment_vouchers"
-        templateUrl: "admin/payment_vouchers/views/search.html"
+        templateUrl: "admin/payment_vouchers/views/cancel.html"
 ]
 
 @admin = angular.module('admin', [
