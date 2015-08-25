@@ -21,11 +21,6 @@ class Admin::PaymentVouchersController < ApplicationController
           :ledger => { 
             :only=> [:id, :name] 
           }
-        },
-        {
-          :vehicle_company => {
-            :only => [:id, :name]
-          }
         }
       ]
     )
