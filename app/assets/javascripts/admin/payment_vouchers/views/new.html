@@ -17,7 +17,7 @@
           <label for='paymentVoucher.vehicle_company_i' class="control-label">Payment to</label>
         </div>
         <div class="col-sm-6">
-          <select name="paymentVoucher.vehicle_company_id" class="form-control" ng-model="paymentVoucher.vehicle_company_id">
+          <select name="paymentVoucher.vehicle_company_id" class="form-control" ng-model="paymentVoucher.vehicle_company_id" required>
             <option ng-repeat="vehicle in vehicle_companies" value='{{vehicle.id}}'>{{vehicle.name}}</option>
           </select>
         </div>
@@ -28,7 +28,7 @@
           <label for='paymentVoucher.ledger_id' class="control-label">Ledger Name</label>
         </div>
         <div class="col-sm-5">
-          <select name="paymentVoucher.ledger_id" class="form-control" ng-model="paymentVoucher.ledger_id">
+          <select name="paymentVoucher.ledger_id" class="form-control" ng-model="paymentVoucher.ledger_id" required>
             <option ng-repeat="ledger in ledgers" value='{{ledger.id}}'>{{ledger.name}}</option>
           </select>
         </div>
@@ -50,7 +50,7 @@
           <label for='paymentVoucher.employee_id' class="control-label">Payment by</label>
         </div>
         <div class="col-sm-6">
-          <select name="paymentVoucher.employee_id" class="form-control" ng-model="paymentVoucher.employee_id">
+          <select name="paymentVoucher.employee_id" class="form-control" ng-model="paymentVoucher.employee_id" required>
             <option ng-repeat="employee in employees" value='{{employee.id}}'>{{employee.fullName()}}</option>
           </select>
         </div>
