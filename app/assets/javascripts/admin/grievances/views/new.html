@@ -1,6 +1,6 @@
-<div class="panel panel-default" ng-controller='CreateGrievancesController'>
+<div class="panel panel-default" ng-controller='GrievancesController'>
   <div class="panel-heading">Stock Return/Grievances</div>
-  <div class="panel-body">
+  <div class="panel-body" ng-controller="CreateGrievancesController">
     <form name='form' class="form-horizontal">
       <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new daily meal.</div>
       <!-- First Column -->
@@ -12,7 +12,7 @@
                 <label for='date' class="col-sm-1 control-label">Date</label>
                 <div class="col-sm-6">
                   <div class="input-group">
-                    <input name='date' ng-model='daily_meal.date' class="form-control" date-options />
+                    <input name='date' ng-model='grievance.date' class="form-control" date-options />
 
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
@@ -61,14 +61,9 @@
                   <label for='meal.meal_id' class="control-label">Item Name</label>
                 </div>
                 <div class="col-sm-6">
-                  <select name='meal.meal_id' ng-model='meal.meal_id' class="form-control" required>
-                    <option ng-repeat="meal in meals" ng-value='{{meal.id}}'></option>
+                  <select name='grievance.item_id' ng-model='grievance.item_id' class="form-control" required>
+                    <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
                   </select>
-                </div>
-                <div class="col-sm-2">
-                  <a ng-click="openForm('sm')" class="btn btn-default">
-                    <i class="fa fa-folder-plus"></i>
-                  </a>
                 </div>
               </div>
             </div>
@@ -78,8 +73,8 @@
                   <label for='meal.qty' class="control-label">Qty.</label>
                 </div>
                 <div class="col-sm-4">
-                  <input name='meal.qty' type='text' ng-model='meal.qty' class="form-control"/>
-                  <input type="hidden" name='daily_meal.qty' type='text' ng-model='meal.qty' class="form-control"/>
+                  <input name='meal.qty' type='text' ng-model='grievance.qty' class="form-control"/>
+                  <input type="hidden" name='grievance.qty' type='text' ng-model='grievance.qty' class="form-control"/>
                 </div>
               </div>
             </div>
@@ -107,7 +102,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr ng-repeat="grievance in grievances">
                   <td class="center"></td>
                   <td class="center"></td>
                   <td class="center"></td>
