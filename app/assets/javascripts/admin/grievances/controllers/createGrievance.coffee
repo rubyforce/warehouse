@@ -3,7 +3,8 @@
   ($scope, Grievance, $timeout, Reason) ->
 
     $scope.foods = []
-    $scope.reason.reason = "Return"
+    $scope.reason =
+      reason: "Return"
 
     $scope.alert = false
 
@@ -13,20 +14,18 @@
     $scope.grievance = build()
 
     $scope.add = ->
-      debugger
-      reason = _($scope.reasons).chain().find((r)-> parseInt(r.id, 10) is parseInt($scope.reason.item_id, 10)).value()
-      reason.qty = $scope.reason.qty
-
-      reason = new Reason(reason)
-      reason.update()
-
       $scope.foods.push(_.clone($scope.reason))
 
-      $scope.reason = _($scope.reason).pick(['reason']).value()
+      # Reset reason on the page to make sure we have the old selected
+      # value
+      $scope.reason =
+        reason: reason.reason
 
     $scope.create = ->
+      # TODO: place here nested attributes usage like in school daily meals.
+      #
       new Grievance($scope.grievance).create().then (response) ->
         $scope.grievances.push(new Grievance(response))
         $scope.alert = true
-    
+
 ]
