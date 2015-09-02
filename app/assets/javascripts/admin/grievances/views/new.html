@@ -29,22 +29,22 @@
             <div >
               <div class="col-sm-3" style="text-align: center;">
                <label class="radio-inline">
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="reason.reason" value="Return" >Return
+                  <input type="radio" name="optionsRadios" ng-model="reason.reason" value="Return" >Return
                 </label>
               </div>
               <div class="col-sm-3" style="text-align: center;">
                 <label class="radio-inline">
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="reason.reason" value="Breakage">Breakage
+                  <input type="radio" name="optionsRadios" ng-model="reason.reason" value="Breakage">Breakage
                 </label>
               </div>
               <div class="col-sm-3" style="text-align: center;">
                 <label class="radio-inline">
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="reason.reason" value="Faulty">Faulty
+                  <input type="radio" name="optionsRadios" ng-model="reason.reason" value="Faulty">Faulty
                 </label>
               </div>
               <div class="col-sm-3" style="text-align: center;">
                 <label class="radio-inline">
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="reason.reason" value="Theft">Theft
+                  <input type="radio" name="optionsRadios" ng-model="reason.reason" value="Theft">Theft
                 </label>
               </div>
             </div>
@@ -102,11 +102,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="center"></td>
-                  <td class="center"></td>
-                  <td class="center"></td>
-                  <td class="center"></td>
+                <tr ng-repeat="food in foods">
+                  <td class="center">{{food.id}}</td>
+                  <td class="center">{{}}</td>
+                  <td class="center">{{food.qty}}</td>
+                  <td class="center">{{food.reason}}</td>
                 </tr>
               </tbody>
             </table>

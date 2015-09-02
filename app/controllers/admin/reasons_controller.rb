@@ -3,7 +3,11 @@ class Admin::ReasonsController < ApplicationController
 
   def index
     @reasons = Reason.all
-    render :json => @reasons
+    render :json => @reasons.as_json(:include => [{
+      :item => {
+        :only => [:id, :name]
+      }
+    }])
   end
 
   def show
