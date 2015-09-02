@@ -20,7 +20,7 @@ class Admin::GrievancesController < ApplicationController
     @grievance = Grievance.new(permitted_params)
     @grievance.save
 
-    render :json => @grievance
+    render :json => @grievance.as_json(:include => :reasons)
   end
 
   def edit

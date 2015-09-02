@@ -1,8 +1,9 @@
 @grievances.controller 'CreateGrievancesController', [
-  '$scope', 'Grievance', '$timeout', 'Reason'
-  ($scope, Grievance, $timeout, Reason) ->
+  '$scope', 'Grievance', '$timeout', 'Reason', 'Item'
+  ($scope, Grievance, $timeout, Reason, Item) ->
 
     $scope.foods = []
+    $scope.reason = {}
 
     $scope.reason =
       reason: "Return"
@@ -16,8 +17,10 @@
 
     $scope.add = ->
       debugger
-      new Reason($scope.reason).create().then (response) ->
-        $scope.reasons.push(new Reason(response))
+      item = _($scope.items).chain().find((m)-> parseInt(m.id, 10) is parseInt($scope.reason.item_id, 10)).value()
+      $scope.reason.name = item.name
+
+      $scope.reason = _($scope.reason).pick(['name', 'qty', 'numeral', 'reason']).value()
 
       $scope.foods.push(_.clone($scope.reason))
 
@@ -30,8 +33,9 @@
     $scope.create = ->
       # TODO: place here nested attributes usage like in school daily meals.
       #
-      new Grievance($scope.grievance).create().then (response) ->
-        $scope.grievances.push(new Grievance(response))
+      $scope.grievance.reasonAttributes = $scope.foods
+      $scope.grievance.create().then (response) ->
+        debugger
         $scope.alert = true
 
 ]
