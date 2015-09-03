@@ -3,7 +3,7 @@ class Admin::GrievancesController < ApplicationController
 
   def index
     @grievances = Grievance.all
-    render :json => @grievances
+    render :json => @grievances.as_json(:include => :reasons)
   end
 
   def show
