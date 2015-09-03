@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150903103804) do
   create_table "grievances", force: :cascade do |t|
     t.date     "date"
     t.text     "note"
+    t.string   "voucher_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

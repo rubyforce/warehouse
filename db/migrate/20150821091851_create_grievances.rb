@@ -3,6 +3,7 @@ class CreateGrievances < ActiveRecord::Migration
     create_table :grievances do |t|
       t.date :date
       t.text :note
+      t.string :voucher_no
 
       t.timestamps null: false
     end
