@@ -33,13 +33,18 @@
       $scope.reason =
         reason: "Return"
 
+    $scope.reset = ->
+      $scope.things = []
+      $scope.grievance = build()
+      $scope.reason =
+        reason: "Return" 
+
     $scope.create = ->
       # TODO: place here nested attributes usage like in school daily meals.
       #
       $scope.grievance.reasonsAttributes = $scope.things
       $scope.grievance.create().then (response) ->
         $scope.alert = true
-        $scope.things = {}
-        $scope.grievance = build() 
+        $scope.reset()
 
 ]
