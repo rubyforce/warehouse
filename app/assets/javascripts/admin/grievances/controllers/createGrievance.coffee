@@ -23,7 +23,7 @@
       $scope.reason = _($scope.reason).pick(['itemName', 'qty', 'numeral', 'reason', 'itemId', 'id']).value()
 
       $scope.things.push($scope.reason)
-      
+
       for i in [1..$scope.things.length]
         $scope.reason.numeral = i
 
@@ -39,5 +39,7 @@
       $scope.grievance.reasonsAttributes = $scope.things
       $scope.grievance.create().then (response) ->
         $scope.alert = true
+        $scope.things = {}
+        $scope.grievance = build() 
 
 ]
