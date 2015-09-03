@@ -18,7 +18,7 @@
     $scope.add = ->
       debugger
       item = _($scope.items).chain().find((m)-> parseInt(m.id, 10) is parseInt($scope.reason.item_id, 10)).value()
-      $scope.reason.name = item.name
+      $scope.item.name = item.name
 
       $scope.reason = _($scope.reason).pick(['name', 'qty', 'numeral', 'reason']).value()
 
@@ -33,7 +33,7 @@
     $scope.create = ->
       # TODO: place here nested attributes usage like in school daily meals.
       #
-      $scope.grievance.reasonAttributes = $scope.foods
+      $scope.grievance.reasonsAttributes = $scope.foods
       $scope.grievance.create().then (response) ->
         debugger
         $scope.alert = true

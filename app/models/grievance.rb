@@ -1,5 +1,6 @@
 class Grievance < ActiveRecord::Base
-  belongs_to :reason
+  has_many :reasons
+  has_many :items
 
-  accepts_nested_attributes_for :reason
+  accepts_nested_attributes_for :reasons
 end
