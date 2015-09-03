@@ -10,7 +10,7 @@
             $scope.grievance.voucherNo = "00001"
           else
             sum = response.id + 1
-            $scope.n = numeral(sum/10000).format('0.0000').replace(/\./,'')
+            $scope.number = numeral(sum/10000).format('0.0000').replace(/\./,'')
             $scope.grievance.voucherNo = $scope.number
 
 
