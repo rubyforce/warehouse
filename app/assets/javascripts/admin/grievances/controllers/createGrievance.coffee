@@ -21,9 +21,12 @@
       $scope.reason.itemName = item.name
       $scope.reason.itemId = item.id
 
-      $scope.reason = _($scope.reason).pick(['itemName', 'qty', 'numeral', 'reason', 'itemId']).value()
+      $scope.reason = _($scope.reason).pick(['itemName', 'qty', 'numeral', 'reason', 'itemId', 'id']).value()
 
-      $scope.things.push(_.clone($scope.reason))
+      $scope.things.push($scope.reason)
+      
+      for i in [1..$scope.things.length]
+        $scope.reason.numeral = i
 
       # Reset reason on the page to make sure we have the old selected
       # value
@@ -36,7 +39,6 @@
       #
       $scope.grievance.reasonsAttributes = $scope.things
       $scope.grievance.create().then (response) ->
-        debugger
         $scope.alert = true
 
 ]
