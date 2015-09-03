@@ -1,6 +1,18 @@
 @grievances.controller 'CreateGrievancesController', [
-  '$scope', 'Grievance', '$timeout', 'Reason', 'Item'
-  ($scope, Grievance, $timeout, Reason, Item) ->
+  '$scope', 'Grievance', '$timeout', '$http', 'Reason'
+  ($scope, Grievance, $timeout, $http, Reason) ->
+
+    $http.get("admin/grievances/grievance_id")
+      .success (response) ->
+        debugger
+        $timeout ->
+          if response == null
+            $scope.grievance.voucherNo = "00001"
+          else
+            sum = response.id + 1
+            $scope.n = numeral(sum/10000).format('0.0000').replace(/\./,'')
+            $scope.grievance.voucherNo = $scope.number
+
 
     $scope.things = []
     $scope.reason = {}
@@ -11,7 +23,10 @@
     $scope.alert = false
 
     build = ->
-      new Grievance(date: $.datepicker.formatDate("dd/mm/yy", new Date()))
+      new Grievance({
+        date: $.datepicker.formatDate("dd/mm/yy", new Date()),
+        voucherNo: $scope.number
+      })
 
     $scope.grievance = build()
 
@@ -44,7 +59,11 @@
       #
       $scope.grievance.reasonsAttributes = $scope.things
       $scope.grievance.create().then (response) ->
+        sum = response.id + 1
+        $scope.number = numeral(sum/10000).format('0.0000').replace(/\./,'')
+        $scope.grievance.voucherNo = $scope.number
         $scope.alert = true
         $scope.reset()
+
 
 ]

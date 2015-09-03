@@ -46,4 +46,9 @@ class Admin::GrievancesController < ApplicationController
     params[:grievance].delete(:updated_at)
     params[:grievance]
   end
+
+  def grievance_id
+    @grievance = Grievance.order('id asc').last
+    render :json => @grievance
+  end
 end
