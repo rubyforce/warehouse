@@ -16,7 +16,6 @@
     $scope.grievance = build()
 
     $scope.add = ->
-      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.reason.item_id, 10)).value()
       $scope.reason.itemName = item.name
       $scope.reason.itemId = item.id
