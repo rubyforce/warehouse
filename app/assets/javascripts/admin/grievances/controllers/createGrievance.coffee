@@ -18,7 +18,7 @@
     $scope.add = ->
       debugger
       item = _($scope.items).chain().find((m)-> parseInt(m.id, 10) is parseInt($scope.reason.item_id, 10)).value()
-      $scope.item.name = item.name
+      $scope.reason.name = item.name
 
       $scope.reason = _($scope.reason).pick(['name', 'qty', 'numeral', 'reason']).value()
 
