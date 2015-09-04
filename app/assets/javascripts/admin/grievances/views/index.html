@@ -1,0 +1,17 @@
+<div ng-controller='GrievancesController' ui-view='grievances'>
+  <div class="text-bottom">
+    <h1>Grievances</h1>
+  </div>
+
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="grievances.new">Grievances</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="grievances.stock">Stock</a>
+    </li>
+  </ul>
+
+
+  <div ui-view></div>
+</div>

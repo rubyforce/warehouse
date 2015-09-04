@@ -3,7 +3,7 @@ class Admin::GrievancesController < ApplicationController
 
   def index
     @grievances = Grievance.all
-    render :json => @grievances
+    render :json => @grievances.as_json(:include => :reasons)
   end
 
   def show
@@ -20,7 +20,7 @@ class Admin::GrievancesController < ApplicationController
     @grievance = Grievance.new(permitted_params)
     @grievance.save
 
-    render :json => @grievance
+    render :json => @grievance.as_json(:include => :reasons)
   end
 
   def edit
@@ -41,9 +41,14 @@ class Admin::GrievancesController < ApplicationController
   end
 
   def permitted_params
-    params[:category].delete(:id)
-    params[:category].delete(:created_at)
-    params[:category].delete(:updated_at)
-    params[:category]
+    params[:grievance].delete(:id)
+    params[:grievance].delete(:created_at)
+    params[:grievance].delete(:updated_at)
+    params[:grievance]
+  end
+
+  def grievance_id
+    @grievance = Grievance.order('id asc').last
+    render :json => @grievance
   end
 end

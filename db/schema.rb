@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831122219) do
+ActiveRecord::Schema.define(version: 20150903103804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150831122219) do
   create_table "grievances", force: :cascade do |t|
     t.date     "date"
     t.text     "note"
+    t.string   "voucher_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -176,6 +177,17 @@ ActiveRecord::Schema.define(version: 20150831122219) do
   create_table "rate_masters", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reasons", force: :cascade do |t|
+    t.decimal  "qty"
+    t.string   "reason"
+    t.integer  "item_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "item_name"
+    t.integer  "grievance_id"
+    t.integer  "numeral"
   end
 
   create_table "sessions", force: :cascade do |t|
