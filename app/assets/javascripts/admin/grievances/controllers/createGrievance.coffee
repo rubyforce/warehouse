@@ -4,7 +4,6 @@
 
     $http.get("admin/grievances/grievance_id")
       .success (response) ->
-        debugger
         $timeout ->
           if response == null
             $scope.grievance.voucherNo = "00001"
@@ -35,7 +34,8 @@
       $scope.reason.itemName = item.name
       $scope.reason.itemId = item.id
 
-      $scope.reason = _($scope.reason).pick(['itemName', 'qty', 'numeral', 'reason', 'itemId', 'id']).value()
+
+      $scope.reason = _($scope.reason).pick(['itemName', 'qty', 'voucherNo', 'numeral', 'reason', 'itemId', 'id']).value()
 
       $scope.things.push($scope.reason)
 
@@ -52,7 +52,7 @@
       $scope.things = []
       $scope.grievance = build()
       $scope.reason =
-        reason: "Return" 
+        reason: "Return"
 
     $scope.create = ->
       # TODO: place here nested attributes usage like in school daily meals.

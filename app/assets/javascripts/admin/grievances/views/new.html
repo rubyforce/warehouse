@@ -1,6 +1,6 @@
-<div class="panel panel-default" ng-controller='CreateGrievancesController'>
+<div class="panel panel-default" ng-controller='GrievancesController' >
   <div class="panel-heading">Stock Return/Grievances</div>
-  <div class="panel-body">
+  <div class="panel-body" ng-controller='CreateGrievancesController'>
     <form name='form' class="form-horizontal">
       <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new daily meal.</div>
       <!-- First Column -->
@@ -22,7 +22,7 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <h5 style="text-align: right">{{reason.reason}} Voucher No. {{number}}</h5>
+              <h5 style="text-align: right">{{reason.reason}} Voucher No. {{grievance.voucherNo}}</h5>
             </div>
           </div>
           <div class="col-sm-12">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-sm-4">
                   <input name='reason.qty' type='text' ng-model='reason.qty' class="form-control"/>
-                  <input type="hidden" name='daily_meal.qty' type='text' ng-model='reason.qty' class="form-control"/>
+                  <input type="hidden" name='reason.qty' type='text' ng-model='reason.qty' class="form-control"/>
                 </div>
               </div>
             </div>

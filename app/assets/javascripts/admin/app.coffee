@@ -70,14 +70,8 @@ grievances.config [
   ($stateProvider, $urlRouterProvider) ->
     $stateProvider
       .state 'grievances',
-        url: "/grievances"
-        templateUrl: "admin/grievances/views/index.html" 
-      .state 'grievances.new',
         url: "/grievances/new"
         templateUrl: "admin/grievances/views/new.html"
-      .state 'grievances.stock',
-        url: "/grievances/stock"
-        templateUrl: "admin/grievances/views/stock.html"
 ]
 
 @payment_vouchers = angular.module('admin.payment_vouchers', [])
