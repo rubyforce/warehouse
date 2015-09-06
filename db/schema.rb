@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903103804) do
+ActiveRecord::Schema.define(version: 20150906212104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 20150903103804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employee_salaries", force: :cascade do |t|
+    t.decimal  "salary_rate"
+    t.integer  "employee_id"
+    t.integer  "salary_id"
+    t.text     "remark"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
     t.string   "middle_name"
@@ -95,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150903103804) do
     t.text     "address"
     t.string   "contact_no"
     t.string   "qualification"
-    t.string   "salary"
+    t.string   "salary_rate"
     t.string   "entry_no"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -188,6 +197,13 @@ ActiveRecord::Schema.define(version: 20150903103804) do
     t.string   "item_name"
     t.integer  "grievance_id"
     t.integer  "numeral"
+  end
+
+  create_table "salaries", force: :cascade do |t|
+    t.string   "month"
+    t.string   "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|

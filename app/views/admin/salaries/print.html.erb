@@ -4,7 +4,8 @@
     <h1 style="text-align: center">Salary Vouchers</h1>
   </div>
 
-  <p class="lead" style="text-align: center">Month: <%= @salary_receipt.month.strftime("%B") %> Year: <%= @salary_receipt.year %></p>
+  <p class="lead" style="text-align: center">Month: <%= "01/#{@salary.month}/2015".to_date.strftime("%B") %> Year: <%= @salary.year %></p>
+
 
   <div class="update_form">
     <div class="row">
@@ -19,7 +20,7 @@
                   <th width="25%" style="text-align: center;">Remarks</th>
                 </tr>
               </thead>
-              <%= render partial: 'employee_salary_receipt', collection: @salary_receipt.employee_salary_receipts %>
+              <%= render partial: 'salary', collection: @salary.employee_salaries %>
             </table>
           </div>
         </div>
@@ -28,10 +29,7 @@
   </div>
   <footer class="footer" style="text-align: center; margin-top: 50px;">
     <div class="container">
-      <p class="text-muted">Created at <%= @salary_receipt.created_at.strftime("%d/%m/%Y") %></p>
+      <p class="text-muted">Created at <%= @salary.created_at.strftime("%d/%m/%Y") %></p>
     </div>
   </footer>
 </div>
-
-
-

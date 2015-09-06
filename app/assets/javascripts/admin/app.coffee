@@ -19,7 +19,7 @@ employees.config [
         templateUrl: "admin/employees/views/delete.html"
       .state 'employees.salary',
         url: "/salary/new"
-        templateUrl: "admin/cash_managements/views/salary/new.html"
+        templateUrl: "admin/employees/views/salary/new.html"
 ]
 
 @managements = angular.module('admin.managements', [])

@@ -31,6 +31,15 @@ Greenarea::Application.routes.draw do
       end
     end
 
+    resources :salaries do
+      collection do
+        get :paid_salary
+      end
+      member do
+        get :print
+      end
+    end
+
     resources :dashboards
   end
 
