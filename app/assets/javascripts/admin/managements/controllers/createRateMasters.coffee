@@ -34,6 +34,7 @@
       render()
 
     $scope.create = ->
+      $scope.rateMaster.itemRateMastersAttributes= $scope.itemRateMasters
       $scope.rateMaster.create().then (response) ->
         debugger
         render()
