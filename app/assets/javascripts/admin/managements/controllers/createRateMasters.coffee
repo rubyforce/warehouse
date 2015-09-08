@@ -15,10 +15,8 @@
 
         if found?
           # to make checkbox as checked
-          found.isNew = -> false
-
           found.name = f.name
-
+          found.rate = f.rate
 
         else
           found =  {}
@@ -37,7 +35,6 @@
       $scope.rateMaster.itemRateMastersAttributes= $scope.itemRateMasters
       $scope.rateMaster.create().then (response) ->
         debugger
-        render()
         item = _($scope.items).chain().find((i)-> parseInt(i.id, 10)).value()
         $scope.rateMaster.itemName = item.name
         $scope.rateMaster.itemId = item.id
