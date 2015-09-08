@@ -1,5 +1,5 @@
 class RateMaster < ActiveRecord::Base
-  belongs_to :company
+  belongs_to :company, class_name: "Company", foreign_key: "company_id"
   belongs_to :item
 
   has_many :item_rate_masters

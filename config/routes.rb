@@ -15,6 +15,7 @@ Greenarea::Application.routes.draw do
     resources :vehicles
     resources :vehicle_companies
     resources :rate_masters
+    resources :item_rate_masters
     resources :grievances do
       collection do
         get :grievance_id
