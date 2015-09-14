@@ -48,6 +48,8 @@ Greenarea::Application.routes.draw do
     end
 
     resources :dashboards
+    resources :stock_inwards
+    resources :stock_outwards
   end
 
   devise_for :users
