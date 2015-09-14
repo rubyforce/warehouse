@@ -74,6 +74,16 @@ grievances.config [
         templateUrl: "admin/grievances/views/new.html"
 ]
 
+@requisitions = angular.module('admin.requisitions', [])
+requisitions.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRouterProvider) ->
+    $stateProvider
+      .state 'requisitions',
+        url: "/requisitions/new"
+        templateUrl: "admin/requisitions/views/new.html"
+]
+
 @payment_vouchers = angular.module('admin.payment_vouchers', [])
 payment_vouchers.config [
   '$stateProvider', '$urlRouterProvider'
@@ -106,6 +116,7 @@ payment_vouchers.config [
   'admin.vehicle_companies',
   'admin.grievances',
   'admin.payment_vouchers',
+  'admin.requisitions',
 
   'admin.directives',
 ])

@@ -22,6 +22,13 @@ Greenarea::Application.routes.draw do
     end
     resources :reasons
 
+    resources :requisitions do
+      collection do
+        get :requisition_id
+      end
+    end
+    resources :requisition_items
+
     resources :payment_vouchers do
       collection do
         get :payment_id
