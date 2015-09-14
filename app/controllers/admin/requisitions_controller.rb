@@ -3,7 +3,7 @@ class Admin::RequisitionsController < ApplicationController
 
   def index
     @requisitions = Requisition.all
-    render :json => @requisitions
+    render :json => @requisitions.as_json(:include => :requisition_items)
   end
 
   def show

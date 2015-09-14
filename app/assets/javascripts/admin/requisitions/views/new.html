@@ -15,7 +15,7 @@
                 <label for='date' class="col-sm-1 control-label">Date</label>
                 <div class="col-sm-6">
                   <div class="input-group">
-                    <input name='date' ng-model='grievance.date' class="form-control" date-options />
+                    <input name='date' ng-model='requisition.date' class="form-control" date-options />
 
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
@@ -25,7 +25,7 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <h5 style="text-align: right">{{reason.reason}} Voucher No. {{grievance.voucherNo}}</h5>
+              <h5 style="text-align: right"> Requisition No. {{requisition.requisitionNo}}</h5>
             </div>
           </div>
         </div>
@@ -40,8 +40,8 @@
                   <label for='meal.meal_id' class="control-label">Distribution Company</label>
                 </div>
                 <div class="col-sm-6">
-                  <select name='reason.item_id' ng-model='reason.item_id' class="form-control" required>
-                    <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
+                  <select name='requisition_item.company_id' ng-model='requisition_item.company_id' class="form-control" required>
+                    <option ng-repeat="c in companies" ng-value='{{c.id}}'>{{c.name}}</option>
                   </select>
                 </div>
               </div>
@@ -52,8 +52,8 @@
                   <label for='reason.qty' class="control-label">Warehouse</label>
                 </div>
                 <div class="col-sm-6">
-                   <select name='reason.item_id' ng-model='reason.item_id' class="form-control" required>
-                    <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
+                   <select name='requisition_item.warehouse_id' ng-model='requisition_item.warehouse_id' class="form-control" required>
+                    <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
                   </select>
                 </div>
               </div>
@@ -68,7 +68,7 @@
                   <label for='meal.meal_id' class="control-label">Item Name</label>
                 </div>
                 <div class="col-sm-6">
-                  <select name='reason.item_id' ng-model='reason.item_id' class="form-control" required>
+                  <select name='requisition_item.item_id' ng-model='requisition_item.item_id' class="form-control" required>
                     <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
                   </select>
                 </div>
@@ -77,11 +77,11 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <div class="col-sm-2">
-                  <label for='reason.qty' class="control-label">Qty.</label>
+                  <label for='requisition_item.qty' class="control-label">Qty.</label>
                 </div>
                 <div class="col-sm-4">
-                  <input name='reason.qty' type='text' ng-model='reason.qty' class="form-control"/>
-                  <input type="hidden" name='reason.qty' type='text' ng-model='reason.qty' class="form-control"/>
+                  <input name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control"/>
+                  <input type="hidden" name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control"/>
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@
                   <td class="center">{{thing.numeral}}</td>
                   <td class="center">{{thing.itemName}}</td>
                   <td class="center">{{thing.qty}}</td>
-                  <td class="center">{{thing.reason}}</td>
+                  <td class="center">{{thing.companyName}}</td>
                 </tr>
               </tbody>
             </table>
@@ -123,7 +123,7 @@
       <div class="form-group ui buttons">
         <div class=" col-sm-12">
           <button type="submit" class="btn btn-default" ng-click="create()">Submit</button>
-          <a ng-click="reset()" class="btn btn-default">Cancel</a>
+          <a ng-click="reset()" class="btn btn-default">Reset</a>
         </div>
       </div>
     </div>
