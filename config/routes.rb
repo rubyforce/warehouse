@@ -20,6 +20,7 @@ Greenarea::Application.routes.draw do
         get :grievance_id
       end
     end
+    resources :requisitions
     resources :reasons
 
     resources :payment_vouchers do
