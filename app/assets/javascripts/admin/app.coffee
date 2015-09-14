@@ -84,6 +84,22 @@ requisitions.config [
         templateUrl: "admin/requisitions/views/new.html"
 ]
 
+@stocks = angular.module('admin.stocks', [])
+stocks.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRoterProvider) ->
+    $stateProvider
+      .state 'stocks',
+        url: "/stocks"
+        templateUrl: "admin/stocks/views/index.html"
+      .state 'stocks.stock_inward',
+        url: "/stocks/stock_inward"
+        templateUrl: "admin/stocks/views/inward.html"
+      .state 'stocks.stock_outward',
+        url: "/stocks/stock_outward"
+        templateUrl: "admin/stocks/views/outward.html"
+]
+
 @payment_vouchers = angular.module('admin.payment_vouchers', [])
 payment_vouchers.config [
   '$stateProvider', '$urlRouterProvider'
@@ -117,6 +133,7 @@ payment_vouchers.config [
   'admin.grievances',
   'admin.payment_vouchers',
   'admin.requisitions',
+  'admin.stocks',
 
   'admin.directives',
 ])
