@@ -116,6 +116,7 @@ payment_vouchers.config [
   'admin.vehicle_companies',
   'admin.grievances',
   'admin.payment_vouchers',
+  'admin.requisitions',
 
   'admin.directives',
 ])
