@@ -1,6 +1,6 @@
-<div class="panel panel-default" ng-controller='CreateInwardsController' >
+<div class="panel panel-default" ng-controller="StocksController">
   <div class="panel-heading">Stock Inward</div>
-  <div class="panel-body">
+  <div class="panel-body" ng-controller="CreateInwardsController">
     <form name='form' class="form-horizontal">
       <div class="alert alert-success" role="alert" ng-show="alert">Successfully added.</div>
       <!-- First Column -->
@@ -25,7 +25,7 @@
                 <label for='requisition_ref' class="col-sm-6 control-label">Requisition Ref.</label>
                 <div class="col-sm-6">
                   <div class="input-group">
-                    <input name='requisition_ref' ng-model='stock_inward.requisition_ref' class="form-control" date-options />
+                    <input name='requisition_ref' type="text" ng-model='stock_inward.requisition_ref' class="form-control"/>
                   </div>
                 </div>
               </div>
