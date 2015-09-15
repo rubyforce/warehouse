@@ -12,7 +12,7 @@
                 <label for='date' class="col-sm-2 control-label">Date</label>
                 <div class="col-sm-8">
                   <div class="input-group">
-                    <input name='date' ng-model='grievance.date' class="form-control" date-options />
+                    <input name='date' ng-model='stock_inward.date' class="form-control" date-options />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -22,17 +22,17 @@
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label for='date' class="col-sm-6 control-label">Requisition Ref.</label>
+                <label for='requisition_ref' class="col-sm-6 control-label">Requisition Ref.</label>
                 <div class="col-sm-6">
                   <div class="input-group">
-                    <input name='date' ng-model='grievance.date' class="form-control" date-options />
+                    <input name='requisition_ref' ng-model='stock_inward.requisition_ref' class="form-control" date-options />
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="col-sm-4">
-              <h5 style="text-align: right">Voucher No. {{grievance.voucherNo}}</h5>
+              <h5 style="text-align: right">Voucher No. {{stock_inward.voucherNo}}</h5>
             </div>
           </div>
           <br><br><br>
@@ -154,16 +154,16 @@
         <!-- First Column -->
         <div class="col-sm-8">
           <div class="form-group">
-            <label for='reason' class="col-sm-1 control-label">Note</label>
+            <label for='note' class="col-sm-1 control-label">Note</label>
             <div class="col-sm-8">
-              <textarea name="reason" ng-model="grievance.note" class="form-control"></textarea>
+              <textarea name="note" ng-model="stock_inward.note" class="form-control"></textarea>
             </div>
           </div>
           <div class="form-group">
             <div class="form-inline">
-              <label for='reason' class="col-sm-1 control-label">Invoice No.</label>
+              <label for='invoice_no' class="col-sm-1 control-label">Invoice No.</label>
               <div class="col-sm-4">
-                <input name="reason" type="text" ng-model="grievance.note" class="form-control">
+                <input name="invoice_no" type="text" ng-model="stock_inward.invoice_no" class="form-control">
               </div>
               <div class="checkbox">
                 <label>
@@ -173,9 +173,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label for='reason' class="col-sm-1 control-label">Amount</label>
+            <label for='amount' class="col-sm-1 control-label">Amount</label>
             <div class="col-sm-4">
-              <input type="text" name="reason" ng-model="grievance.note" class="form-control">
+              <input type="text" name="amount" ng-model="stock_inward.amount" class="form-control">
             </div>
           </div>
 
@@ -184,7 +184,7 @@
               <label for='cheque' class="control-label">Cheque No.</label>
             </div>
             <div class="col-sm-6">
-              <input name='cheque' type='text' ng-model='paymentVoucher.cheque_no' class="form-control" />
+              <input name='cheque' type='text' ng-model='stock_inward.cheque_no' class="form-control" />
             </div>
           </div>
           <div class="form-group">
@@ -193,7 +193,7 @@
             </div>
             <div class="col-sm-6">
               <div class="input-group">
-                <input name='datetime' ng-model='paymentVoucher.date' class="form-control" date-options/>
+                <input name='datetime' ng-model='stock_inward.date' class="form-control" date-options/>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
