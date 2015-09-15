@@ -23,6 +23,7 @@
     $scope.reset = ->
       $scope.stock_inward = build()
       $scope.stock_inward_item = {}
+      $scope.stocks = []
 
     $scope.stocks = []
     $scope.stock_inward_item = {}
@@ -46,7 +47,7 @@
       for i in [1..$scope.stocks.length]
         $scope.stock_inward_item.numeral = i
 
-      $scope.stock_inward_item = {}
+      $scope.reset()
 
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
@@ -59,6 +60,6 @@
 
         $scope.alert = true
 
-        reset()
+      $scope.reset()
 
 ]
