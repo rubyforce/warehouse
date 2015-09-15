@@ -21,6 +21,9 @@
 
     $scope.stock_inward = build()
 
+    $scope.reset = ->
+      $scope.stock_inward = build()
+
     $scope.create = ->
       new StockInward($scope.stock_inward).create().then (response) ->
         $scope.stock_inwards.push(new StockInward(response))
@@ -28,5 +31,7 @@
         sum = response.id + 1
         $scope.rev = numeral(sum/10000).format('0.0000').replace(/\./,'')
         $scope.stock_inward.voucherNo = $scope.rev
+
+        reset()
 
 ]
