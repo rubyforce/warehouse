@@ -31,8 +31,12 @@
 
     $scope.create = ->
       new StockOutward($scope.stock_outward).create().then (response) ->
-        debugger
         $scope.stock_outwards.push(new StockOutward(response))
+
+        sum = response.id + 1
+        $scope.num = numeral(sum/10000).format('0.0000').replace(/\./,'')
+        $scope.stock_outward.voucherNo = $scope.num
+        $scope.stock_outward.invoiceNo = $scope.num
 
         $scope.alert = true
 
