@@ -12,7 +12,7 @@
                 <label for='date' class="col-sm-2 control-label">Date</label>
                 <div class="col-sm-8">
                   <div class="input-group">
-                    <input name='date' ng-model='stock_inward.date' class="form-control" date-options />
+                    <input name='date' ng-model='stock_inward_date' class="form-control" date-options />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -132,7 +132,6 @@
                   <th class="center">Quantity</th>
                   <th class="center">S. Qty</th>
                   <th class="center">Rate</th>
-                  <th class="center">Amount</th>
                 </tr>
               </thead>
               <tbody>
@@ -142,7 +141,6 @@
                   <td class="center">{{s.qty}}</td>
                   <td class="center">{{s.sQty}}</td>
                   <td class="center">{{s.purchaseRate}}</td>
-                  <td class="center">{{s.amount}}</td>
                 </tr>
               </tbody>
             </table>
