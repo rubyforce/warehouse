@@ -43,4 +43,10 @@ class Admin::StockInwardsController < ApplicationController
 
     render :json => @stock_inward
   end
+
+  def inward_id
+    @stock_inward = StockInward.order('id asc').last
+
+    render :json => @stock_inward
+  end
 end
