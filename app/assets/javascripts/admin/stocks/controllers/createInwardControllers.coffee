@@ -38,7 +38,7 @@
       company = _($scope.companies).chain().find((c) -> parseInt(c.id, 10)).value()
       $scope.stock_inward_item.companyName = company.name
       $scope.stock_inward_item.companyId = company.id
-      warehouse = _($scope.warehouses).chain().find((c) -> parseInt(c.id, 10)).value()
+      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10)).value()
       $scope.stock_inward_item.warehouseName = warehouse.name
       $scope.stock_inward_item.warehouseId = warehouse.id
 
