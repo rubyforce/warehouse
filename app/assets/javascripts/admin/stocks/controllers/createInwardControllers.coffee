@@ -47,7 +47,7 @@
       for i in [1..$scope.stocks.length]
         $scope.stock_inward_item.numeral = i
 
-      $scope.reset()
+      $scope.stock_inward_item = {}
 
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
