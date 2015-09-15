@@ -4,7 +4,7 @@ class Admin::StockInwardsController < ApplicationController
   def index
     @stock_inwards = StockInward.all
 
-    render :json => @stock_inwards
+    render :json => @stock_inwards.as_json(:include => :stock_inward_items)
   end
 
   def show
