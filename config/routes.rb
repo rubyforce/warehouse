@@ -48,11 +48,14 @@ Greenarea::Application.routes.draw do
     end
 
     resources :dashboards
+
     resources :stock_inwards do
       collection do
         get :inward_id
       end
     end
+    resources :stock_inward_items
+
     resources :stock_outwards
   end
 
