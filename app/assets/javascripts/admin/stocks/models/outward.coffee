@@ -1,4 +1,4 @@
-@stocks.factory "Outward", [
+@stocks.factory "StockOutward", [
   "$http", 'RailsResource'
   ($http, RailsResource) ->
     class StockOutward extends RailsResource

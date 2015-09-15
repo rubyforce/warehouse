@@ -56,7 +56,11 @@ Greenarea::Application.routes.draw do
     end
     resources :stock_inward_items
 
-    resources :stock_outwards
+    resources :stock_outwards do
+      collection do
+        get :outward_id
+      end
+    end
   end
 
   devise_for :users

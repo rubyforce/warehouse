@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">Stock Inward</div>
-  <div class="panel-body" ng-controller="CreateInwardsController">
+  <div class="panel-body" ng-controller="CreateOutwardsController">
     <form name='form' class="form-horizontal">
       <div class="alert alert-success" role="alert" ng-show="alert">Successfully added.</div>
       <!-- First Column -->
@@ -12,7 +12,7 @@
                 <label for='date' class="col-sm-2 control-label">Date</label>
                 <div class="col-sm-8">
                   <div class="input-group">
-                    <input name='date' ng-model='stock_inward_date' class="form-control" date-options />
+                    <input name='date' ng-model='stock_outward_date' class="form-control" date-options />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -22,12 +22,12 @@
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <h5 style="text-align: right">Invoice No. {{stock_inward.voucherNo}}</h5>
+                <h5 style="text-align: right">Invoice No. {{stock_outward.invoiceNo}}</h5>
               </div>
             </div>
 
             <div class="col-sm-4">
-              <h5 style="text-align: right">Voucher No. {{stock_inward.voucherNo}}</h5>
+              <h5 style="text-align: right">Voucher No. {{stock_outward.voucherNo}}</h5>
             </div>
           </div>
           <br><br><br>
@@ -176,35 +176,35 @@
                     </div>
                     <div>
                       <label for='cash' class="radio-inline">
-                        <input name='cash' id='cash' type="radio" value="0" ng-model="paymentVoucher.payment_method" ng-init="paymentVoucher.payment_method='0'">Cash
+                        <input name='cash' id='cash' type="radio" value="Cash" ng-model="stock_outward.payment_method" ng-init="stock_outward.payment_method='Cash'">Cash
                       </label>
                       <label for='bank' class="radio-inline">
-                        <input name='bank' id='bank' type="radio" value="1" ng-model="paymentVoucher.payment_method">Cheque No.
+                        <input name='bank' id='bank' type="radio" value="Cheque No." ng-model="stock_outward.payment_method">Cheque No.
                       </label>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for='credit' class="radio-inline">
-                        <input name='credit' id='credit' type="radio" value="2" ng-model="paymentVoucher.payment_method">Credit
+                        <input name='credit' id='credit' type="radio" value="Credit" ng-model="stock_outward.payment_method">Credit
                       </label>
                   </div>
                 </div>
                 <div class="col-sm-9">
-                  <div class="col-sm-12" ng-hide="paymentVoucher.payment_method == 1">
-                    <div class="form-group" ng-hide="paymentVoucher.payment_method == 2">
+                  <div class="col-sm-12" ng-hide="stock_outward.payment_method == 'Cheque No.'">
+                    <div class="form-group" ng-hide="stock_outward.payment_method == 'Credit'">
                       <div class="col-sm-2">
                         <label for='bank' class="control-label">Cash</label>
                       </div>
                       <div class="col-sm-10">
-                        <input name='cash' type='text' ng-model='paymentVoucher.cash' class="form-control" ng-disabled="paymentVoucher.payment_method != 0" />
+                        <input name='cash' type='text' ng-model='stock_outward.cash' class="form-control" ng-disabled="stock_outward.payment_method != 'Cash'" />
                       </div>
                     </div>
-                    <div class="form-group" ng-show="paymentVoucher.payment_method == 2">
+                    <div class="form-group" ng-show="stock_outward.payment_method == 'Credit'">
                       <div class="col-sm-2">
                         <label for='bank' class="control-label">Credit</label>
                       </div>
                       <div class="col-sm-10">
-                        <input name='cash' type='text' ng-model='paymentVoucher.cash' class="form-control" ng-disabled="paymentVoucher.payment_method != 2" />
+                        <input name='cash' type='text' ng-model='stock_outward.cash' class="form-control" ng-disabled="stock_outward.payment_method != 'Credit'" />
                       </div>
                     </div>
                   </div>
@@ -216,7 +216,7 @@
                             <label for='cheque' class="control-label">Cheque No.</label>
                           </div>
                           <div class="col-sm-8">
-                            <input name='cheque' type='text' ng-model='paymentVoucher.cheque_no' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0 || paymentVoucher.payment_method == 2" />
+                            <input name='cheque' type='text' ng-model='stock_outward.cheque_no' class="form-control" ng-disabled="stock_outward.payment_method == null || stock_outward.payment_method == 'Cash' || stock_outward.payment_method == 'Credit'" />
                           </div>
                         </div>
                       </div>
@@ -227,7 +227,7 @@
                           </div>
                           <div class="col-sm-10">
                             <div class="input-group">
-                              <input name='datetime' ng-model='paymentVoucher.date' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0 || paymentVoucher.payment_method == 2" date-options/>
+                              <input name='datetime' ng-model='stock_outward.date' class="form-control" ng-disabled="stock_outward.payment_method == null || stock_outward.payment_method == 'Cash' || stock_outward.payment_method == 'Credit'" date-options/>
                               <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                               </span>
@@ -243,7 +243,7 @@
                         <label for='bank' class="control-label">Bank Name</label>
                       </div>
                       <div class="col-sm-10">
-                        <input name='bank' type='text' ng-model='paymentVoucher.bank_name' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0 || paymentVoucher.payment_method == 2" />
+                        <input name='bank' type='text' ng-model='stock_outward.bank_name' class="form-control" ng-disabled="stock_outward.payment_method == null || stock_outward.payment_method == 'Cash' || stock_outward.payment_method == 'Credit'" />
                       </div>
                     </div>
                   </div>

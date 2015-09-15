@@ -1,6 +1,6 @@
 @stocks.controller 'StocksController', [
-  '$scope', '$state', 'StockInward', 'Outward', 'Item', 'Company', 'Warehouse'
-  ($scope, $state, StockInward, Outward, Item, Company, Warehouse) ->
+  '$scope', '$state', 'StockInward', 'StockOutward', 'Item', 'Company', 'Warehouse'
+  ($scope, $state, StockInward, StockOutward, Item, Company, Warehouse) ->
     $state.go('stocks.stock_inward')
 
     Item.get().then (items) ->
@@ -12,5 +12,8 @@
 
     StockInward.get().then (stock_inwards) ->
       $scope.stock_inwards = stock_inwards
+
+    StockOutward.get().then (stock_outwards) ->
+      $scope.stock_outwards = stock_outwards
 
 ]
