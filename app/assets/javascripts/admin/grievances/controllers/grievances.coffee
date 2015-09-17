@@ -1,6 +1,6 @@
 @grievances.controller 'GrievancesController', [
-  '$scope', '$state', 'Grievance', 'Item', 'Reason'
-  ($scope, $state, Grievance, Item, Reason) ->
+  '$scope', 'Grievance', 'Item', 'Reason'
+  ($scope, Grievance, Item, Reason) ->
     Grievance.get().then (grievances) ->
       $scope.grievances = grievances
 

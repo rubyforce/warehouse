@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914122752) do
+ActiveRecord::Schema.define(version: 20150915220326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -487,6 +487,67 @@ ActiveRecord::Schema.define(version: 20150914122752) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stock_inward_items", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "item_id"
+    t.integer  "warehouse_id"
+    t.integer  "stock_inward_id"
+    t.integer  "numeral"
+    t.decimal  "qty"
+    t.decimal  "s_qty"
+    t.decimal  "purchase_rate"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "item_name"
+    t.string   "company_name"
+    t.string   "warehouse_name"
+  end
+
+  create_table "stock_inwards", force: :cascade do |t|
+    t.date     "date"
+    t.string   "requisition_ref"
+    t.string   "voucher_no"
+    t.text     "note"
+    t.string   "invoice_no"
+    t.decimal  "amount"
+    t.string   "cheque_no"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "amount_paid",     default: false
+  end
+
+  create_table "stock_outward_items", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "item_id"
+    t.integer  "warehouse_id"
+    t.integer  "stock_outward_id"
+    t.decimal  "qty"
+    t.decimal  "s_qty"
+    t.decimal  "discount"
+    t.string   "company_name"
+    t.string   "item_name"
+    t.string   "warehouse_name"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "device_id_name"
+    t.integer  "device_id"
+    t.integer  "numeral"
+  end
+
+  create_table "stock_outwards", force: :cascade do |t|
+    t.date     "date"
+    t.string   "invoice_no"
+    t.string   "voucher_no"
+    t.decimal  "cash"
+    t.string   "cheque_no"
+    t.string   "bank_name"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "credit"
+    t.string   "discount"
+    t.string   "payment_method"
   end
 
   create_table "students", force: :cascade do |t|
