@@ -42,9 +42,14 @@ class Admin::RequisitionsController < ApplicationController
 
   def permitted_params
     params[:requisition].delete(:id)
-    params[:requisition].delete(:created_at)
     params[:requisition].delete(:updated_at)
     params[:requisition]
+  end
+
+  def print
+    @requisition = Requisition.find(params[:id])
+
+    render :layout => 'print'
   end
 
   def requisition_id

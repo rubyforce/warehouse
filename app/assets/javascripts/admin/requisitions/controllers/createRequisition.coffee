@@ -1,6 +1,6 @@
 @requisitions.controller 'CreateRequisitionsController', [
-  '$scope', '$http', 'Requisition', '$timeout'
-  ($scope, $http, Requisition, $timeout ) ->
+  '$scope', '$http', 'Requisition', '$timeout', '$location', '$window'
+  ($scope, $http, Requisition, $timeout, $location, $window) ->
 
     $http.get("admin/requisitions/requisition_id")
       .success (response) ->
@@ -39,6 +39,8 @@
 
       $scope.things.push($scope.requisition_item)
 
+      $scope.requisition_item = {}
+
       for i in [1..$scope.things.length]
         $scope.requisition_item.numeral = i
 
@@ -52,6 +54,11 @@
       #
       $scope.requisition.requisition_itemsAttributes = $scope.things
       $scope.requisition.create().then (response) ->
+        protocol = $location.protocol()
+        host = $window.location.host
+        domain = "#{protocol}://#{host}" # Example: http://example.com
+        $window.open("#{domain}/admin/requisitions/#{response.id}/print",'_blank')
+
         sum = response.id + 1
         $scope.number = numeral(sum/10000).format('0.0000').replace(/\./,'')
         $scope.requisition.requisitionNo = $scope.number

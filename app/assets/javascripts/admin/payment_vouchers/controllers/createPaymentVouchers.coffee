@@ -34,7 +34,6 @@
 
     $scope.create = ->
       new PaymentVoucher($scope.paymentVoucher).create().then (response) ->
-        debugger
         protocol = $location.protocol()
         host = $window.location.host
         domain = "#{protocol}://#{host}" # Example: http://example.com

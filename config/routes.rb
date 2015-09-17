@@ -26,6 +26,9 @@ Greenarea::Application.routes.draw do
       collection do
         get :requisition_id
       end
+      member do
+        get :print
+      end
     end
     resources :requisition_items
 
