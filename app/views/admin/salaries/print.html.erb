@@ -1,30 +1,102 @@
+<style>
+  .table-width {
+    width: 100%
+  }
+
+  @page {
+    size: A5;
+    margin: 0;
+  }
+
+  @media print {
+    .second {
+      display: none;
+    }
+    h3 {
+      text-align: center;
+    }
+    table {
+      width: 100%
+    }
+    table, th, td
+    {
+      border-collapse: collapse;
+      width: 75%;
+      border: 1px solid black;
+    }
+    .panel-border {
+      border-radius: 1px;
+      border: 1px solid beige;
+      margin-bottom: 25px;
+    }
+  }
+  .bg-contact {
+    background-color: #FFF;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-radius: 1px;
+    border-bottom: 1px solid beige;
+    border-bottom-style: dashed
+  }
+</style>
 <%= stylesheet_link_tag "application" %>
-<div class="container">
-  <div class="page-header">
-    <h1 style="text-align: center">Salary Vouchers</h1>
-  </div>
-
-  <p class="lead" style="text-align: center">Month: <%= "01/#{@salary.month}/2015".to_date.strftime("%B") %> Year: <%= @salary.year %></p>
-
-
-  <div class="update_form">
+<div class="bg-contact">
+  <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        <div class="panel panel-default receipt" style="width: 95%; margin: 20px auto;">
-          <div class="panel panel-default">
+      <div class="col-sm-12 text-center">
+        <h3>Space for letterhead image</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="width: 15%; margin-top: 25px;">
+  <div class="panel panel-default panel-border">
+      <div class="panel-body">
+          <h4 style="text-align: center">Dist logo</h4>
+      </div>
+  </div>
+</div>
+<div class="content">
+  <div class="container">
+    <div class="header">
+    </div>
+    <div class="row">
+      <div class="second">
+        <div class="col-xs-7">
+        </div>
+      </div>
+      <div class="first">
+        <div class="col-xs-5 text-right">
+          <h5 style="text-align: right"> Date: <%= @salary.created_at.strftime("%d/%m/%y") %></p> </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="form-group">
+        <h5 style="text-align: center">Salary for the Month of <%= "01/#{@salary.month}/2015".to_date.strftime("%B") %> - <%= @salary.year %></h5>
+      </div>
+    </div>
+
+    <div class="update_form">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default" style="">
             <table class="table table-bordered">
               <thead>
                 <tr>
                   <th width="5%" style="text-align: center;">S/N</th>
-                  <th width="25%" style="text-align: center;">Employee Name</th>
-                  <th width="25%" style="text-align: center;">Salary</th>
-                  <th width="25%" style="text-align: center;">Remarks</th>
+                  <th width="25%" style="text-align: center;">Month-Year</th>
+                  <th width="30%" style="text-align: center;">Employee Name</th>
+                  <th width="20%" style="text-align: center;">Salary</th>
+                  <th width="20%" style="text-align: center;">Remarks</th>
                 </tr>
               </thead>
               <% @salary.employee_salaries.each_with_index do |salary, i| %>
                 <tbody>
                   <tr>
                     <td style="text-align: center;"><%= (i + 1) %></td>
+                    <td style="text-align: center;"><%= "01/#{@salary.month}/2015".to_date.strftime("%B") %> - <%= @salary.year %></td>
                     <td style="text-align: center;"><%= salary.employee.full_name%></td>
                     <td style="text-align: center;"><%= salary.employee.salary_rate %></td>
                     <td style="text-align: center;"><%= salary.remark %>
@@ -36,10 +108,12 @@
         </div>
       </div>
     </div>
+
+    <footer class="footer" style="text-align: center; margin-top: 50px;">
+      <div class="container">
+        <hr style="width: 30%;">
+        <p class="text-muted">Signature</p>
+      </div>
+    </footer>
   </div>
-  <footer class="footer" style="text-align: center; margin-top: 50px;">
-    <div class="container">
-      <p class="text-muted">Created at <%= @salary.created_at.strftime("%d/%m/%Y") %></p>
-    </div>
-  </footer>
 </div>

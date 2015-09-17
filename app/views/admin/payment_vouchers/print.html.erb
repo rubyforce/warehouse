@@ -18,7 +18,7 @@
     .table-width {
       width: 85%
     }
-    .table-bordered, .th, .td
+    table, th, td
     {
       border-collapse:collapse;
       width:75%;
@@ -67,15 +67,7 @@
       </div>
       <div class="first">
         <div class="col-xs-5 text-right">
-          <table class="table-width">
-            <thead>
-              <tr>
-                <th>
-                  <h5 style="text-align: right"> Date: <%= @payment_voucher.created_at.strftime("%d/%m/%Y") %> </h5>
-                </th>
-              </tr>
-            </thead>
-          </table>
+          <h5 style="text-align: right"> Date: <%= @payment_voucher.created_at.strftime("%d/%m/%Y") %> </h5>
         </div>
       </div>
     </div>
