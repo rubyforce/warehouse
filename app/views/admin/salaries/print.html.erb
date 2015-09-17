@@ -15,12 +15,22 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
+                  <th width="5%" style="text-align: center;">S/N</th>
                   <th width="25%" style="text-align: center;">Employee Name</th>
                   <th width="25%" style="text-align: center;">Salary</th>
                   <th width="25%" style="text-align: center;">Remarks</th>
                 </tr>
               </thead>
-              <%= render partial: 'salary', collection: @salary.employee_salaries %>
+              <% @salary.employee_salaries.each_with_index do |salary, i| %>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center;"><%= (i + 1) %></td>
+                    <td style="text-align: center;"><%= salary.employee.full_name%></td>
+                    <td style="text-align: center;"><%= salary.employee.salary_rate %></td>
+                    <td style="text-align: center;"><%= salary.remark %>
+                  </tr>
+                </tbody>
+              <% end %>
             </table>
           </div>
         </div>
