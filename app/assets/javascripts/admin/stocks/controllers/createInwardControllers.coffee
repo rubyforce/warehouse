@@ -1,6 +1,6 @@
 @stocks.controller 'CreateInwardsController', [
-  '$scope', '$http', '$timeout', 'StockInward'
-  ($scope, $http, $timeout, StockInward) ->
+  '$scope', '$http', '$timeout', 'StockInward', '$location', '$window'
+  ($scope, $http, $timeout, StockInward, $location, $window) ->
 
     $scope.stock_inward_date = $.datepicker.formatDate("dd/mm/yy", new Date())
 
@@ -32,13 +32,13 @@
     $scope.alert = false
 
     $scope.add = ->
-      item = _($scope.items).chain().find((i)-> parseInt(i.id, 10)).value()
+      item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_inward_item.item_id, 10)).value()
       $scope.stock_inward_item.itemName = item.name
       $scope.stock_inward_itemitemId = item.id
-      company = _($scope.companies).chain().find((c) -> parseInt(c.id, 10)).value()
+      company = _($scope.companies).chain().find((c) -> parseInt(c.id, 10) is parseInt($scope.stock_inward_item.company_id, 10)).value()
       $scope.stock_inward_item.companyName = company.name
       $scope.stock_inward_item.companyId = company.id
-      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10)).value()
+      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_inward_item.warehouse_id, 10)).value()
       $scope.stock_inward_item.warehouseName = warehouse.name
       $scope.stock_inward_item.warehouseId = warehouse.id
 
@@ -54,6 +54,11 @@
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
       new StockInward($scope.stock_inward).create().then (response) ->
+        protocol = $location.protocol()
+        host = $window.location.host
+        domain = "#{protocol}://#{host}" # Example: http://example.com
+        $window.open("#{domain}/admin/stock_inwards/#{response.id}/print",'_blank')
+
         $scope.stock_inwards.push(new StockInward(response))
 
         sum = response.id + 1

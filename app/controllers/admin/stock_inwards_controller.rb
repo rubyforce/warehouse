@@ -49,4 +49,10 @@ class Admin::StockInwardsController < ApplicationController
 
     render :json => @stock_inward
   end
+
+  def print
+    @stock_inward = StockInward.find(params[:id])
+
+    render :layout => 'print'
+  end
 end
