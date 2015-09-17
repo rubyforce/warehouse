@@ -3,6 +3,8 @@
   ($scope, PaymentVoucher, $http, $timeout, $location, $window) ->
     $scope.paymentDate = $.datepicker.formatDate("dd/mm/yy", new Date())
 
+    $scope.prints = []
+
     $http.get("admin/payment_vouchers/payment_id")
       .success (response) ->
         $timeout ->
@@ -15,10 +17,12 @@
 
     $scope.alert = false
 
+
     build = ->
       new PaymentVoucher({
         date: $.datepicker.formatDate("dd/mm/yy", new Date()),
         voucher_no: $scope.r
+        numeral: 1
         })
 
     $scope.paymentVoucher = build()
@@ -30,6 +34,7 @@
 
     $scope.create = ->
       new PaymentVoucher($scope.paymentVoucher).create().then (response) ->
+        debugger
         protocol = $location.protocol()
         host = $window.location.host
         domain = "#{protocol}://#{host}" # Example: http://example.com
@@ -40,5 +45,6 @@
         $scope.paymentVoucher.voucher_no = $scope.r
 
         $scope.payment_vouchers.push(new PaymentVoucher(response))
+
         $scope.alert = true
 ]

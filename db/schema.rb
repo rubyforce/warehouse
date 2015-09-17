@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914122752) do
+ActiveRecord::Schema.define(version: 20150917121931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,11 +104,11 @@ ActiveRecord::Schema.define(version: 20150914122752) do
     t.text     "address"
     t.string   "contact_no"
     t.string   "qualification"
-    t.string   "salary_rate"
     t.string   "entry_no"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "paid_type_id"
+    t.decimal  "salary_rate"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(version: 20150914122752) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "status"
+    t.integer  "numeral"
   end
 
   create_table "rate_masters", force: :cascade do |t|
@@ -237,6 +238,125 @@ ActiveRecord::Schema.define(version: 20150914122752) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "standards", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stock_inward_items", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "item_id"
+    t.integer  "warehouse_id"
+    t.integer  "stock_inward_id"
+    t.integer  "numeral"
+    t.decimal  "qty"
+    t.decimal  "s_qty"
+    t.decimal  "purchase_rate"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "item_name"
+    t.string   "company_name"
+    t.string   "warehouse_name"
+  end
+
+  create_table "stock_inwards", force: :cascade do |t|
+    t.date     "date"
+    t.string   "requisition_ref"
+    t.string   "voucher_no"
+    t.text     "note"
+    t.string   "invoice_no"
+    t.decimal  "amount"
+    t.string   "cheque_no"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "amount_paid",     default: false
+  end
+
+  create_table "stock_outward_items", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "item_id"
+    t.integer  "warehouse_id"
+    t.integer  "stock_outward_id"
+    t.decimal  "qty"
+    t.decimal  "s_qty"
+    t.decimal  "discount"
+    t.string   "company_name"
+    t.string   "item_name"
+    t.string   "warehouse_name"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "device_id_name"
+    t.integer  "device_id"
+    t.integer  "numeral"
+  end
+
+  create_table "stock_outwards", force: :cascade do |t|
+    t.date     "date"
+    t.string   "invoice_no"
+    t.string   "voucher_no"
+    t.decimal  "cash"
+    t.string   "cheque_no"
+    t.string   "bank_name"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "credit"
+    t.string   "discount"
+    t.string   "payment_method"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email",            default: "",     null: false
+    t.string   "gender"
+    t.integer  "age"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "entry_no",         default: "auto"
+    t.integer  "group_no"
+    t.string   "admission_date"
+    t.string   "father_name"
+    t.string   "mother_name"
+    t.string   "birth_place"
+    t.string   "caste"
+    t.string   "nationality"
+    t.string   "remarks"
+    t.string   "last_school"
+    t.integer  "admission_id"
+    t.integer  "religion_id"
+    t.integer  "caste_id"
+    t.integer  "standard_id"
+    t.integer  "division_id"
+    t.integer  "transport_id"
+    t.integer  "finance_mode_id"
+    t.date     "birthday"
+    t.string   "contact_no"
+    t.text     "address"
+    t.decimal  "remaining_amount", default: 0.0
+    t.integer  "academic_year_id"
+    t.text     "reason"
+    t.boolean  "bounced",          default: false
+  end
+
+  create_table "students_fees_heads", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "fees_head_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "concession"
+    t.decimal  "amount_concession"
+  end
+
+  add_index "students_fees_heads", ["fees_head_id"], name: "index_students_fees_heads_on_fees_head_id", using: :btree
+  add_index "students_fees_heads", ["student_id"], name: "index_students_fees_heads_on_student_id", using: :btree
+
+  create_table "transports", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",        null: false

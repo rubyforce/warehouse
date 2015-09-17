@@ -1,0 +1,293 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Stock Inward</div>
+  <div class="panel-body" ng-controller="CreateOutwardsController">
+    <form name='form' class="form-horizontal">
+      <div class="alert alert-success" role="alert" ng-show="alert">Successfully added.</div>
+      <!-- First Column -->
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for='date' class="col-sm-2 control-label">Date</label>
+                <div class="col-sm-8">
+                  <div class="input-group">
+                    <input name='date' ng-model='stock_outward_date' class="form-control" date-options />
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <h5 style="text-align: right">Invoice No. {{stock_outward.invoiceNo}}</h5>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <h5 style="text-align: right">Voucher No. {{stock_outward.voucherNo}}</h5>
+            </div>
+          </div>
+          <br><br><br>
+
+          <div class="col-sm-12">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='company_id' class="control-label">Customer</label>
+                </div>
+                <div class="col-sm-6">
+                  <select name='company_id' ng-model='stock_outward_item.company_id' class="form-control" required>
+                    <option ng-repeat="c in companies" ng-value='{{c.id}}'>{{c.name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="col-sm-6" style="text-align: right">
+                  <label for='warehouse_id' class="control-label">Warehouse</label>
+                </div>
+                <div class="col-sm-6">
+                   <select name='warehouse_id' ng-model='stock_outward_item.warehouse_id' class="form-control" required>
+                    <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="col-sm-6" style="text-align: right">
+                  <label for='device_id' class="control-label">Device id</label>
+                </div>
+                <div class="col-sm-6">
+                   <select name='device_id' ng-model='stock_outward_item.device_id' class="form-control" required>
+                    <option ng-repeat="d in devices" ng-value='{{d.id}}'>{{d.deviceId}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br><br><br>
+
+          <div class="col-sm-12">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='item_id' class="control-label">Item Name</label>
+                </div>
+                <div class="col-sm-6">
+                  <select name='item_id' ng-model='stock_outward_item.item_id' class="form-control" required>
+                    <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for='qty' class="control-label">Qty.</label>
+                </div>
+                <div class="col-sm-8">
+                  <input name='qty' type='text' ng-model='stock_outward_item.qty' class="form-control"/>
+                  <input type="hidden" name='reason.qty' type='text' ng-model='stock_inward_item.qty' class="form-control"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <label for='s_qty' class="control-label">Sub Qty.</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='s_qty' type='text' ng-model='stock_outward_item.sQty' class="form-control"/>
+                  <input type="hidden" name='s_qty' type='text' ng-model='stock_inward_item.sQty' class="form-control"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="col-sm-6" style="text-align: right">
+                  <label for='purchase' class="control-label">Discount</label>
+                </div>
+                <div class="col-sm-6">
+                  <input name='purchase' type='text' ng-model='stock_outward_item.discount' class="form-control"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center" style="text-align: center">
+        <button type="submit" class="btn btn-default" ng-click='add()'>Add</button>
+        <button type="submit" class="btn btn-default" ng-click='reset()'>Reset</button>
+      </div>
+    </form>
+
+    <br />
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body scrolling">
+          <div class="col-sm-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="center">S/N</th>
+                  <th class="center">Item Name</th>
+                  <th class="center">Quantity</th>
+                  <th class="center">S. Qty</th>
+                  <th class="center">Discount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="s in stock_items">
+                  <td class="center">{{s.numeral}}</td>
+                  <td class="center">{{s.itemName}}</td>
+                  <td class="center">{{s.qty}}</td>
+                  <td class="center">{{s.sQty}}</td>
+                  <td class="center">{{s.discount}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                 <tr>
+                  <td colspan="5"><h5>In Words: Eight Hundred and Ninety One Only</h5></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-horizontal">
+      <div class="col-sm-12">
+        <!-- First Column -->
+        <div class="row">
+        <div class="col-sm-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">Payment Markup</div>
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <div>
+                      <label for='payment_method' class="control-label">Payment Method:</label>
+                    </div>
+                    <div>
+                      <label for='cash' class="radio-inline">
+                        <input name='cash' id='cash' type="radio" value="Cash" ng-model="stock_outward.paymentMethod">Cash
+                      </label>
+                      <label for='bank' class="radio-inline">
+                        <input name='bank' id='bank' type="radio" value="Cheque No." ng-model="stock_outward.paymentMethod">Cheque No.
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for='credit' class="radio-inline">
+                        <input name='credit' id='credit' type="radio" value="Credit" ng-model="stock_outward.paymentMethod">Credit
+                      </label>
+                  </div>
+                </div>
+                <div class="col-sm-9">
+                  <div class="col-sm-12" ng-hide="stock_outward.paymentMethod == 'Cheque No.'">
+                    <div class="form-group" ng-hide="stock_outward.paymentMethod == 'Credit'">
+                      <div class="col-sm-2">
+                        <label for='bank' class="control-label">Cash</label>
+                      </div>
+                      <div class="col-sm-10">
+                        <input name='cash' type='text' ng-model='stock_outward.cash' class="form-control" ng-disabled="stock_outward.paymentMethod != 'Cash'" />
+                      </div>
+                    </div>
+                    <div class="form-group" ng-show="stock_outward.paymentMethod == 'Credit'">
+                      <div class="col-sm-2">
+                        <label for='bank' class="control-label">Credit</label>
+                      </div>
+                      <div class="col-sm-10">
+                        <input name='cash' type='text' ng-model='stock_outward.cash' class="form-control" ng-disabled="stock_outward.paymentMethod != 'Credit'" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <div class="col-sm-4">
+                            <label for='cheque' class="control-label">Cheque No.</label>
+                          </div>
+                          <div class="col-sm-8">
+                            <input name='cheque' type='text' ng-model='stock_outward.cheque_no' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <div class="col-sm-2">
+                            <label for='datetime' class="control-label">Date</label>
+                          </div>
+                          <div class="col-sm-10">
+                            <div class="input-group">
+                              <input name='datetime' ng-model='stock_outward.date' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" date-options/>
+                              <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="col-sm-2">
+                        <label for='bank' class="control-label">Bank Name</label>
+                      </div>
+                      <div class="col-sm-10">
+                        <input name='bank' type='text' ng-model='stock_outward.bank_name' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Secon Column -->
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for='reason' class="col-sm-4 control-label">Sub Total</label>
+            <div class="col-sm-8">
+              <h5>20000.00</h5>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for='reason' class="col-sm-4 control-label">Discount</label>
+            <div class="col-sm-4">
+              <input type="text" name="reason" ng-model="grievance.note" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for='reason' class="col-sm-4 control-label">Taxes</label>
+            <div class="col-sm-4">
+              <h5>(+)2000.00</h5>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for='reason' class="col-sm-4 control-label">Total</label>
+            <div class="col-sm-4">
+              <h5>22000.00</h5>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group ui buttons">
+      <div class=" col-sm-12">
+        <button type="submit" class="btn btn-default" ng-click="create()">Submit</button>
+        <a ng-click="reset()" class="btn btn-default">Reset</a>
+      </div>
+    </div>
+  </div>
+</div>

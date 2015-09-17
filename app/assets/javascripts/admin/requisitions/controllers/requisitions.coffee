@@ -1,6 +1,6 @@
 @requisitions.controller 'RequisitionsController', [
-  '$scope', '$state', 'Requisition', 'Warehouse', 'Item', 'Company'
-  ($scope, $state, Requisition, Warehouse, Item, Company) ->
+  '$scope', 'Requisition', 'Warehouse', 'Item', 'Company'
+  ($scope, Requisition, Warehouse, Item, Company) ->
     Requisition.get().then (requisitions) ->
       $scope.requisitions = requisitions
 
