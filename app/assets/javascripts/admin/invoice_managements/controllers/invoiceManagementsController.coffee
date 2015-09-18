@@ -1,5 +1,5 @@
 @invoice_managements.controller 'InvoiceManagementsController', [
-  '$state'
-  ($state) ->
-
+  '$state', '$scope'
+  ($state, $scope) ->
+    $state.go('invoice_managements.outstanding_payment')
 ]
