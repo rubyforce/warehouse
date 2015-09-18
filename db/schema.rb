@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918103208) do
+ActiveRecord::Schema.define(version: 20150918110146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,6 +264,8 @@ ActiveRecord::Schema.define(version: 20150918103208) do
   create_table "invoices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date     "date"
+    t.string   "reason"
   end
 
   create_table "item_rate_masters", force: :cascade do |t|
@@ -345,6 +347,10 @@ ActiveRecord::Schema.define(version: 20150918103208) do
   create_table "outstanding_payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date     "date"
+    t.decimal  "cash"
+    t.string   "cheque_no"
+    t.string   "bank_name"
   end
 
   create_table "package_types", force: :cascade do |t|
