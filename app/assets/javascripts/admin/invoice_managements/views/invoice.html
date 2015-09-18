@@ -1,1 +1,74 @@
-test 2
+<form name='form' ng-controller='CreatePaymentVouchersController' class="form-horizontal" ng-submit='create()'>
+  <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new outstanding payment.</div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for='paymentVoucher.date' class="control-label">To Date</label>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <input name='paymentVoucher.date' ng-model='paymentDate' class="form-control" date-options />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Second Column -->
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-body scrolling">
+        <div class="col-sm-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="center">Invoice No.</th>
+                <th class="center">Customer Name</th>
+                <th class="center">Amount</th>
+                <th class="center">Paid Date</th>
+                <th class="center">Status</th>
+                <th class="center">Payment Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Payment Ack</div>
+      <div class="panel-body">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="col-sm-4" style="text-align: right">
+              <label for='cheque' class="control-label">Reason</label>
+            </div>
+            <div class="col-sm-4">
+              <input name='cheque' type='text' ng-model='paymentVoucher.cheque_no' class="form-control"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group ui buttons">
+    <div class=" col-sm-12">
+      <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Cancel Transaction</button>
+      <button type="submit" class="btn btn-default" ng-click="reset()">Mark Payment As Bounced</button>
+    </div>
+  </div>
+</form>
