@@ -118,7 +118,7 @@ payment_vouchers.config [
 
 @invoice_managements = angular.module('admin.invoice_managements', [])
 invoice_managements.config [
-  '$statProvider', '$urlRouterProvider'
+  '$stateProvider', '$urlRouterProvider'
   ($stateProvider, $urlRouterProvider) ->
     $stateProvider
       .state 'invoice_managements',
