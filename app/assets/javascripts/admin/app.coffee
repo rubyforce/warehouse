@@ -116,6 +116,22 @@ payment_vouchers.config [
         templateUrl: "admin/payment_vouchers/views/cancel.html"
 ]
 
+@invoice_managements = angular.module('admin.invoice_managements', [])
+invoice_managements.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRouterProvider) ->
+    $stateProvider
+      .state 'invoice_managements',
+        url: "/invoice_managements"
+        templateUrl: "admin/invoice_managements/views/index.html"
+      .state 'invoice_managements.outstanding_payment',
+        url: "/invoice_managements/outstanding_payment"
+        templateUrl: "admin/invoice_managements/views/outstanding_payment.html"
+      .state 'invoice_managements.invoice',
+        url: "/invoice_managements/invoice"
+        templateUrl: "admin/invoice_managements/views/invoice.html"
+]
+
 @admin = angular.module('admin', [
   'ui.router',
   'rails',
@@ -134,6 +150,7 @@ payment_vouchers.config [
   'admin.payment_vouchers',
   'admin.requisitions',
   'admin.stocks',
+  'admin.invoice_managements',
 
   'admin.directives',
 ])
