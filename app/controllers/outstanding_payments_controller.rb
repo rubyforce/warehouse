@@ -1,0 +1,2 @@
+class OutstandingPaymentsController < ApplicationController
+end
