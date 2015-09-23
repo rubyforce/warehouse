@@ -33,9 +33,9 @@ managements.config [
       .state 'managements.categories',
         url: "/categories/new"
         templateUrl: "admin/managements/views/categories/new.html"
-      .state 'managements.ledgers',
-        url: "/ledgers/new"
-        templateUrl: "admin/managements/views/ledgers/new.html"
+      .state 'managements.parties',
+        url: "/parties/new"
+        templateUrl: "admin/managements/views/parties/new.html"
       .state 'managements.expenses',
         url: "/expenses/new"
         templateUrl: "admin/managements/views/expenses/new.html"
