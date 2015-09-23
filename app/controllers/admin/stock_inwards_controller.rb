@@ -18,8 +18,6 @@ class Admin::StockInwardsController < ApplicationController
   end
 
   def create
-    require 'pry'
-    binding.pry
     @stock_inward = StockInward.new(params[:stock_inward])
     @stock_inward.save
 
