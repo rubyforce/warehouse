@@ -79,7 +79,7 @@
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
       new StockInward($scope.stock_inward).create().then (response) ->
-        response.total = $scope.getTotal()
+        $scope.stock_inward.total = $scope.getTotal()
         protocol = $location.protocol()
         host = $window.location.host
         domain = "#{protocol}://#{host}" # Example: http://example.com
