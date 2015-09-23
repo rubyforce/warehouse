@@ -42,7 +42,9 @@
       $scope.stock_inward_item.warehouseName = warehouse.name
       $scope.stock_inward_item.warehouseId = warehouse.id
 
-      $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate']).value()
+      $scope.stock_inward_item.amount = $scope.stock_inward_item.qty * $scope.stock_inward_item.purchaseRate
+
+      $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate', 'amount']).value()
 
       $scope.stocks.push($scope.stock_inward_item)
 
