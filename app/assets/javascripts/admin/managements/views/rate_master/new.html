@@ -1,14 +1,14 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-controller='CreateRateMastersController'>
   <div class="panel-heading">Rate Master</div>
   <div class="panel-body">
-    <form name='form' ng-controller='CreateRateMasterController' class="form-horizontal" ng-submit='create()'>
+    <form name='form' class="form-horizontal" ng-submit='create()'>
       <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new rate.</div>
       <div class="col-sm-12">
         <!-- First Column -->
         <h4 style="text-align: center">Set Rates in Following Table</h4>
         <div style="text-align: center">
          <label class="radio-inline" ng-repeat="company in companies">
-            <input type="radio" name="rateMaster.companies" ng-model="rateMaster.companies" ng-value="{{company.name}}">{{company.name}}
+            <input type="radio" name="rateMaster.company_id" ng-model="rateMaster.company_id" ng-value="{{company.id}}">{{company.name}}
           </label>
         </div>
 
@@ -25,8 +25,8 @@
             <tbody>
               <tr ng-repeat="f in itemRateMasters" >
                 <td></td>
-                <td>{f.properties.name}}</td>
-                <td><input type="text" name="rateMaster.rate" ng-model="f.rate" class="form-control"></td>
+                <td>{{f.name}}</td>
+                <td><input type="text" name="f.rate" ng-model="f.rate" class="form-control"></td>
                 <td></td>
               </tr>
             </tbody>
