@@ -31,24 +31,23 @@
       $scope.stock_outward = build()
 
     $scope.add = ->
-      debugger
-      item = _($scope.items).chain().find((i)-> parseInt(i.id, 10)).value()
+      item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_outward_item.item_id, 10)).value()
       $scope.stock_outward_item.itemName = item.name
       $scope.stock_outward_itemitemId = item.id
+      debugger
+      ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
+      $scope.stock_outward_item.ledgerName = ledger.name
+      $scope.stock_outward_item.ledgerId = ledger.id
 
-      company = _($scope.companies).chain().find((c) -> parseInt(c.id, 10)).value()
-      $scope.stock_outward_item.companyName = company.name
-      $scope.stock_outward_item.companyId = company.id
-
-      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10)).value()
+      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_outward_item.warehouse_id, 10)).value()
       $scope.stock_outward_item.warehouseName = warehouse.name
       $scope.stock_outward_item.warehouseId = warehouse.id
 
-      device = _($scope.devices).chain().find((d) -> parseInt(d.id, 10)).value()
+      device = _($scope.devices).chain().find((d) -> parseInt(d.id, 10) is parseInt($scope.stock_outward_item.device_id, 10)).value()
       $scope.stock_outward_item.deviceIdName = device.deviceId
       $scope.stock_outward_item.deviceId = device.id
 
-      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount']).value()
+      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount']).value()
 
       $scope.stock_items.push($scope.stock_outward_item)
 
