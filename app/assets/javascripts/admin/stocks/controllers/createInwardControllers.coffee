@@ -33,6 +33,7 @@
 
     $scope.add = ->
       debugger
+
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_inward_item.item_id, 10)).value()
       $scope.stock_inward_item.itemName = item.name
       $scope.stock_inward_item.itemId = item.id
@@ -48,8 +49,12 @@
 
       $scope.stock_inward_item.amount = $scope.stock_inward_item.qty * $scope.stock_inward_item.purchaseRate
 
-      $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate', 'amount', 'tax']).value()
-      $scope.getTotal()
+      $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate', 'amount', 'tax', 'sumTaxes']).value()
+      $scope.getSubTotal()
+      $scope.getSumTaxes()
+
+      $scope.stock_inward_item.sumTaxes = ($scope.stock_inward_item.amount * $scope.stock_inward_item.tax)/100
+
       $scope.stocks.push($scope.stock_inward_item)
 
       for i in [1..$scope.stocks.length]
@@ -57,9 +62,12 @@
 
       $scope.stock_inward_item = {}
 
-    $scope.getTotal = ->
+    $scope.getSubTotal = ->
       _.sum $scope.stocks, (object) ->
         object.amount
+    $scope.getSumTaxes = ->
+      _.sum $scope.stocks, (object) ->
+        object.sumTaxes
 
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
