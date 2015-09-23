@@ -32,26 +32,34 @@
     $scope.alert = false
 
     $scope.add = ->
+      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_inward_item.item_id, 10)).value()
       $scope.stock_inward_item.itemName = item.name
-      $scope.stock_inward_itemitemId = item.id
+      $scope.stock_inward_item.itemId = item.id
+      $scope.stock_inward_item.tax = item.tax
+
       company = _($scope.companies).chain().find((c) -> parseInt(c.id, 10) is parseInt($scope.stock_inward_item.company_id, 10)).value()
       $scope.stock_inward_item.companyName = company.name
       $scope.stock_inward_item.companyId = company.id
+
       warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_inward_item.warehouse_id, 10)).value()
       $scope.stock_inward_item.warehouseName = warehouse.name
       $scope.stock_inward_item.warehouseId = warehouse.id
 
       $scope.stock_inward_item.amount = $scope.stock_inward_item.qty * $scope.stock_inward_item.purchaseRate
 
-      $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate', 'amount']).value()
-
+      $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate', 'amount', 'tax']).value()
+      $scope.getTotal()
       $scope.stocks.push($scope.stock_inward_item)
 
       for i in [1..$scope.stocks.length]
         $scope.stock_inward_item.numeral = i
 
       $scope.stock_inward_item = {}
+
+    $scope.getTotal = ->
+      _.sum $scope.stocks, (object) ->
+        object.amount
 
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
