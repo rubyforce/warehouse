@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923075048) do
+ActiveRecord::Schema.define(version: 20150923081841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -539,7 +539,7 @@ ActiveRecord::Schema.define(version: 20150923075048) do
   end
 
   create_table "stock_outward_items", force: :cascade do |t|
-    t.integer  "company_id"
+    t.integer  "ledger_id"
     t.integer  "item_id"
     t.integer  "warehouse_id"
     t.integer  "stock_outward_id"
