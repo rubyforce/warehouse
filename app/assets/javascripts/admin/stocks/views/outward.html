@@ -39,8 +39,8 @@
                   <label for='company_id' class="control-label">Customer</label>
                 </div>
                 <div class="col-sm-6">
-                  <select name='company_id' ng-model='stock_outward_item.company_id' class="form-control" required>
-                    <option ng-repeat="c in companies" ng-value='{{c.id}}'>{{c.name}}</option>
+                  <select name='company_id' ng-model='stock_outward_item.ledger_id' class="form-control" required>
+                    <option ng-repeat="l in ledgers" ng-value='{{l.id}}'>{{l.name}}</option>
                   </select>
                 </div>
               </div>
