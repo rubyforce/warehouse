@@ -29,6 +29,7 @@
 
     $scope.stocks = []
     $scope.stock_inward_item = {}
+    $scope.totals = []
     $scope.alert = false
 
     $scope.add = ->
@@ -52,8 +53,12 @@
       $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate', 'amount', 'tax', 'sumTaxes']).value()
       $scope.getSubTotal()
       $scope.getSumTaxes()
+      $scope.getTotal()
 
       $scope.stock_inward_item.sumTaxes = ($scope.stock_inward_item.amount * $scope.stock_inward_item.tax)/100
+
+      $scope.total = $scope.stock_inward_item.amount + $scope.stock_inward_item.sumTaxes
+      $scope.totals.push($scope.total)
 
       $scope.stocks.push($scope.stock_inward_item)
 
@@ -68,6 +73,8 @@
     $scope.getSumTaxes = ->
       _.sum $scope.stocks, (object) ->
         object.sumTaxes
+    $scope.getTotal = ->
+      _.sum $scope.totals
 
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
