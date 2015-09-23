@@ -1,0 +1,115 @@
+<style>
+  .table-width {
+    width: 100%
+  }
+
+  @page {
+    size: A5;
+    margin: 0;
+  }
+
+  @media print {
+    .second {
+      display: none;
+    }
+    h3 {
+      text-align: center;
+    }
+    table, th, td
+    {
+      width: 85%;
+      border-collapse:collapse;
+      border: 1px solid black;
+    }
+    .table-bordered {
+      width: 80%;
+    }
+    .panel-border {
+      border-radius: 1px;
+      border: 1px solid beige;
+      margin-bottom: 25px;
+    }
+  }
+  .bg-contact {
+    background-color: #FFF;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-radius: 1px;
+    border-bottom: 1px solid beige;
+    border-bottom-style: dashed
+  }
+</style>
+<%= stylesheet_link_tag "application" %>
+<div class="bg-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h3>Space for letterhead image</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="width: 15%; margin-top: 25px;">
+  <div class="panel panel-default panel-border">
+      <div class="panel-body">
+          <h4 style="text-align: center">Dist logo</h4>
+      </div>
+  </div>
+</div>
+<div class="content">
+  <div class="container">
+    <div class="header">
+    </div>
+    <div class="row">
+      <div class="second">
+        <div class="col-xs-7">
+        </div>
+      </div>
+      <div class="first">
+        <div class="col-xs-5 text-right">
+          <h5 style="text-align: right"> Date: <%= @requisition.created_at.strftime("%d/%m/%Y") %> </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="form-group">
+        <h5 style="text-align: center">All requisitions issued from <%= @requisition.created_at.strftime("%d/%m/%Y") %> to <%= @requisition.date.strftime("%d/%m/%y") %></h5>
+      </div>
+    </div>
+
+    <div class="update_form">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default" style="">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th width="25%" style="text-align: center;" class="th">Req. No.</th>
+                  <th width="50%" style="text-align: center;" class="th">Item Name</th>
+                  <th width="25%" style="text-align: center;" class="th">Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @requisition.requisition_items.each do |item| %>
+                  <tr>
+                    <td class="center" class="td"><%= @requisition.requisition_no %></td>
+                      <td class="center" class="td"><%= item.item_name %></td>
+                      <td class="center" class="td"><%= item.qty %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer" style="text-align: center; margin-top: 50px;">
+      <div class="container">
+        <hr style="width: 30%;">
+        <p class="text-muted">Signature</p>
+      </div>
+    </footer>
+  </div>
+</div>

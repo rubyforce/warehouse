@@ -1,14 +1,14 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Setting up Ledgers</div>
+  <div class="panel-heading">Setting up Parties</div>
   <div class="panel-body">
     <form name='form' ng-controller='CreateLedgersController' class="form-horizontal" ng-submit='create()'>
-      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new ledger.</div>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new party.</div>
       <div class="col-sm-12">
         <!-- First Column -->
         <div class="col-sm-6">
           <div class="form-group">
             <div class="col-sm-4">
-              <label for='ledger.name' class="control-label">Ledger Name</label>
+              <label for='ledger.name' class="control-label">Party Name</label>
             </div>
             <div class="col-sm-6">
               <input name='ledger.name' type='text' ng-model='ledger.name' class="form-control" required />

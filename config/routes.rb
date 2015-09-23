@@ -23,6 +23,16 @@ Greenarea::Application.routes.draw do
     end
     resources :reasons
 
+    resources :requisitions do
+      collection do
+        get :requisition_id
+      end
+      member do
+        get :print
+      end
+    end
+    resources :requisition_items
+
     resources :payment_vouchers do
       collection do
         get :payment_id
@@ -42,6 +52,27 @@ Greenarea::Application.routes.draw do
     end
 
     resources :dashboards
+
+    resources :stock_inwards do
+      collection do
+        get :inward_id
+      end
+      member do
+        get :print
+      end
+    end
+    resources :stock_inward_items
+
+    resources :stock_outwards do
+      collection do
+        get :outward_id
+      end
+    end
+    resources :stock_outward_items
+
+    resources :outstanding_payments
+
+    resources :invoices
   end
 
   devise_for :users

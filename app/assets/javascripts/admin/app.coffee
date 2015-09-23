@@ -33,9 +33,9 @@ managements.config [
       .state 'managements.categories',
         url: "/categories/new"
         templateUrl: "admin/managements/views/categories/new.html"
-      .state 'managements.ledgers',
-        url: "/ledgers/new"
-        templateUrl: "admin/managements/views/ledgers/new.html"
+      .state 'managements.parties',
+        url: "/parties/new"
+        templateUrl: "admin/managements/views/parties/new.html"
       .state 'managements.expenses',
         url: "/expenses/new"
         templateUrl: "admin/managements/views/expenses/new.html"
@@ -74,6 +74,32 @@ grievances.config [
         templateUrl: "admin/grievances/views/new.html"
 ]
 
+@requisitions = angular.module('admin.requisitions', [])
+requisitions.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRouterProvider) ->
+    $stateProvider
+      .state 'requisitions',
+        url: "/requisitions/new"
+        templateUrl: "admin/requisitions/views/new.html"
+]
+
+@stocks = angular.module('admin.stocks', [])
+stocks.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRoterProvider) ->
+    $stateProvider
+      .state 'stocks',
+        url: "/stocks"
+        templateUrl: "admin/stocks/views/index.html"
+      .state 'stocks.stock_inward',
+        url: "/stocks/stock_inward"
+        templateUrl: "admin/stocks/views/inward.html"
+      .state 'stocks.stock_outward',
+        url: "/stocks/stock_outward"
+        templateUrl: "admin/stocks/views/outward.html"
+]
+
 @payment_vouchers = angular.module('admin.payment_vouchers', [])
 payment_vouchers.config [
   '$stateProvider', '$urlRouterProvider'
@@ -88,6 +114,22 @@ payment_vouchers.config [
       .state 'payment_vouchers.search',
         url: "/payment_vouchers"
         templateUrl: "admin/payment_vouchers/views/cancel.html"
+]
+
+@invoice_managements = angular.module('admin.invoice_managements', [])
+invoice_managements.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRouterProvider) ->
+    $stateProvider
+      .state 'invoice_managements',
+        url: "/invoice_managements"
+        templateUrl: "admin/invoice_managements/views/index.html"
+      .state 'invoice_managements.outstanding_payment',
+        url: "/invoice_managements/outstanding_payment"
+        templateUrl: "admin/invoice_managements/views/outstanding_payment.html"
+      .state 'invoice_managements.invoice',
+        url: "/invoice_managements/invoice"
+        templateUrl: "admin/invoice_managements/views/invoice.html"
 ]
 
 @admin = angular.module('admin', [
@@ -106,6 +148,9 @@ payment_vouchers.config [
   'admin.vehicle_companies',
   'admin.grievances',
   'admin.payment_vouchers',
+  'admin.requisitions',
+  'admin.stocks',
+  'admin.invoice_managements',
 
   'admin.directives',
 ])

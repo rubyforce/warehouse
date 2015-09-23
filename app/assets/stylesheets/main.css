@@ -64,8 +64,7 @@ table tbody td {
   overflow-y: auto;
 }
 .header {
-  padding-bottom: 9px;
-  margin: 60px 0 20px;
+  padding-bottom: 25px;
 }
 .scroll-bar {
   position: relative;
@@ -152,4 +151,4 @@ form .update_form {
 }
 .table.meals .center {
   text-align: center;
-}                                                                                                                                       
+}

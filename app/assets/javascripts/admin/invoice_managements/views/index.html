@@ -1,0 +1,21 @@
+<div ng-controller='InvoiceManagementsController' ui-view='invoice_managements'>
+  <div class="text-bottom">
+    <h1>Invoice Managements</h1>
+  </div>
+
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="invoice_managements.outstanding_payment">Outstanding Payment</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="invoice_managements.invoice">Invoice</a>
+    </li>
+  </ul>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Invoice Management</div>
+    <div class="panel-body">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

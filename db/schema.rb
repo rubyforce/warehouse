@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908105314) do
+ActiveRecord::Schema.define(version: 20150923112431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,11 +188,23 @@ ActiveRecord::Schema.define(version: 20150908105314) do
     t.text     "address"
     t.string   "contact_no"
     t.string   "qualification"
-    t.string   "salary_rate"
     t.string   "entry_no"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "paid_type_id"
+    t.decimal  "salary_rate"
+  end
+
+  create_table "expense_receipts", force: :cascade do |t|
+    t.string   "expense_made"
+    t.string   "nature_of_expense"
+    t.string   "payment_made"
+    t.decimal  "amount"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "nature_id"
+    t.integer  "expense_by_id"
+    t.integer  "authorized_by_id"
   end
 
   create_table "expense_receipts", force: :cascade do |t|
@@ -261,6 +273,13 @@ ActiveRecord::Schema.define(version: 20150908105314) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date     "date"
+    t.string   "reason"
+  end
+
   create_table "item_rate_masters", force: :cascade do |t|
     t.decimal  "rate"
     t.integer  "item_id"
@@ -278,6 +297,7 @@ ActiveRecord::Schema.define(version: 20150908105314) do
     t.integer  "container_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.decimal  "tax"
   end
 
   create_table "ledgers", force: :cascade do |t|
@@ -337,6 +357,17 @@ ActiveRecord::Schema.define(version: 20150908105314) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "outstanding_payments", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.date     "date"
+    t.decimal  "cash"
+    t.string   "cheque_no"
+    t.string   "bank_name"
+    t.date     "bank_date"
+    t.string   "payment_method"
+  end
+
   create_table "package_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -371,6 +402,13 @@ ActiveRecord::Schema.define(version: 20150908105314) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "status"
+    t.integer  "numeral"
+  end
+
+  create_table "place_of_births", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "place_of_births", force: :cascade do |t|
@@ -432,6 +470,27 @@ ActiveRecord::Schema.define(version: 20150908105314) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requisition_items", force: :cascade do |t|
+    t.decimal  "qty"
+    t.integer  "numeral"
+    t.integer  "item_id"
+    t.integer  "warehouse_id"
+    t.integer  "company_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "item_name"
+    t.string   "company_name"
+    t.string   "warehouse_name"
+    t.integer  "requisition_id"
+  end
+
+  create_table "requisitions", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.date     "date"
+    t.string   "requisition_no"
+  end
+
   create_table "salaries", force: :cascade do |t|
     t.string   "month"
     t.string   "year"
@@ -466,6 +525,71 @@ ActiveRecord::Schema.define(version: 20150908105314) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stock_inward_items", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "item_id"
+    t.integer  "warehouse_id"
+    t.integer  "stock_inward_id"
+    t.integer  "numeral"
+    t.decimal  "qty"
+    t.decimal  "s_qty"
+    t.decimal  "purchase_rate"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "item_name"
+    t.string   "company_name"
+    t.string   "warehouse_name"
+    t.decimal  "amount"
+    t.decimal  "tax"
+  end
+
+  create_table "stock_inwards", force: :cascade do |t|
+    t.date     "date"
+    t.string   "requisition_ref"
+    t.string   "voucher_no"
+    t.text     "note"
+    t.string   "invoice_no"
+    t.decimal  "amount"
+    t.string   "cheque_no"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "amount_paid",     default: false
+    t.decimal  "discount"
+    t.decimal  "total"
+  end
+
+  create_table "stock_outward_items", force: :cascade do |t|
+    t.integer  "ledger_id"
+    t.integer  "item_id"
+    t.integer  "warehouse_id"
+    t.integer  "stock_outward_id"
+    t.decimal  "qty"
+    t.decimal  "s_qty"
+    t.decimal  "discount"
+    t.string   "ledger_name"
+    t.string   "item_name"
+    t.string   "warehouse_name"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "device_id_name"
+    t.integer  "device_id"
+    t.integer  "numeral"
+  end
+
+  create_table "stock_outwards", force: :cascade do |t|
+    t.date     "date"
+    t.string   "invoice_no"
+    t.string   "voucher_no"
+    t.decimal  "cash"
+    t.string   "cheque_no"
+    t.string   "bank_name"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "credit"
+    t.string   "discount"
+    t.string   "payment_method"
   end
 
   create_table "students", force: :cascade do |t|

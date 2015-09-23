@@ -1,0 +1,17 @@
+<div ng-controller="StocksController" ui-view="stocks">
+  <div class="text-bottom">
+    <h1>Stock</h1>
+  </div>
+
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="stocks.stock_inward">Stock Inward</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="stocks.stock_outward">Stock Outward</a>
+    </li>
+  </ul>
+
+
+  <div ui-view></div>
+</div>
