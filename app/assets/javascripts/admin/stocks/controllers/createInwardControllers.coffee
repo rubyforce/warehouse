@@ -90,6 +90,9 @@
         $scope.rev = numeral(sum/10000).format('0.0000').replace(/\./,'')
         $scope.stock_inward.voucherNo = $scope.rev
 
+        $scope.totals = []
+        $scope.sumTaxes = []
+
         $scope.alert = true
 
       $scope.reset()
