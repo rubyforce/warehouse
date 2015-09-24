@@ -1,5 +1,6 @@
 class StockOutward < ActiveRecord::Base
   has_many :stock_outward_items
+  belongs_to :outstanding_payments
 
   has_many :items, :through => :stock_outward_items
   has_many :warehouses, :through => :stock_outward_items
