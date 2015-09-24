@@ -1,13 +1,13 @@
-<form name='form' ng-controller='CreatePaymentVouchersController' class="form-horizontal" ng-submit='create()'>
+<form name='form' ng-controller='CreateInvoicesController' class="form-horizontal" ng-submit='create()'>
   <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new outstanding payment.</div>
   <div class="col-sm-6">
     <div class="form-group">
       <div class="col-sm-4">
-        <label for='paymentVoucher.date' class="control-label">To Date</label>
+        <label for='date' class="control-label">To Date</label>
       </div>
       <div class="col-sm-6">
         <div class="input-group">
-          <input name='paymentVoucher.date' ng-model='paymentDate' class="form-control" date-options />
+          <input name='date' ng-model='invoice.date' class="form-control" date-options />
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
           </span>
@@ -54,10 +54,10 @@
         <div class="col-sm-12">
           <div class="form-group">
             <div class="col-sm-4" style="text-align: right">
-              <label for='cheque' class="control-label">Reason</label>
+              <label for='reason' class="control-label">Reason</label>
             </div>
             <div class="col-sm-4">
-              <input name='cheque' type='text' ng-model='paymentVoucher.cheque_no' class="form-control"/>
+              <input name='reason' type='text' ng-model='invoice.reason' class="form-control"/>
             </div>
           </div>
         </div>

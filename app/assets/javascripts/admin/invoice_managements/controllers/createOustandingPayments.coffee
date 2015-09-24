@@ -1,6 +1,6 @@
 @invoice_managements.controller 'CreateOutstandingPaymentsController', [
   '$scope', 'OutstandingPayment'
-  ($state, $scope, OutstandingPayment) ->
+  ($scope, OutstandingPayment) ->
     $scope.alert = false
 
     build = ->
@@ -17,6 +17,5 @@
       new OutstandingPayment($scope.outstanding_payment).create().then (response) ->
         $scope.outstanding_payments.push(new OutstandingPayment(response))
         $scope.alert = true
-
         $scope.reset()
 ]
