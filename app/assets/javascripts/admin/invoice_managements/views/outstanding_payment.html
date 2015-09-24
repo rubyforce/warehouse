@@ -1,4 +1,4 @@
-<form name='form' ng-controller='CreatePaymentVouchersController' class="form-horizontal" ng-submit='create()'>
+<form name='form' ng-controller='CreateOutstandingPaymentsController' class="form-horizontal" ng-submit='create()'>
   <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new outstanding payment.</div>
   <div class="col-sm-6">
     <div class="form-group">
@@ -57,10 +57,10 @@
               </div>
               <div>
                 <label for='cash' class="radio-inline">
-                  <input name='cash' id='cash' type="radio" value="0" ng-model="paymentVoucher.payment_method" ng-init="paymentVoucher.payment_method='0'">Cash
+                  <input name='cash' id='cash' type="radio" value="Cash" ng-model="outstanding_payment.payment_method" ng-init="outstanding_payment.payment_method='Cash'">Cash
                 </label>
                 <label for='bank' class="radio-inline">
-                  <input name='bank' id='bank' type="radio" value="1" ng-model="paymentVoucher.payment_method">Cheque No.
+                  <input name='bank' id='bank' type="radio" value="Cheque No." ng-model="outstanding_payment.payment_method">Cheque No.
                 </label>
               </div>
             </div>
@@ -69,10 +69,10 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <div class="col-sm-2">
-                  <label for='bank' class="control-label">Cash</label>
+                  <label for='cash' class="control-label">Cash</label>
                 </div>
                 <div class="col-sm-8">
-                  <input name='cash' type='text' ng-model='paymentVoucher.cash' class="form-control" ng-disabled="paymentVoucher.payment_method != 0" />
+                  <input name='cash' type='text' ng-model='outstanding_payment.cash' class="form-control" ng-disabled="outstanding_payment.payment_method != 'Cash'" />
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@
                       <label for='cheque' class="control-label">Cheque No.</label>
                     </div>
                     <div class="col-sm-6">
-                      <input name='cheque' type='text' ng-model='paymentVoucher.cheque_no' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0" />
+                      <input name='cheque' type='text' ng-model='outstanding_payment.cheque_no' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" />
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="input-group">
-                        <input name='datetime' ng-model='paymentVoucher.date' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0" date-options/>
+                        <input name='datetime' ng-model='outstanding_payment.date' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" date-options/>
                         <span class="input-group-addon">
                           <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -111,7 +111,7 @@
                   <label for='bank' class="control-label">Bank Name</label>
                 </div>
                 <div class="col-sm-8">
-                  <input name='bank' type='text' ng-model='paymentVoucher.bank_name' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0" />
+                  <input name='bank' type='text' ng-model='outstanding_payment.bank_name' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" />
                 </div>
               </div>
             </div>
