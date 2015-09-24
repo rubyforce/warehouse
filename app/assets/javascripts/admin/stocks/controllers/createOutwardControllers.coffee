@@ -29,6 +29,8 @@
 
     $scope.reset = ->
       $scope.stock_outward = build()
+      $scope.stock_outward_item = {}
+      $scope.stock_items = []
 
     $scope.add = ->
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_outward_item.item_id, 10)).value()
@@ -65,6 +67,8 @@
         $scope.num = numeral(sum/10000).format('0.0000').replace(/\./,'')
         $scope.stock_outward.voucherNo = $scope.num
         $scope.stock_outward.invoiceNo = $scope.num
+
+        $scope.reset()
 
         $scope.alert = true
 
