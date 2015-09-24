@@ -1,5 +1,5 @@
 @invoice_managements.controller 'CreateOutstandingPaymentsController', [
-  '$state', '$scope', 'OutstandingPayment'
+  '$scope', 'OutstandingPayment'
   ($state, $scope, OutstandingPayment) ->
     $scope.alert = false
 
