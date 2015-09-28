@@ -31,13 +31,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="s in stock_outwards">
-                <td class="center">{{s.invoiceNo}}</td>
-                <td class="center"></td>
-                <td class="center"></td>
-                <td class="center"></td>
-                <td class="center"></td>
-              </tr>
+              <a ng-click="select(item)">
+                <tr ng-repeat="s in stock_outwards">
+                  <td class="center">{{s.invoiceNo}}</td>
+                  <td class="center"></td>
+                  <td class="center"></td>
+                  <td class="center">{{s.createdAt | date: "dd/mm/yyyy"}}</td>
+                  <td class="center"></td>
+                </tr>
+              </a>
             </tbody>
           </table>
         </div>
