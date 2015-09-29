@@ -3,6 +3,8 @@
   ($scope, OutstandingPayment, $timeout) ->
     $scope.alert = false
 
+    $scope.items = []
+
     build = ->
       new OutstandingPayment(date: $.datepicker.formatDate("dd/mm/yy", new Date()))
 
@@ -16,14 +18,28 @@
           activeClass: 'warning'
           onSelectionChanged: (element) ->
             return unless element?
-            item = $scope.outstanding_payments[element.data('index')]
+            property = $scope.stock_outwards[element.data('index')]
             $scope.$apply ->
-              select(item)
+              select(property)
 
-    $scope.$watch 'currentPage', makeTableSelectable
+    $scope.$watch 'currentPage', (collection)->
+      makeTableSelectable()
+      render()
 
-    select = (item) ->
-      $scope.outstanding_payment = item
+    render = ->
+      debugger
+      $scope.items = _($scope.stock_outwards).chain()
+        .map (s) ->
+          for item in s.stockOutwardItems
+            debugger
+            item.invoiceNo = s.invoiceNo
+            item.createdAt = s.createdAt
+          s.stockOutwardItems
+        .flatten() # [1,2,3,4,5]
+        .value()
+
+    select = (property) ->
+      $scope.property = property
 
     $scope.reset = ->
       $scope.outstanding_payment = build()
