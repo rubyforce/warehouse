@@ -7,7 +7,6 @@
     $scope.rateMaster = new RateMaster()
 
     render = ->
-      debugger
       $scope.itemRateMasters = []
 
       for f in $scope.items
