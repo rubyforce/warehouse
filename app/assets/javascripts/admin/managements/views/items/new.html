@@ -40,7 +40,10 @@
               <label for='item.min_qty' class="control-label">Tax</label>
             </div>
             <div class="col-sm-6">
-              <input name='item.min_qty' type='text' ng-model='item.tax' class="form-control" required />
+              <div class="input-group">
+                <input name='item.min_qty' type='text' ng-model='item.tax' class="form-control" required />
+                <div class="input-group-addon">%</div>
+              </div>
             </div>
           </div>
 
