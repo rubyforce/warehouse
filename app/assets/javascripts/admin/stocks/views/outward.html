@@ -12,7 +12,7 @@
                 <label for='date' class="col-sm-2 control-label">Date</label>
                 <div class="col-sm-8">
                   <div class="input-group">
-                    <input name='date' ng-model='stock_outward_date' class="form-control" date-options />
+                    <input name='date' ng-model='stock_outward.date' class="form-control" date-options />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -227,7 +227,7 @@
                           </div>
                           <div class="col-sm-10">
                             <div class="input-group">
-                              <input name='datetime' ng-model='stock_outward.date' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" date-options/>
+                              <input name='datetime' ng-model='stock_outward.bank_date' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" date-options/>
                               <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                               </span>
