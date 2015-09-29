@@ -28,10 +28,11 @@
     render = ->
       $scope.items = _($scope.stock_outwards).chain()
         .map (s) ->
+          debugger
           for item in s.stockOutwardItems
             item.invoiceNo = s.invoiceNo
             item.createdAt = s.createdAt
-            item.date = s.date
+            item.date = s.daysSinceDue
           s.stockOutwardItems
         .flatten() # [1,2,3,4,5]
         .value()

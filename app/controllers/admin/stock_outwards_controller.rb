@@ -4,7 +4,7 @@ class Admin::StockOutwardsController < ApplicationController
   def index
     @stock_outwards = StockOutward.all
 
-    render :json => @stock_outwards.as_json(:include => :stock_outward_items)
+    render :json => @stock_outwards.as_json(:include => :stock_outward_items, :methods => :days_since_due)
   end
 
   def show
