@@ -74,7 +74,7 @@
         </div>
         <div class="col-sm-6">
           <div class="input-group">
-            <input name='paymentVoucher.date' ng-model='paymentDate' class="form-control" date-options />
+            <input name='paymentVoucher.date' ng-model='paymentVoucher.date' class="form-control" date-options />
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="input-group">
-                        <input name='datetime' ng-model='paymentVoucher.date' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0" date-options/>
+                        <input name='datetime' ng-model='paymentVoucher.bank_date' class="form-control" ng-disabled="paymentVoucher.payment_method == null || paymentVoucher.payment_method == 0" date-options/>
                         <span class="input-group-addon">
                           <span class="glyphicon glyphicon-calendar"></span>
                         </span>
