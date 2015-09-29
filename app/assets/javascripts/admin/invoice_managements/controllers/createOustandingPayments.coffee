@@ -31,6 +31,7 @@
           for item in s.stockOutwardItems
             item.invoiceNo = s.invoiceNo
             item.createdAt = s.createdAt
+            item.date = s.date
           s.stockOutwardItems
         .flatten() # [1,2,3,4,5]
         .value()
