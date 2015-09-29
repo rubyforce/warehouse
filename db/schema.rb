@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929203436) do
+ActiveRecord::Schema.define(version: 20150929204126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20150929203436) do
     t.datetime "updated_at",                     null: false
     t.string   "status"
     t.integer  "numeral"
+    t.date     "bank_date"
   end
 
   create_table "rate_masters", force: :cascade do |t|
