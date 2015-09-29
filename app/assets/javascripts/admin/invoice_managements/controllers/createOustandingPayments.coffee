@@ -21,16 +21,14 @@
             property = $scope.stock_outwards[element.data('index')]
             $scope.$apply ->
               select(property)
-        render()
+      render()
 
-    $scope.$watch 'currentPage', makeTableSelectable
+    $scope.$watch 'stock_outwards', makeTableSelectable
 
     render = ->
-      debugger
       $scope.items = _($scope.stock_outwards).chain()
         .map (s) ->
           for item in s.stockOutwardItems
-            debugger
             item.invoiceNo = s.invoiceNo
             item.createdAt = s.createdAt
           s.stockOutwardItems
