@@ -21,10 +21,9 @@
             property = $scope.stock_outwards[element.data('index')]
             $scope.$apply ->
               select(property)
+        render()
 
-    $scope.$watch 'currentPage', (collection)->
-      makeTableSelectable()
-      render()
+    $scope.$watch 'currentPage', makeTableSelectable
 
     render = ->
       debugger
