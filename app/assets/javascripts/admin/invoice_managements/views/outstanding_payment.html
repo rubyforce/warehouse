@@ -31,7 +31,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="s in items">
+              <tr data-index="{{$index}}" ng-repeat="s in items">
                 <td class="center">{{s.invoiceNo}}</td>
                 <td class="center">{{s.ledgerName}}</td>
                 <td class="center">{{}}</td>
