@@ -1,5 +1,3 @@
 class OutstandingPayment < ActiveRecord::Base
-  has_many :stock_outwards
-
-  accepts_nested_attributes_for :stock_outwards
+  belongs_to :stock_outward
 end
