@@ -35,7 +35,7 @@
   margin: 25px auto;
 }
 .panel-body.scrolling {
-  max-height: 350px;
+  max-height: 310px;
   overflow-y: auto;
 }
 table tbody td {
