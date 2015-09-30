@@ -37,8 +37,9 @@
         .flatten() # [1,2,3,4,5]
         .value()
 
+    selectedStock = null
     select = (property) ->
-      $scope.property = property
+      selectedStock = property
 
     $scope.reset = ->
       $scope.outstanding_payment = build()
@@ -46,6 +47,9 @@
         payment_method: 'Cash'
 
     $scope.create = ->
+      return unless selectedStock?
+
+      $scope.outstanding_payment.stock_outward_id = selectedStock.id
       new OutstandingPayment($scope.outstanding_payment).create().then (response) ->
         $scope.outstanding_payments.push(new OutstandingPayment(response))
         $scope.alert = true
