@@ -11,15 +11,15 @@ class Admin::PaymentVouchersController < ApplicationController
     @payment_vouchers = @payment_vouchers.all
     render :json => @payment_vouchers.as_json(
       :include => [
-        { 
+        {
           :employee => {
             :only => [:id, :first_name, :last_name],
             :methods=> [:full_name]
-          } 
+          }
         },
         {
-          :ledger => { 
-            :only=> [:id, :name] 
+          :ledger => {
+            :only=> [:id, :name]
           }
         }
       ]
@@ -42,7 +42,6 @@ class Admin::PaymentVouchersController < ApplicationController
 
   def create
     @payment_voucher = PaymentVoucher.new(params[:payment_voucher])
-    # @receipt.student.fees_heads << @receipt.fees_heads
     @payment_voucher.save
     render :json => @payment_voucher
   end
