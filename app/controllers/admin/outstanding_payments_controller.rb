@@ -4,7 +4,7 @@ class Admin::OutstandingPaymentsController < ApplicationController
   def index
     @outstanding_payments = OutstandingPayment.all
 
-    render :json => @outstanding_payments
+    render :json => @outstanding_payments.as_json(:include => :stock_outwards)
   end
 
   def show
