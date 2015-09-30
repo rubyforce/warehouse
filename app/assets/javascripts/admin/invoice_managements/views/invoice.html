@@ -1,5 +1,5 @@
 <form name='form' ng-controller='CreateInvoicesController' class="form-horizontal" ng-submit='create()'>
-  <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new outstanding payment.</div>
+  <div class="alert alert-success" role="alert" ng-show="alert">Successfully added.</div>
   <div class="col-sm-6">
     <div class="form-group">
       <div class="col-sm-4">
@@ -32,8 +32,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="center"></td>
+              <tr data-index="{{$index}}" ng-repeat="i in stock_outwards">
+                <td class="center">{{i.invoiceNo}}</td>
                 <td class="center"></td>
                 <td class="center"></td>
                 <td class="center"></td>
