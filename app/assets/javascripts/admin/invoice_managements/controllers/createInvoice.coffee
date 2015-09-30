@@ -2,6 +2,7 @@
   '$scope', 'Invoice', '$timeout'
   ($scope, Invoice, $timeout) ->
     $scope.alert = false
+    $scope.items = []
 
     build = ->
       new Invoice(date: $.datepicker.formatDate("dd/mm/yy", new Date()))
@@ -19,8 +20,21 @@
             property = $scope.stock_outwards[element.data('index')]
             $scope.$apply ->
               select(property)
+      render()
 
     $scope.$watch 'stock_outwards', makeTableSelectable
+
+    render = ->
+      $scope.items = _($scope.stock_outwards).chain()
+        .map (s) ->
+          debugger
+          for item in s.stockOutwardItems
+            item.invoiceNo = s.invoiceNo
+            item.date = s.date
+            item.paymentMethod = s.paymentMethod
+          s.stockOutwardItems
+        .flatten()
+        .value()
 
     select = (property)->
       property = property
