@@ -53,13 +53,11 @@
         $scope.alert = true
 
     $scope.bounce = ->
-      debugger
       return unless selectedStock?
 
       $scope.invoice.stock_outward_id = selectedStock.id
       $scope.invoice.cheque_bounce = "Bounced"
       new Invoice($scope.invoice).create().then (response) ->
-        debugger
         $scope.invoices.push(new Invoice(response))
         $scope.invoice = build
         $scope.alert = true
