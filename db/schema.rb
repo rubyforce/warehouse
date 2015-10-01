@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930140504) do
+ActiveRecord::Schema.define(version: 20151001082655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20150930140504) do
     t.string   "reason"
     t.string   "cancel_transaction"
     t.string   "cheque_bounce"
+    t.integer  "stock_outward_id"
   end
 
   create_table "item_rate_masters", force: :cascade do |t|
