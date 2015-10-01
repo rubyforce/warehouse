@@ -36,11 +36,16 @@
         .flatten()
         .value()
 
+
+    selectedStock = null
     select = (property)->
-      property = property
+      selectedStock = property
 
 
     $scope.create = ->
+      return unless selectedStock?
+
+      $scope.invoice.stock_outward_id = selectedStock.id
       new Invoice($scope.invoice).create().then (response) ->
         $scope.invoices.push(new Invoice(response))
 
