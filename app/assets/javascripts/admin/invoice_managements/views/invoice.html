@@ -1,4 +1,4 @@
-<form name='form' ng-controller='CreateInvoicesController' class="form-horizontal" ng-submit='create()'>
+<form name='form' ng-controller='CreateInvoicesController' class="form-horizontal">
   <div class="alert alert-success" role="alert" ng-show="alert">Successfully added.</div>
   <div class="col-sm-6">
     <div class="form-group">
@@ -67,7 +67,7 @@
 
   <div class="form-group ui buttons">
     <div class=" col-sm-12">
-      <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Cancel Transaction</button>
+      <button type="submit" class="btn btn-default" ng-click="cancel()" ng-disabled='form.$invalid'>Cancel Transaction</button>
       <button type="submit" class="btn btn-default" ng-click="reset()">Mark Payment As Bounced</button>
     </div>
   </div>

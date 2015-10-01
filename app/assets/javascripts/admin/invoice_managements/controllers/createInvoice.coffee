@@ -27,7 +27,6 @@
     render = ->
       $scope.items = _($scope.stock_outwards).chain()
         .map (s) ->
-          debugger
           for item in s.stockOutwardItems
             item.invoiceNo = s.invoiceNo
             item.date = s.date
@@ -42,10 +41,11 @@
       selectedStock = property
 
 
-    $scope.create = ->
+    $scope.cancel = ->
       return unless selectedStock?
 
       $scope.invoice.stock_outward_id = selectedStock.id
+      $scope.invoice.cancel_transaction = "Canceled"
       new Invoice($scope.invoice).create().then (response) ->
         $scope.invoices.push(new Invoice(response))
 
