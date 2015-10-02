@@ -48,10 +48,12 @@
         invoice[key] = value
 
       if invoice.isNew()
+        invoice.reason = $scope.reason
         invoice.create().then (response) ->
           $scope.invoices.push(new Invoice(response))
           $scope.alert = true
       else
+        invoice.reason = $scope.reason
         invoice.update().then ->
           $scope.alert = true
 
