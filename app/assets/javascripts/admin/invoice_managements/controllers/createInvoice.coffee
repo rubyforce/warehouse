@@ -65,6 +65,5 @@
 
     $scope.bounce = ->
       return unless selectedStock?
-      debugger
       updateOrCreate(cheque_bounce: "Bounced")
 ]
