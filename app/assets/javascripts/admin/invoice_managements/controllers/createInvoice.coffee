@@ -40,38 +40,29 @@
     select = (property)->
       selectedStock = property
 
+    updateOrCreate = (attributes) ->
+      invoice = _($scope.invoices).find((s) -> s.stockOutwardId == selectedStock.id) || new Invoice($scope.invoice)
+      invoice.stock_outward_id = selectedStock.id
+
+      for key, value of attributes
+        invoice[key] = value
+
+      if invoice.isNew()
+        invoice.create().then (response) ->
+          $scope.invoices.push(new Invoice(response))
+          $scope.alert = true
+      else
+        invoice.update().then ->
+          $scope.alert = true
+
+      $scope.invoice = build()
 
     $scope.cancel = ->
-      debugger
       return unless selectedStock?
-
-      $scope.invoice.stock_outward_id = selectedStock.id
-      $scope.invoice.cancel_transaction = "Canceled"
-
-      if $scope.invoices.length != 0
-        _($scope.invoices).chain()
-          .map (s) ->
-            debugger
-            if s.stockOutwardId == selectedStock.id
-              $scope.invoice.id = s.id
-              $scope.invoice.update()
-              $scope.invoice = build()
-              $scope.alert = true
-          .value()
-      else
-        new Invoice($scope.invoice).create().then (response) ->
-          $scope.invoices.push(new Invoice(response))
-
-          $scope.invoice = build()
-          $scope.alert = true
+      updateOrCreate(cancel_transaction: "Canceled")
 
     $scope.bounce = ->
       return unless selectedStock?
-
-      $scope.invoice.stock_outward_id = selectedStock.id
-      $scope.invoice.cheque_bounce = "Bounced"
-      new Invoice($scope.invoice).create().then (response) ->
-        $scope.invoices.push(new Invoice(response))
-        $scope.invoice = build
-        $scope.alert = true
+      debugger
+      updateOrCreate(cheque_bounce: "Bounced")
 ]
