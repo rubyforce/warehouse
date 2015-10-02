@@ -42,15 +42,28 @@
 
 
     $scope.cancel = ->
+      debugger
       return unless selectedStock?
 
       $scope.invoice.stock_outward_id = selectedStock.id
       $scope.invoice.cancel_transaction = "Canceled"
-      new Invoice($scope.invoice).create().then (response) ->
-        $scope.invoices.push(new Invoice(response))
 
-        $scope.invoice = build()
-        $scope.alert = true
+      if $scope.invoices.length != 0
+        _($scope.invoices).chain()
+          .map (s) ->
+            debugger
+            if s.stockOutwardId == selectedStock.id
+              $scope.invoice.id = s.id
+              $scope.invoice.update()
+              $scope.invoice = build()
+              $scope.alert = true
+          .value()
+      else
+        new Invoice($scope.invoice).create().then (response) ->
+          $scope.invoices.push(new Invoice(response))
+
+          $scope.invoice = build()
+          $scope.alert = true
 
     $scope.bounce = ->
       return unless selectedStock?
