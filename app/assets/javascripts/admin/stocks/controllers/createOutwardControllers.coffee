@@ -38,6 +38,7 @@
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_outward_item.item_id, 10)).value()
       $scope.stock_outward_item.itemName = item.name
       $scope.stock_outward_item.rate = item.rate
+      $scope.stock_outward_item.tax = item.tax
       $scope.stock_outward_itemitemId = item.id
 
       ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
@@ -51,7 +52,10 @@
       device = _($scope.devices).chain().find((d) -> parseInt(d.id, 10) is parseInt($scope.stock_outward_item.device_id, 10)).value()
       $scope.stock_outward_item.deviceIdName = device.deviceId
       $scope.stock_outward_item.deviceId = device.id
+
       $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
+      $scope.tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
+      $scope.sumTaxes.push($scope.tax)
 
       $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount']).value()
 
@@ -67,7 +71,8 @@
     $scope.getSubTotal = ->
       _.sum $scope.stock_items, (object) ->
         object.amount
-
+    $scope.getSumTaxes = ->
+      _.sum $scope.sumTaxes
 
     $scope.create = ->
       $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
