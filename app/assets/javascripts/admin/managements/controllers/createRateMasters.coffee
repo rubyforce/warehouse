@@ -1,6 +1,6 @@
 @managements.controller 'CreateRateMastersController', [
-  '$scope', 'Item', '$timeout'
-  ($scope, Item, $timeout) ->
+  '$scope', 'Item', '$timeout', '$http'
+  ($scope, Item, $timeout, $http) ->
     $scope.alert = false
 
     makeTableSelectable = ->
@@ -20,7 +20,6 @@
     selectedItem = null
     select = (property)->
       selectedItem = property
-
 
     $scope.create = ->
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt(selectedItem.id, 10)).value()
