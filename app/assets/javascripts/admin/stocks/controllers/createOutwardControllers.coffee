@@ -61,7 +61,7 @@
 
       to_i = parseInt(_.sum $scope.totals)
       to_s = to_i.toString()
-      $scope.toWords = toWords(to_s)
+      $scope.toWords = toWords(to_s).toUpperCase()
 
       $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount']).value()
 
