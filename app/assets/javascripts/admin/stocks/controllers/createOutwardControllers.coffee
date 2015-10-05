@@ -4,6 +4,8 @@
     $scope.stock_outward_date = $.datepicker.formatDate("dd/mm/yy", new Date())
     $scope.alert = false
     $scope.stock_items = []
+    $scope.totals = []
+    $scope.sumTaxes = []
     $scope.stock_outward_item = {}
 
     $http.get("admin/stock_outwards/outward_id").success (response) ->
@@ -33,7 +35,6 @@
       $scope.stock_items = []
 
     $scope.add = ->
-      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_outward_item.item_id, 10)).value()
       $scope.stock_outward_item.itemName = item.name
       $scope.stock_outward_item.rate = item.rate
@@ -50,7 +51,6 @@
       device = _($scope.devices).chain().find((d) -> parseInt(d.id, 10) is parseInt($scope.stock_outward_item.device_id, 10)).value()
       $scope.stock_outward_item.deviceIdName = device.deviceId
       $scope.stock_outward_item.deviceId = device.id
-      debugger
       $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
 
       $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount']).value()
@@ -61,6 +61,13 @@
         $scope.stock_outward_item.numeral = i
 
       $scope.stock_outward_item = {}
+
+      $scope.getSubTotal()
+
+    $scope.getSubTotal = ->
+      _.sum $scope.stock_items, (object) ->
+        object.amount
+
 
     $scope.create = ->
       $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
