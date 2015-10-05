@@ -59,6 +59,10 @@
       $scope.total = $scope.stock_outward_item.amount + $scope.tax
       $scope.totals.push($scope.total)
 
+      to_i = parseInt(_.sum $scope.totals)
+      to_s = to_i.toString()
+      $scope.toWords = toWords(to_s)
+
       $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount']).value()
 
       $scope.stock_items.push($scope.stock_outward_item)
