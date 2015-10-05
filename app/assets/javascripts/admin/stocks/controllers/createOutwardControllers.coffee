@@ -33,8 +33,10 @@
       $scope.stock_items = []
 
     $scope.add = ->
+      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.stock_outward_item.item_id, 10)).value()
       $scope.stock_outward_item.itemName = item.name
+      $scope.stock_outward_item.rate = item.rate
       $scope.stock_outward_itemitemId = item.id
 
       ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
@@ -49,7 +51,7 @@
       $scope.stock_outward_item.deviceIdName = device.deviceId
       $scope.stock_outward_item.deviceId = device.id
 
-      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount']).value()
+      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate']).value()
 
       $scope.stock_items.push($scope.stock_outward_item)
 
