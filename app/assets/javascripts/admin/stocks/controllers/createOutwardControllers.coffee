@@ -50,8 +50,10 @@
       device = _($scope.devices).chain().find((d) -> parseInt(d.id, 10) is parseInt($scope.stock_outward_item.device_id, 10)).value()
       $scope.stock_outward_item.deviceIdName = device.deviceId
       $scope.stock_outward_item.deviceId = device.id
+      debugger
+      $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
 
-      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate']).value()
+      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount']).value()
 
       $scope.stock_items.push($scope.stock_outward_item)
 
