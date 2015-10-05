@@ -1,11 +1,7 @@
 @managements.controller 'CreateRateMastersController', [
-  '$scope', 'RateMaster', '$timeout'
-  ($scope, RateMaster, $timeout) ->
-    $scope.itemAttributes = []
-
+  '$scope', 'Item', '$timeout'
+  ($scope, Item, $timeout) ->
     $scope.alert = false
-
-    $scope.rateMaster = new RateMaster()
 
     makeTableSelectable = ->
       $timeout ->
@@ -27,13 +23,10 @@
 
 
     $scope.create = ->
-      $scope.rateMaster.create().then (response) ->
-        debugger
-        item = _($scope.items).chain().find((i)-> parseInt(i.id, 10)).value()
-        $scope.rateMaster.itemName = item.name
-        $scope.rateMaster.itemId = item.id
-        $scope.rateMaster.itemRate = item.rate
+      item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt(selectedItem.id, 10)).value()
+      return unless selectedItem?
 
-        $scope.rate_masters.push(new RateMaster(response))
+      item.id = selectedItem.id
+      new Item(item).update().then ->
         $scope.alert = true
 ]
