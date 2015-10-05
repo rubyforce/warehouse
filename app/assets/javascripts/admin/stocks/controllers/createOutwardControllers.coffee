@@ -56,6 +56,8 @@
       $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
       $scope.tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
       $scope.sumTaxes.push($scope.tax)
+      $scope.total = $scope.stock_outward_item.amount + $scope.tax
+      $scope.totals.push($scope.total)
 
       $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount']).value()
 
@@ -67,12 +69,15 @@
       $scope.stock_outward_item = {}
 
       $scope.getSubTotal()
+      $scope.getSumTaxes()
 
     $scope.getSubTotal = ->
       _.sum $scope.stock_items, (object) ->
         object.amount
     $scope.getSumTaxes = ->
       _.sum $scope.sumTaxes
+    $scope.getTotal = ->
+      _.sum $scope.totals
 
     $scope.create = ->
       $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
