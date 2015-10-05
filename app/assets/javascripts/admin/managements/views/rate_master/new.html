@@ -23,7 +23,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="f in itemRateMasters" >
+              <tr ng-repeat="f in items" data-index="{{$index}}">
                 <td></td>
                 <td>{{f.name}}</td>
                 <td><input type="text" name="f.rate" ng-model="f.rate" class="form-control"></td>

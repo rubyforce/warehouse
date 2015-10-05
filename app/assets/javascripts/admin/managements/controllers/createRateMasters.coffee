@@ -1,42 +1,38 @@
 @managements.controller 'CreateRateMastersController', [
   '$scope', 'RateMaster', '$timeout'
   ($scope, RateMaster, $timeout) ->
+    $scope.itemAttributes = []
 
     $scope.alert = false
 
     $scope.rateMaster = new RateMaster()
 
-    render = ->
-      $scope.itemRateMasters = []
+    makeTableSelectable = ->
+      $timeout ->
+        table = $('table')
+        table.tableselect
+          multiple: true
+          activeClass: 'warning'
+          onSelectionChanged: (element) ->
+            return unless element?
+            property = $scope.items[element.data('index')]
+            $scope.$apply ->
+              select(property)
 
-      for f in $scope.items
-        found = _.find $scope.rateMaster.itemRateMasters, (o) -> o.itemId is f.id
+    $scope.$watch 'items', makeTableSelectable
 
-        if found?
-          # to make checkbox as checked
-          found.name = f.name
-          found.rate = f.rate
+    selectedItem = null
+    select = (property)->
+      selectedItem = property
 
-        else
-          found =  {}
-          found.itemId = f.id
-          found.rate = ""
-          found.name = f.name
-
-        collection = _($scope.itemRateMasters)
-        unless collection.contains((o) -> o.itemId is found.id)
-          $scope.itemRateMasters.push(found)
-
-    $scope.$watchCollection 'items', (collection) ->
-      render()
 
     $scope.create = ->
-      $scope.rateMaster.itemRateMastersAttributes= $scope.itemRateMasters
       $scope.rateMaster.create().then (response) ->
         debugger
         item = _($scope.items).chain().find((i)-> parseInt(i.id, 10)).value()
         $scope.rateMaster.itemName = item.name
         $scope.rateMaster.itemId = item.id
+        $scope.rateMaster.itemRate = item.rate
 
         $scope.rate_masters.push(new RateMaster(response))
         $scope.alert = true
