@@ -41,7 +41,6 @@
       $scope.stock_outward_item.tax = item.tax
       $scope.stock_outward_itemitemId = item.id
 
-      debugger
       ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
       $scope.stock_outward_item.ledgerName = ledger.name
       $scope.stock_outward_item.contactNo = ledger.contactNo
