@@ -93,10 +93,10 @@ stocks.config [
         url: "/stocks"
         templateUrl: "admin/stocks/views/index.html"
       .state 'stocks.stock_inward',
-        url: "/stocks/stock_inward"
+        url: "/stock_inward"
         templateUrl: "admin/stocks/views/inward.html"
       .state 'stocks.stock_outward',
-        url: "/stocks/stock_outward"
+        url: "/stock_outward"
         templateUrl: "admin/stocks/views/outward.html"
 ]
 
@@ -109,10 +109,10 @@ payment_vouchers.config [
         url: "/payment_vouchers"
         templateUrl: "admin/payment_vouchers/views/index.html"
       .state 'payment_vouchers.new',
-        url: "/payment_vouchers/new"
+        url: "/new"
         templateUrl: "admin/payment_vouchers/views/new.html"
       .state 'payment_vouchers.search',
-        url: "/payment_vouchers"
+        url: "/search"
         templateUrl: "admin/payment_vouchers/views/cancel.html"
 ]
 
@@ -125,10 +125,10 @@ invoice_managements.config [
         url: "/invoice_managements"
         templateUrl: "admin/invoice_managements/views/index.html"
       .state 'invoice_managements.outstanding_payment',
-        url: "/invoice_managements/outstanding_payment"
+        url: "/outstanding_payment"
         templateUrl: "admin/invoice_managements/views/outstanding_payment.html"
       .state 'invoice_managements.invoice',
-        url: "/invoice_managements/invoice"
+        url: "/invoice"
         templateUrl: "admin/invoice_managements/views/invoice.html"
 ]
 
