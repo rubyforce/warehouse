@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007085457) do
+ActiveRecord::Schema.define(version: 20151007114455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -566,6 +566,7 @@ ActiveRecord::Schema.define(version: 20151007085457) do
     t.decimal  "rate"
     t.decimal  "amount"
     t.decimal  "tax"
+    t.string   "contact_no"
   end
 
   create_table "stock_outwards", force: :cascade do |t|
