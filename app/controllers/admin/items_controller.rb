@@ -33,7 +33,7 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update_attributes(permitted_params)
+    @item.update_attributes(permitted_params.merge(old_rate: @item.rate))
     render :json => @item
   end
 
@@ -41,6 +41,11 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     render :json => @item
+  end
+
+  def reset
+    @item = Item.find(params[:id])
+    render :json => { rate: @item.old_rate }
   end
 
   def permitted_params

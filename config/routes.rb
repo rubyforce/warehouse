@@ -8,7 +8,12 @@ Greenarea::Application.routes.draw do
     resources :expenses
     resources :companies
     resources :warehouses
-    resources :items
+    resources :items do
+      member do
+        post 'reset'
+      end
+    end
+
     resources :package_types
     resources :containers
     resources :devices
