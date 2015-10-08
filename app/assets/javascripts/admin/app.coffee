@@ -100,6 +100,22 @@ stocks.config [
         templateUrl: "admin/stocks/views/outward.html"
 ]
 
+@vehicle_stocks = angular.module('admin.vehicle_stocks', [])
+vehicle_stocks.config [
+  '$stateProvider', '$urlRouterProvider'
+  ($stateProvider, $urlRoterProvider) ->
+    $stateProvider
+      .state 'vehicle_stocks',
+        url: "/vehicle_stocks"
+        templateUrl: "admin/vehicle_stocks/views/index.html"
+      .state 'vehicle_stocks.vehicle_loading',
+        url: "/vehicle_loading"
+        templateUrl: "admin/vehicle_stocks/views/vehicle_loading.html"
+      .state 'vehicle_stocks.vehicle_unloading',
+        url: "/vehicle_unloading"
+        templateUrl: "admin/vehicle_stocks/views/vehicle_unloading.html"
+]
+
 @payment_vouchers = angular.module('admin.payment_vouchers', [])
 payment_vouchers.config [
   '$stateProvider', '$urlRouterProvider'
@@ -151,6 +167,7 @@ invoice_managements.config [
   'admin.requisitions',
   'admin.stocks',
   'admin.invoice_managements',
+  'admin.vehicle_stocks',
 
   'admin.directives',
 ])
