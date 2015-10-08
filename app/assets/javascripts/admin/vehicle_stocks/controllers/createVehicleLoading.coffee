@@ -32,26 +32,13 @@
     $scope.alert = false
 
     $scope.add = ->
-      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.vehicle_loading_item.item_id, 10)).value()
       $scope.vehicle_loading_item.itemName = item.name
       $scope.vehicle_loading_item.itemId = item.id
 
-      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.vehicle_loading_item.warehouse_id, 10)).value()
-      $scope.vehicle_loading_item.warehouseName = warehouse.name
-      $scope.vehicle_loading_item.warehouseId = warehouse.id
+      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'qty', 'id', 'sQty']).value()
 
-      vehicle = _($scope.vehicles).chain().find((v) -> parseInt(v.id, 10) is parseInt($scope.vehicle_loading_item.vehicle_id, 10)).value()
-      $scope.vehicle_loading_item.wvehicleName = vehicle.name
-      $scope.vehicle_loading_item.vehicleId = vehicle.id
-
-      device = _($scope.devices).chain().find((d) -> parseInt(d.id, 10) is parseInt($scope.vehicle_loading_item.device_id, 10)).value()
-      $scope.vehicle_loading_item.deviceName = device.device_id
-      $scope.vehicle_loading_item.deviceId = device.id
-
-      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'deviceName', 'deviceId', 'warehouseName', 'warehouseId', 'vehicleName', 'vehicleId', 'qty', 'id', 'sQty']).value()
-
-      $scope.stocks.push($scope.vehicle_loading_item)
+      $scope.vehicle_stocks.push($scope.vehicle_loading_item)
 
       $scope.vehicle_loading_item = {}
 
