@@ -17,8 +17,8 @@
             <div class="form-group">
               <label for='date' class="col-sm-1 control-label">Date</label>
               <div class="col-sm-6">
-                <div class="input-group">
-                  <input name='date' ng-model='requisition.date' class="form-control" date-options />
+                <div class="input-group" ng-controller="CreateVehicleLoadingController">
+                  <input name='date' ng-model='vehicle_loading.date' class="form-control" date-options />
 
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
@@ -27,7 +27,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6" ng-controller="CreateVehicleLoadingController">
             <h5 style="text-align: right"> Voucher No. {{vehicle_loading.voucherNo}}</h5>
           </div>
         </div>
@@ -75,6 +75,7 @@
           </div>
         </div>
       </div>
+      <br />
     </div>
   </form>
 
