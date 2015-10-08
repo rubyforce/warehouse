@@ -67,14 +67,14 @@
       </div>
       <div class="first">
         <div class="col-xs-5 text-right">
-          <h5 style="text-align: right"> Date: <%= @payment_voucher.created_at.strftime("%d/%m/%Y") %> </h5>
+          <h5 style="text-align: right"> Date: <%= @outstanding_payment.created_at.strftime("%d/%m/%Y") %> </h5>
         </div>
       </div>
     </div>
 
     <div class="col-sm-12">
       <div class="form-group">
-        <h5 style="text-align: center">Payment vouchers from <%= @payment_voucher.created_at.strftime("%d/%m/%y") %> to <%= @payment_voucher.date.strftime("%d/%m/%y") %></h5>
+        <h5 style="text-align: center">Outstanding payments from <%= @outstanding_payment.created_at.strftime("%d/%m/%y") %> to <%= @outstanding_payment.date.strftime("%d/%m/%y") %></h5>
       </div>
     </div>
 
@@ -85,27 +85,25 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th width="5%" style="text-align: center;" class="th">S/N</th>
-                  <th width="10%" style="text-align: center;" class="th">Voucher No.</th>
-                  <th width="20%" style="text-align: center;" class="th">Date</th>
-                  <th width="20%" style="text-align: center;" class="th">Ledger Name</th>
-                  <th width="20%" style="text-align: center;" class="th">Details</th>
-                  <th width="10%" style="text-align: center;" class="th">Vendor Name</th>
-                  <th width="10%" style="text-align: center;" class="th">Expense By</th>
-                  <th width="5%" style="text-align: center;" class="th">Amount</th>
+                  <th style="text-align: center;" class="th">S/N</th>
+                  <th style="text-align: center;" class="th">Invoice No.</th>
+                  <th style="text-align: center;" class="th">Date</th>
+                  <th style="text-align: center;" class="th">Payment Name with contacy No.</th>
+                  <th style="text-align: center;" class="th">Amount</th>
+                  <th style="text-align: center;" class="th">Due since Days</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="center" class="td"><%= @payment_voucher.numeral %></td>
-                  <td class="center" class="td"><%= @payment_voucher.voucher_no %></td>
-                  <td class="center" class="td"><%= @payment_voucher.date.strftime("%d/%m/%y") %></td>
-                  <td class="center" class="td"><%= @payment_voucher.employee.full_name %></td>
-                  <td class="center" class="td"><%= @payment_voucher.details %></td>
-                  <td class="center" class="td"><%= @payment_voucher.ledger.name %></td>
-                  <td class="center" class="td"><%= @payment_voucher.expense.name %></td>
-                  <td class="center" class="td"><%= @payment_voucher.amount %></td>
-                </tr>
+                <% @outstanding_payment.stock_outward.stock_outward_items.each_with_index do |item, i| %>
+                  <tr>
+                    <td class="center" class="td"><%= (i + 1) %></td>
+                    <td class="center" class="td"><%= @outstanding_payment.stock_outward.invoice_no %></td>
+                    <td class="center" class="td"><%= @outstanding_payment.date.strftime("%d/%m/%y") %></td>
+                    <td class="center" class="td"><%= item.ledger_name %> <%= item.contact_no %></td>
+                    <td class="center" class="td"><%= item.amount %></td>
+                    <td class="center" class="td"><%= @outstanding_payment.stock_outward.days_since_due %></td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>

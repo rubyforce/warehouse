@@ -43,6 +43,7 @@
 
       ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
       $scope.stock_outward_item.ledgerName = ledger.name
+      $scope.stock_outward_item.contactNo = ledger.contactNo
       $scope.stock_outward_item.ledgerId = ledger.id
 
       warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_outward_item.warehouse_id, 10)).value()
@@ -63,7 +64,7 @@
       to_s = to_i.toString()
       $scope.toWords = toWords(to_s).toUpperCase()
 
-      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount']).value()
+      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount', 'contactNo']).value()
 
       $scope.stock_items.push($scope.stock_outward_item)
 
