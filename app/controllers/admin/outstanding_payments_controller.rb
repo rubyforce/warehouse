@@ -43,4 +43,10 @@ class Admin::OutstandingPaymentsController < ApplicationController
 
     render :json => @outstanding_payment
   end
+
+  def print
+    @outstanding_payment = OutstandingPayment.find(params[:id])
+
+    render :layout => "print"
+  end
 end

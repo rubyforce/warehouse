@@ -1,6 +1,6 @@
 @invoice_managements.controller 'CreateOutstandingPaymentsController', [
-  '$scope', 'OutstandingPayment', '$timeout'
-  ($scope, OutstandingPayment, $timeout) ->
+  '$scope', 'OutstandingPayment', '$timeout', '$location', '$window'
+  ($scope, OutstandingPayment, $timeout, $location, $window) ->
     $scope.alert = false
 
     $scope.items = []
@@ -54,6 +54,11 @@
 
       $scope.outstanding_payment.stock_outward_id = selectedStock.id
       $scope.outstanding_payment.create().then (response) ->
+        protocol = $location.protocol()
+        host = $window.location.host
+        domain = "#{protocol}://#{host}" # Example: http://example.com
+        $window.open("#{domain}/admin/outstanding_payments/#{response.id}/print",'_blank')
+
         $scope.outstanding_payments.push(new OutstandingPayment(response))
         $scope.alert = true
         $scope.reset()

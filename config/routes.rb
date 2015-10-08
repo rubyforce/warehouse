@@ -75,7 +75,11 @@ Greenarea::Application.routes.draw do
     end
     resources :stock_outward_items
 
-    resources :outstanding_payments
+    resources :outstanding_payments do
+      member do
+        get :print
+      end
+    end
 
     resources :invoices
   end
