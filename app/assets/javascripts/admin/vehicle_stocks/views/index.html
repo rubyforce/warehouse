@@ -1,0 +1,92 @@
+<div ng-controller="VehicleStocksController" ui-view="vehice_stocks">
+  <div class="text-bottom">
+    <h1>Vehicle Stock</h1>
+  </div>
+
+  <div class="panel panel-default" ng-controller="VehicleStocksController">
+    <div class="panel-heading">Vehicle Stock Management</div>
+  </div>
+
+  <form name='form' class="form-horizontal">
+    </br>
+    <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new vehicle stock management.</div>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for='date' class="col-sm-1 control-label">Date</label>
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <input name='date' ng-model='requisition.date' class="form-control" date-options />
+
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h5 style="text-align: right"> Voucher No. {{vehicle_loading.voucherNo}}</h5>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="col-sm-3">
+                <label for='meal.meal_id' class="control-label">Vehicle</label>
+              </div>
+              <div class="col-sm-6">
+                <select name='vehicle_stock_item.vehicle_id' ng-model='vehicle_stock_item.vehicle_id' class="form-control" required>
+                  <option ng-repeat="v in vehicles" ng-value='{{v.id}}'>{{v.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="col-sm-4" style="text-align: right">
+                <label for='reason.qty' class="control-label">Warehouse</label>
+              </div>
+              <div class="col-sm-6">
+                 <select name='vehicle_stock_item.warehouse_id' ng-model='vehicle_stock_item.warehouse_id' class="form-control" required>
+                  <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <div class="col-sm-6" style="text-align: right">
+                <label for='device_id' class="control-label">Device id</label>
+              </div>
+              <div class="col-sm-4">
+                 <select name='vehicle_stock_item.device_id' ng-model='vehicle_stock_item.device_id' class="form-control" required>
+                  <option ng-repeat="d in devices" ng-value='{{d.id}}'>{{d.deviceId}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="vehicle_stocks.vehicle_loading">Vehicle Loading</a>
+    </li>
+    <li role="presentation" ui-sref-active="active">
+      <a ui-sref="vehicle_stocks.vehicle_unloading">Vehicle Unloading</a>
+    </li>
+  </ul>
+
+
+  <div ui-view></div>
+</div>

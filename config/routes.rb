@@ -80,6 +80,16 @@ Greenarea::Application.routes.draw do
     resources :invoices
   end
 
+  resources :vehicle_loadings do
+    collection do
+      get :vehicle_loading_id
+    end
+    member do
+      get :print
+    end
+  end
+  resources :vehicle_loading_items
+
   devise_for :users
 
   # You can have the root of your site routed with "root"
