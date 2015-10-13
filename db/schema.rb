@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(version: 20151008133748) do
     t.string   "gender"
     t.string   "marital_status"
     t.string   "year"
-    t.string   "paid_type"
     t.text     "address"
     t.string   "contact_no"
     t.string   "qualification"
