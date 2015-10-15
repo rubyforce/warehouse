@@ -1,3 +1,3 @@
 class PaidType < ActiveRecord::Base
-  has_many :empolyees, dependent: :destroy
+  has_many :employees, dependent: :destroy
 end
