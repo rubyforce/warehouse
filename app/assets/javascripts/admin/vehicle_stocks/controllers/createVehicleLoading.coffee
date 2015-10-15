@@ -32,11 +32,15 @@
     $scope.alert = false
 
     $scope.add = ->
+      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.vehicle_loading_item.item_id, 10)).value()
       $scope.vehicle_loading_item.itemName = item.name
       $scope.vehicle_loading_item.itemId = item.id
+      $scope.vehicle_loading_item.rate = item.rate
 
-      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'qty', 'id', 'sQty']).value()
+      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'qty', 'id', 'sQty', 'rate']).value()
+
+      $scope.vehicle_loading_item.amount = $scope.vehicle_loading_item.rate * $scope.vehicle_loading_item.qty
 
       $scope.vehicle_stocks.push($scope.vehicle_loading_item)
 
