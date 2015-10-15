@@ -56,122 +56,59 @@
   </div>
 </div>
 <!-- Column with discoint -->
-  <div class="content">
-    <div class="container">
-      <div class="header">
+<div class="content">
+  <div class="container">
+    <div class="header">
+    </div>
+    <div class="row">
+      <div class="second">
+        <div class="col-xs-7">
+        </div>
       </div>
+      <div class="first">
+        <div class="col-xs-5 text-right">
+          <h5 style="text-align: right"> Date: <%= @vehicle_loading.created_at.strftime("%d/%m/%Y") %> </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="update_form">
       <div class="row">
-        <div class="second">
-          <div class="col-xs-7">
-          </div>
-        </div>
-        <div class="first">
-          <div class="col-xs-5 text-right">
-            <h5 style="text-align: right"> Date: <%= @vehicle_loading.created_at.strftime("%d/%m/%Y") %> </h5>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-12">
-        <div class="form-group">
-          <h5 style="text-align: center">Stock received from <%= @vehicle_loading.created_at.strftime("%d/%m/%Y") %> to <%= @vehicle_loading.date.strftime("%d/%m/%y") %> with discount</h5>
-        </div>
-      </div>
-
-      <div class="update_form">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default" style="">
+        <div class="col-sm-12">
+          <div class="panel panel-default" style="">
+            <% @vehicle_loading.vehicle_loading_items.each_with_index do |item, i| %>
+              <div>
+                <h4>Vehicle: <%= item.vehicle.name %> Warehouse: <%= item.warehouse.name %> Device Id: <%= item.device.device_id %></h4>
+              </div>
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th width="25%" style="text-align: center;" class="th">S/N</th>
-                    <th width="25%" style="text-align: center;" class="th">Stock In #</th>
-                    <th width="50%" style="text-align: center;" class="th">Item Name</th>
+                    <th width="10%" style="text-align: center;" class="th">S/N</th>
+                    <th width="25%" style="text-align: center;" class="th">Item name</th>
                     <th width="25%" style="text-align: center;" class="th">Qty</th>
+                    <th width="25%" style="text-align: center;" class="th">S. Qty</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% @vehicle_loading.vehicle_loading_items.each_with_index do |item, i| %>
-                    <tr>
-                      <td class="center" class="td"><%= (i + 1) %></td>
-                        <td class="center" class="td"><%= @vehicle_loading.voucher_no %></td>
-                        <td class="center" class="td"><%= item.item_name %></td>
-                        <td class="center" class="td"><%= item.qty %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer class="footer" style="text-align: center; margin-top: 50px;">
-        <div class="container">
-          <hr style="width: 30%;">
-          <p class="text-muted">Signature</p>
-        </div>
-      </footer>
-    </div>
-  </div>
-<!-- Column without discoint -->
-  <div class="content">
-    <div class="container">
-      <div class="header">
-      </div>
-      <div class="row">
-        <div class="second">
-          <div class="col-xs-7">
-          </div>
-        </div>
-        <div class="first">
-          <div class="col-xs-5 text-right">
-            <h5 style="text-align: right"> Date: <%= @vehicle_loading.created_at.strftime("%d/%m/%Y") %> </h5>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-12">
-        <div class="form-group">
-          <h5 style="text-align: center">Stock received from <%= @vehicle_loading.created_at.strftime("%d/%m/%Y") %> to <%= @vehicle_loading.date.strftime("%d/%m/%y") %></h5>
-        </div>
-      </div>
-
-      <div class="update_form">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default" style="">
-              <table class="table table-bordered">
-                <thead>
                   <tr>
-                    <th width="25%" style="text-align: center;" class="th">S/N</th>
-                    <th width="25%" style="text-align: center;" class="th">Stock In #</th>
-                    <th width="50%" style="text-align: center;" class="th">Item Name</th>
-                    <th width="25%" style="text-align: center;" class="th">Qty</th>
+                    <td class="center" class="td" style="text-align: center;"><%= (i + 1) %></td>
+                    <td class="center" class="td"><%= item.item_name %></td>
+                    <td class="center" class="td"><%= item.qty %></td>
+                    <td class="center" class="td"><%= item.s_qty %></td>
                   </tr>
-                </thead>
-                <tbody>
-                  <% @vehicle_loading.vehicle_loading_items.each_with_index do |item, i| %>
-                    <tr>
-                      <td class="center" class="td"><%= (i + 1) %></td>
-                        <td class="center" class="td"><%= @vehicle_loading.voucher_no %></td>
-                        <td class="center" class="td"><%= item.item_name %></td>
-                        <td class="center" class="td"><%= item.qty %></td>
-                    </tr>
-                  <% end %>
                 </tbody>
               </table>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
-
-      <footer class="footer" style="text-align: center; margin-top: 50px;">
-        <div class="container">
-          <hr style="width: 30%;">
-          <p class="text-muted">Signature</p>
-        </div>
-      </footer>
     </div>
+
+    <footer class="footer" style="text-align: center; margin-top: 50px;">
+      <div class="container">
+        <hr style="width: 30%;">
+        <p class="text-muted">Signature</p>
+      </div>
+    </footer>
   </div>
+</div>

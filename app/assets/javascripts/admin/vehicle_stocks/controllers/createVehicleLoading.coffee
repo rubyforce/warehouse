@@ -43,6 +43,7 @@
       $scope.vehicle_loading_item = {}
 
     $scope.create = ->
+      debugger
       $scope.vehicle_loading.vehicle_loading_itemsAttributes = $scope.vehicle_stocks
       new VehicleLoading($scope.vehicle_loading).create().then (response) ->
         protocol = $location.protocol()
