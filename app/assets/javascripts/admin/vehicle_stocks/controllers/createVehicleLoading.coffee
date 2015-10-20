@@ -38,22 +38,21 @@
       $scope.vehicle_loading_item.itemId = item.id
       $scope.vehicle_loading_item.rate = item.rate
 
-      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'qty', 'id', 'sQty', 'rate']).value()
+      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'qty', 'id', 'sQty', 'rate', 'amount', 'numeral']).value()
 
       $scope.vehicle_loading_item.amount = $scope.vehicle_loading_item.rate * $scope.vehicle_loading_item.qty
 
       $scope.vehicle_stocks.push($scope.vehicle_loading_item)
 
+      for i in [1..$scope.vehicle_stocks.length]
+        $scope.vehicle_loading_item.numeral = i
+
       $scope.vehicle_loading_item = {}
 
     $scope.create = ->
-      debugger
       $scope.vehicle_loading.vehicle_loading_itemsAttributes = $scope.vehicle_stocks
       new VehicleLoading($scope.vehicle_loading).create().then (response) ->
-        protocol = $location.protocol()
-        host = $window.location.host
-        domain = "#{protocol}://#{host}" # Example: http://example.com
-        $window.open("#{domain}/admin/vehicle_loadings/#{response.id}/print",'_blank')
+
         $scope.vehicle_loadings.push(new VehicleLoading(response))
 
         sum = response.id + 1
