@@ -50,10 +50,6 @@
       $scope.stock_outward_item.warehouseName = warehouse.name
       $scope.stock_outward_item.warehouseId = warehouse.id
 
-      device = _($scope.devices).chain().find((d) -> parseInt(d.id, 10) is parseInt($scope.stock_outward_item.device_id, 10)).value()
-      $scope.stock_outward_item.deviceIdName = device.deviceId
-      $scope.stock_outward_item.deviceId = device.id
-
       $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
       $scope.tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
       $scope.sumTaxes.push($scope.tax)
@@ -64,7 +60,7 @@
       to_s = to_i.toString()
       $scope.toWords = toWords(to_s).toUpperCase()
 
-      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'deviceId', 'deviceIdName', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount', 'contactNo']).value()
+      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount', 'contactNo']).value()
 
       $scope.stock_items.push($scope.stock_outward_item)
 

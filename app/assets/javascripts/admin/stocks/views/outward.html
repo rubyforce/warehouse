@@ -46,6 +46,8 @@
               </div>
             </div>
             <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
               <div class="form-group">
                 <div class="col-sm-6" style="text-align: right">
                   <label for='warehouse_id' class="control-label">Warehouse</label>
@@ -53,18 +55,6 @@
                 <div class="col-sm-6">
                    <select name='warehouse_id' ng-model='stock_outward_item.warehouse_id' class="form-control" required>
                     <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="form-group">
-                <div class="col-sm-6" style="text-align: right">
-                  <label for='device_id' class="control-label">Device id</label>
-                </div>
-                <div class="col-sm-6">
-                   <select name='device_id' ng-model='stock_outward_item.device_id' class="form-control" required>
-                    <option ng-repeat="d in devices" ng-value='{{d.id}}'>{{d.deviceId}}</option>
                   </select>
                 </div>
               </div>
