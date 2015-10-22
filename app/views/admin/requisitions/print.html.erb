@@ -94,7 +94,7 @@
                 <% @requisition.requisition_items.each do |item| %>
                   <tr>
                     <td class="center" class="td"><%= @requisition.requisition_no %></td>
-                      <td class="center" class="td"><%= item.item_name %></td>
+                      <td class="center" class="td"><%= item.company_name %></td>
                       <td class="center" class="td"><%= item.qty %></td>
                   </tr>
                 <% end %>
