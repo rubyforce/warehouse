@@ -1,0 +1,354 @@
+diff --git a/app/assets/javascripts/admin/vehicle_stocks/controllers/createVehicleLoading.coffee b/app/assets/javascripts/admin/vehicle_stocks/controllers/createVehicleLoading.coffee
+index dd8b881..972e384 100644
+--- a/app/assets/javascripts/admin/vehicle_stocks/controllers/createVehicleLoading.coffee
++++ b/app/assets/javascripts/admin/vehicle_stocks/controllers/createVehicleLoading.coffee
+@@ -38,22 +38,21 @@
+       $scope.vehicle_loading_item.itemId = item.id
+       $scope.vehicle_loading_item.rate = item.rate
+ 
+-      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'qty', 'id', 'sQty', 'rate']).value()
++      $scope.vehicle_loading_item = _($scope.vehicle_loading_item).pick(['itemName', 'itemId', 'qty', 'id', 'sQty', 'rate', 'amount', 'numeral']).value()
+ 
+       $scope.vehicle_loading_item.amount = $scope.vehicle_loading_item.rate * $scope.vehicle_loading_item.qty
+ 
+       $scope.vehicle_stocks.push($scope.vehicle_loading_item)
+ 
++      for i in [1..$scope.vehicle_stocks.length]
++        $scope.vehicle_loading_item.numeral = i
++
+       $scope.vehicle_loading_item = {}
+ 
+     $scope.create = ->
+-      debugger
+       $scope.vehicle_loading.vehicle_loading_itemsAttributes = $scope.vehicle_stocks
+       new VehicleLoading($scope.vehicle_loading).create().then (response) ->
+-        protocol = $location.protocol()
+-        host = $window.location.host
+-        domain = "#{protocol}://#{host}" # Example: http://example.com
+-        $window.open("#{domain}/admin/vehicle_loadings/#{response.id}/print",'_blank')
++
+         $scope.vehicle_loadings.push(new VehicleLoading(response))
+ 
+         sum = response.id + 1
+diff --git a/app/assets/javascripts/admin/vehicle_stocks/controllers/vehicleStocks.coffee b/app/assets/javascripts/admin/vehicle_stocks/controllers/vehicleStocks.coffee
+index cbaae95..b7a3e5e 100644
+--- a/app/assets/javascripts/admin/vehicle_stocks/controllers/vehicleStocks.coffee
++++ b/app/assets/javascripts/admin/vehicle_stocks/controllers/vehicleStocks.coffee
+@@ -1,6 +1,6 @@
+ @vehicle_stocks.controller 'VehicleStocksController', [
+-  '$scope', '$state', 'Item', 'Warehouse', 'Device', 'Company', 'Vehicle'
+-  ($scope, $state, Item, Warehouse, Device, Company, Vehicle) ->
++  '$scope', '$state', 'Item', 'Warehouse', 'Device', 'Company', 'Vehicle', 'VehicleLoading'
++  ($scope, $state, Item, Warehouse, Device, Company, Vehicle, VehicleLoading) ->
+     $state.go('vehicle_stocks.vehicle_loading')
+ 
+     Item.get().then (items) ->
+@@ -18,4 +18,6 @@
+     Vehicle.get().then (vehicles) ->
+       $scope.vehicles = vehicles
+ 
++    VehicleLoading.get().then (vehicle_loadings) ->
++      $scope.vehicle_loadings = vehicle_loadings
+ ]
+diff --git a/app/assets/javascripts/admin/vehicle_stocks/views/index.html b/app/assets/javascripts/admin/vehicle_stocks/views/index.html
+index 890efaa..d7cff56 100644
+--- a/app/assets/javascripts/admin/vehicle_stocks/views/index.html
++++ b/app/assets/javascripts/admin/vehicle_stocks/views/index.html
+@@ -4,82 +4,6 @@
+       <h1>Vehicle Stock</h1>
+     </div>
+ 
+-    <div class="panel panel-default" ng-controller="VehicleStocksController">
+-      <div class="panel-heading">Vehicle Stock Management</div>
+-    </div>
+-
+-    <form name='form' class="form-horizontal">
+-      </br>
+-      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new vehicle stock management.</div>
+-      <div class="col-sm-12">
+-        <div class="row">
+-          <div class="col-sm-12">
+-            <div class="col-sm-6">
+-              <div class="form-group">
+-                <label for='date' class="col-sm-1 control-label">Date</label>
+-                <div class="col-sm-6">
+-                  <div class="input-group">
+-                    <input name='date' ng-model='vehicle_loading.date' class="form-control" date-options />
+-
+-                    <span class="input-group-addon">
+-                      <span class="glyphicon glyphicon-calendar"></span>
+-                    </span>
+-                  </div>
+-                </div>
+-              </div>
+-            </div>
+-            <div class="col-sm-6">
+-              <h5 style="text-align: right"> Voucher No. {{vehicle_loading.voucherNo}}</h5>
+-            </div>
+-          </div>
+-        </div>
+-
+-        <br>
+-
+-        <div class="row">
+-          <div class="col-sm-12">
+-            <div class="col-sm-4">
+-              <div class="form-group">
+-                <div class="col-sm-3">
+-                  <label for='meal.meal_id' class="control-label">Vehicle</label>
+-                </div>
+-                <div class="col-sm-6">
+-                  <select name='vehicle_stock_item.vehicle_id' ng-model='vehicle_loading.vehicle_id' class="form-control" required>
+-                    <option ng-repeat="v in vehicles" ng-value='{{v.id}}'>{{v.name}}</option>
+-                  </select>
+-                </div>
+-              </div>
+-            </div>
+-            <div class="col-sm-4">
+-              <div class="form-group">
+-                <div class="col-sm-4" style="text-align: right">
+-                  <label for='reason.qty' class="control-label">Warehouse</label>
+-                </div>
+-                <div class="col-sm-6">
+-                   <select name='vehicle_stock_item.warehouse_id' ng-model='vehicle_loading.warehouse_id' class="form-control" required>
+-                    <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
+-                  </select>
+-                </div>
+-              </div>
+-            </div>
+-            <div class="col-sm-4">
+-              <div class="form-group">
+-                <div class="col-sm-6" style="text-align: right">
+-                  <label for='device_id' class="control-label">Device id</label>
+-                </div>
+-                <div class="col-sm-4">
+-                   <select name='vehicle_stock_item.device_id' ng-model='vehicle_loading.device_id' class="form-control" required>
+-                    <option ng-repeat="d in devices" ng-value='{{d.id}}'>{{d.deviceId}}</option>
+-                  </select>
+-                </div>
+-              </div>
+-            </div>
+-          </div>
+-        </div>
+-        <br />
+-      </div>
+-    </form>
+-
+     <ul class="nav nav-tabs nav-justified" role="tablist">
+       <li role="presentation" ui-sref-active="active">
+         <a ui-sref="vehicle_stocks.vehicle_loading">Vehicle Loading</a>
+@@ -89,7 +13,9 @@
+       </li>
+     </ul>
+ 
+-
+-    <div ui-view></div>
++    <div class="panel panel-default">
++      <div class="panel-heading">Vehicle Stock Management</div>
++      <div ui-view></div>
++    </div>
+   </div>
+ </div>
+diff --git a/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_loading.html b/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_loading.html
+index 28a77b3..8c72457 100644
+--- a/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_loading.html
++++ b/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_loading.html
+@@ -1,7 +1,75 @@
+-<div class="panel panel-default" ng-controller='CreateVehicleLoadingController' >
+-  <div class="panel-heading">Vehicle Loading</div>
+-  <div class="panel-body" ng-controller='CreateVehicleLoadingController'>
++<div ng-controller='CreateVehicleLoadingController' >
++  <div class="panel-body">
+     <form name='form' class="form-horizontal">
++      </br>
++      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new vehicle stock management.</div>
++      <div class="col-sm-12">
++        <div class="row">
++          <div class="col-sm-12">
++            <div class="col-sm-6">
++              <div class="form-group">
++                <label for='date' class="col-sm-1 control-label">Date</label>
++                <div class="col-sm-6">
++                  <div class="input-group">
++                    <input name='date' ng-model='vehicle_loading.date' class="form-control" date-options />
++
++                    <span class="input-group-addon">
++                      <span class="glyphicon glyphicon-calendar"></span>
++                    </span>
++                  </div>
++                </div>
++              </div>
++            </div>
++            <div class="col-sm-6">
++              <h5 style="text-align: right"> Voucher No. {{vehicle_loading.voucherNo}}</h5>
++            </div>
++          </div>
++        </div>
++
++        <br>
++
++        <div class="row">
++          <div class="col-sm-12">
++            <div class="col-sm-4">
++              <div class="form-group">
++                <div class="col-sm-3">
++                  <label for='meal.meal_id' class="control-label">Vehicle</label>
++                </div>
++                <div class="col-sm-6">
++                  <select name='vehicle_stock_item.vehicle_id' ng-model='vehicle_loading.vehicle_id' class="form-control" required>
++                    <option ng-repeat="v in vehicles" ng-value='{{v.id}}'>{{v.name}}</option>
++                  </select>
++                </div>
++              </div>
++            </div>
++            <div class="col-sm-4">
++              <div class="form-group">
++                <div class="col-sm-4" style="text-align: right">
++                  <label for='reason.qty' class="control-label">Warehouse</label>
++                </div>
++                <div class="col-sm-6">
++                   <select name='vehicle_stock_item.warehouse_id' ng-model='vehicle_loading.warehouse_id' class="form-control" required>
++                    <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
++                  </select>
++                </div>
++              </div>
++            </div>
++            <div class="col-sm-4">
++              <div class="form-group">
++                <div class="col-sm-6" style="text-align: right">
++                  <label for='device_id' class="control-label">Device id</label>
++                </div>
++                <div class="col-sm-4">
++                   <select name='vehicle_stock_item.device_id' ng-model='vehicle_loading.device_id' class="form-control" required>
++                    <option ng-repeat="d in devices" ng-value='{{d.id}}'>{{d.deviceId}}</option>
++                  </select>
++                </div>
++              </div>
++            </div>
++          </div>
++        </div>
++        <br />
++      </div>
+       <br />
+       <div class="col-sm-12">
+         <div class="col-sm-4">
+@@ -69,22 +137,23 @@
+                   </tr>
+                 </tbody>
+               </table>
+-              <div class="form-group">
+-                <div class="col-sm-1">
+-                  <label for='vehicle_loading.note' class="control-label">Note</label>
+-                </div>
+-                <div class="col-sm-4">
+-                  <textarea name="vehicle_loading.note" ng-model="vehicle_loading.note" class="form-control"></textarea>
+-                </div>
+-              </div>
+             </div>
+           </div>
+         </div>
+-        <div class="form-group ui buttons">
+-          <div class=" col-sm-12">
+-            <button type="submit" class="btn btn-default" ng-click="create()">Submit</button>
+-            <a ng-click="reset()" class="btn btn-default">Cancel</a>
+-          </div>
++      </div>
++
++      <div class="form-group">
++        <div class="col-sm-1">
++          <label for='vehicle_loading.note' class="control-label">Note</label>
++        </div>
++        <div class="col-sm-4">
++          <textarea name="vehicle_loading.note" ng-model="vehicle_loading.note" class="form-control"></textarea>
++        </div>
++      </div>
++      <div class="form-group ui buttons">
++        <div class=" col-sm-12">
++          <button type="submit" class="btn btn-default" ng-click="create()">Submit</button>
++          <a ng-click="reset()" class="btn btn-default">Cancel</a>
+         </div>
+       </div>
+     </form>
+diff --git a/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_unloading.html b/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_unloading.html
+index ef118e6..9daeafb 100644
+--- a/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_unloading.html
++++ b/app/assets/javascripts/admin/vehicle_stocks/views/vehicle_unloading.html
+@@ -1,3 +1 @@
+-<div class="panel panel-default" ng-controller='' >
+-  <div class="panel-heading">Vehicle Unloading</div>
+-</div>
++test
+diff --git a/app/models/vehicle_loading.rb b/app/models/vehicle_loading.rb
+index 824f44e..f461959 100644
+--- a/app/models/vehicle_loading.rb
++++ b/app/models/vehicle_loading.rb
+@@ -1,9 +1,9 @@
+ class VehicleLoading < ActiveRecord::Base
+   has_many :vehicle_loading_items
+-  has_many :items, :through => :vehicle_loading_items
+-  has_many :warehouses, :through => :vehicle_loading_items
+-  has_many :vehicles, :through => :vehicle_loading_items
+-  has_many :devices, :through => :vehicle_loading_items
++  belongs_to :warehouse
++  belongs_to :vehicle
++  belongs_to :device
+ 
++  has_many :items, :through => :vehicle_loading_items
+   accepts_nested_attributes_for :vehicle_loading_items
+ end
+diff --git a/app/models/vehicle_loading_item.rb b/app/models/vehicle_loading_item.rb
+index e75e0c1..35badaf 100644
+--- a/app/models/vehicle_loading_item.rb
++++ b/app/models/vehicle_loading_item.rb
+@@ -1,6 +1,3 @@
+ class VehicleLoadingItem < ActiveRecord::Base
+   belongs_to :item
+-  belongs_to :warehouse
+-  belongs_to :device
+-  belongs_to :vehicle
+ end
+diff --git a/db/schema.rb b/db/schema.rb
+index 34f0e1e..972032a 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -11,7 +11,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema.define(version: 20151013224948) do
++ActiveRecord::Schema.define(version: 20151016122534) do
+ 
+   # These are extensions that must be enabled in order to support this database
+   enable_extension "plpgsql"
+@@ -686,9 +686,6 @@ ActiveRecord::Schema.define(version: 20151013224948) do
+   end
+ 
+   create_table "vehicle_loading_items", force: :cascade do |t|
+-    t.integer  "vehicle_id"
+-    t.integer  "warehouse_id"
+-    t.integer  "device_id"
+     t.integer  "item_id"
+     t.string   "qty"
+     t.string   "s_qty"
+@@ -698,6 +695,7 @@ ActiveRecord::Schema.define(version: 20151013224948) do
+     t.datetime "updated_at",         null: false
+     t.string   "item_name"
+     t.integer  "vehicle_loading_id"
++    t.integer  "numeral"
+   end
+ 
+   create_table "vehicle_loadings", force: :cascade do |t|
+@@ -706,8 +704,11 @@ ActiveRecord::Schema.define(version: 20151013224948) do
+     t.text     "note"
+     t.decimal  "amount"
+     t.decimal  "rate"
+-    t.datetime "created_at", null: false
+-    t.datetime "updated_at", null: false
++    t.datetime "created_at",   null: false
++    t.datetime "updated_at",   null: false
++    t.integer  "vehicle_id"
++    t.integer  "warehouse_id"
++    t.integer  "device_id"
+   end
+ 
+   create_table "vehicles", force: :cascade do |t|

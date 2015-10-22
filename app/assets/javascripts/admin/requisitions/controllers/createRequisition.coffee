@@ -39,10 +39,10 @@
 
       $scope.things.push($scope.requisition_item)
 
-      $scope.requisition_item = {}
-
       for i in [1..$scope.things.length]
         $scope.requisition_item.numeral = i
+
+      $scope.requisition_item = {}
 
     $scope.reset = ->
       $scope.things = []
