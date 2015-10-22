@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-sm-6">
                   <select name='item_id' ng-model='stock_inward_item.item_id' class="form-control" required>
-                    <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
+                    <option ng-repeat="item in companies" ng-value='{{item.id}}'>{{item.name}}</option>
                   </select>
                 </div>
               </div>
@@ -138,7 +138,7 @@
               <tbody>
                 <tr ng-repeat="s in stocks">
                   <td class="center">{{s.numeral}}</td>
-                  <td class="center">{{s.itemName}}</td>
+                  <td class="center">{{s.companyName}}</td>
                   <td class="center">{{s.qty}}</td>
                   <td class="center">{{s.sQty}}</td>
                   <td class="center">{{s.purchaseRate}}</td>
