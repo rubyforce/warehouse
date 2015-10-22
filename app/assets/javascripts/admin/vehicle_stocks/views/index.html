@@ -1,0 +1,21 @@
+<div ng-controller="VehicleStocksController" ui-view="vehice_stocks">
+  <div  ng-controller="CreateVehicleLoadingController">
+    <div class="text-bottom">
+      <h1>Vehicle Stock</h1>
+    </div>
+
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+      <li role="presentation" ui-sref-active="active">
+        <a ui-sref="vehicle_stocks.vehicle_loading">Vehicle Loading</a>
+      </li>
+      <li role="presentation" ui-sref-active="active">
+        <a ui-sref="vehicle_stocks.vehicle_unloading">Vehicle Unloading</a>
+      </li>
+    </ul>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Vehicle Stock Management</div>
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

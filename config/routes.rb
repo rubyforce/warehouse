@@ -82,6 +82,17 @@ Greenarea::Application.routes.draw do
     end
 
     resources :invoices
+
+    resources :vehicle_loadings do
+      collection do
+        get :vehicle_loading_id
+      end
+      member do
+        get :print
+      end
+    end
+    
+    resources :vehicle_loading_items
   end
 
   devise_for :users
