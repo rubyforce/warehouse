@@ -33,9 +33,9 @@
                     </div>
                     <div class="panel-body">
                       <p>
-                        Payment to: {{payment.vehicleCompany.name}} <br>
-                        Ledger Name: {{payment.ledger.name}}<br>
-                        Details: <br>
+                        Payment to: {{payment.ledger.name}} <br>
+                        Ledger Name: {{payment.expense.name}}<br>
+                        Details: {{payment.details}}<br>
                         Payment by: {{payment.employee.fullName}}<br>
                       </p>
                     </div>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="panel-body" ng-show="cash">
                       <p>
-                        Cash: {{payment.cash}}
+                        Cash
                       </p>
                     </div>
                   </div>
