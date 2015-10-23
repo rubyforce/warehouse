@@ -1,6 +1,6 @@
 @managements.controller 'CategoriesController', [
-  '$scope', '$state', 'Category', 'Ledger', 'Expense', 'Company', 'Warehouse', 'Item', 'PackageType', 'Container', 'Device', 'Vehicle', 'VehicleCompany', 'RateMaster'
-  ($scope, $state, Category, Ledger, Expense, Company, Warehouse, Item, PackageType, Container, Device, Vehicle, VehicleCompany, RateMaster) ->
+  '$scope', '$state', 'Category', 'Ledger', 'Expense', 'Company', 'Warehouse', 'Item', 'PackageType', 'Container', 'Device', 'Vehicle', 'VehicleCompany', 'RateMaster', 'Vendor'
+  ($scope, $state, Category, Ledger, Expense, Company, Warehouse, Item, PackageType, Container, Device, Vehicle, VehicleCompany, RateMaster, Vendor) ->
     $state.go('managements.categories')
 
     Category.get().then (categories) ->
@@ -38,4 +38,7 @@
 
     RateMaster.get().then (rate_masters) ->
       $scope.rate_masters = rate_masters
+
+    Vendor.get().then (vendors) ->
+      $scope.vendors = vendors
 ]

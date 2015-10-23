@@ -8,6 +8,7 @@ Greenarea::Application.routes.draw do
     resources :expenses
     resources :companies
     resources :warehouses
+    resources :vendors
     resources :items do
       member do
         post 'reset'
@@ -91,7 +92,7 @@ Greenarea::Application.routes.draw do
         get :print
       end
     end
-    
+
     resources :vehicle_loading_items
   end
 
