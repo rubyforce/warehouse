@@ -18,6 +18,11 @@ class Admin::PaymentVouchersController < ApplicationController
           }
         },
         {
+          :vendor => {
+            :only=> [:id, :name]
+          }
+        },
+        {
           :expense => {
             :only=> [:id, :name]
           }
