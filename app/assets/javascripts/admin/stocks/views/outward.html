@@ -202,6 +202,16 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-sm-12">
+                    <div class="form-group" ng-hide="stock_outward.paymentMethod == 'Credit' || stock_outward.paymentMethod =='Cash'">
+                      <div class="col-sm-2">
+                        <label for='bank' class="control-label">Amount</label>
+                      </div>
+                      <div class="col-sm-10">
+                        <input name='cash' type='text' ng-model='stock_outward.amount' class="form-control" />
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="col-sm-6">
