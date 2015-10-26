@@ -82,7 +82,11 @@
     $scope.getSumTaxes = ->
       _.sum $scope.sumTaxes
     $scope.getTotal = ->
-      _.sum $scope.totals
+      total = _.sum $scope.totals
+      if $scope.stock_outward.discount?
+        (total * $scope.stock_outward.discount)/100
+      else
+        total
 
     $scope.create = ->
       $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
