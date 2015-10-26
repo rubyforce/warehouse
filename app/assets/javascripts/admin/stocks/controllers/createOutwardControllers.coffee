@@ -82,7 +82,9 @@
 
     $scope.create = ->
       $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
+      $scope.stock_outward.total = $scope.getTotal()
       new StockOutward($scope.stock_outward).create().then (response) ->
+        debugger
         $scope.stock_outwards.push(new StockOutward(response))
 
         sum = response.id + 1
