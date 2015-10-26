@@ -43,7 +43,14 @@
       for i in [1..$scope.things.length]
         $scope.requisition_item.numeral = i
 
+      last_requisition_item = _.last($scope.things)
       $scope.requisition_item = {}
+      $scope.requisition_item.company_id = last_requisition_item.companyId
+      $scope.requisition_item.warehouse_id = last_requisition_item.warehouseId
+
+      $timeout ->
+        angular.element('[ng-model="requisition_item.company_id"]').val($scope.requisition_item.company_id)
+        angular.element('[ng-model="requisition_item.warehouse_id"]').val($scope.requisition_item.warehouse_id)
 
     $scope.reset = ->
       $scope.things = []
