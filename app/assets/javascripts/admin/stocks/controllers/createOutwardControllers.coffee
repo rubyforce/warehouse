@@ -51,10 +51,14 @@
       $scope.stock_outward_item.warehouseId = warehouse.id
 
       $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
-      $scope.tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
-      $scope.sumTaxes.push($scope.tax)
-      $scope.total = $scope.stock_outward_item.amount + $scope.tax
-      $scope.totals.push($scope.total)
+      tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
+      $scope.sumTaxes.push(tax)
+      total = $scope.stock_outward_item.amount + tax
+      if $scope.stock_outward_item.discount?
+        totalWithDiscount = (total * $scope.stock_outward_item.discount)/100
+        $scope.totals.push(totalWithDiscount)
+      else
+        $scope.totals.push(total)
 
       to_i = parseInt(_.sum $scope.totals)
       to_s = to_i.toString()
@@ -84,7 +88,6 @@
       $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
       $scope.stock_outward.total = $scope.getTotal()
       new StockOutward($scope.stock_outward).create().then (response) ->
-        debugger
         $scope.stock_outwards.push(new StockOutward(response))
 
         sum = response.id + 1
