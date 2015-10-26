@@ -60,7 +60,7 @@
       else
         $scope.totals.push(total)
 
-      to_i = parseInt(_.sum $scope.totals)
+      to_i = parseInt(_.sum($scope.totals), 10)
       to_s = to_i.toString()
       $scope.toWords = toWords(to_s).toUpperCase()
 
@@ -71,16 +71,24 @@
       for i in [1..$scope.stock_items.length]
         $scope.stock_outward_item.numeral = i
 
+      last_stock_outward_item = _.last($scope.stock_items)
       $scope.stock_outward_item = {}
+      $scope.stock_outward_item.ledger_id = last_stock_outward_item.ledgerId
+      $scope.stock_outward_item.warehouse_id = last_stock_outward_item.warehouseId
+
+      $timeout ->
+        angular.element('[ng-model="stock_outward_item.ledger_id"]').val($scope.stock_outward_item.ledger_id)
+        angular.element('[ng-model="stock_outward_item.warehouse_id"]').val($scope.stock_outward_item.warehouse_id)
 
       $scope.getSubTotal()
       $scope.getSumTaxes()
 
     $scope.getSubTotal = ->
-      _.sum $scope.stock_items, (object) ->
-        object.amount
+      _.sum $scope.stock_items, 'amount'
+
     $scope.getSumTaxes = ->
       _.sum $scope.sumTaxes
+
     $scope.getTotal = ->
       total = _.sum $scope.totals
       if $scope.stock_outward.discount?
