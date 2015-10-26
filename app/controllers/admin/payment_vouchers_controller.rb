@@ -18,7 +18,7 @@ class Admin::PaymentVouchersController < ApplicationController
           }
         },
         {
-          :ledger => {
+          :vendor => {
             :only=> [:id, :name]
           }
         },

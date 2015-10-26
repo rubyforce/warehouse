@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-sm-6">
                   <select name='requisition_item.item_id' ng-model='requisition_item.item_id' class="form-control" required>
-                    <option ng-repeat="item in companies" ng-value='{{item.id}}'>{{item.name}}</option>
+                    <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
                   </select>
                 </div>
               </div>
@@ -111,7 +111,7 @@
               <tbody>
                 <tr ng-repeat="thing in things">
                   <td class="center">{{thing.numeral}}</td>
-                  <td class="center">{{thing.companyName}}</td>
+                  <td class="center">{{thing.itemName}}</td>
                   <td class="center">{{thing.qty}}</td>
                   <td class="center">{{thing.companyName}}</td>
                 </tr>

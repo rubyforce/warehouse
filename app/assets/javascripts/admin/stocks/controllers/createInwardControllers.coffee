@@ -50,9 +50,6 @@
       $scope.stock_inward_item.amount = $scope.stock_inward_item.qty * $scope.stock_inward_item.purchaseRate
 
       $scope.stock_inward_item = _($scope.stock_inward_item).pick(['itemName', 'itemId', 'companyName', 'companyId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'rate', 'purchaseRate', 'amount', 'tax']).value()
-      $scope.getSubTotal()
-      $scope.getSumTaxes()
-      $scope.getTotal()
 
       $scope.tax = ($scope.stock_inward_item.amount * $scope.stock_inward_item.tax)/100
       $scope.sumTaxes.push($scope.tax)
@@ -65,7 +62,14 @@
       for i in [1..$scope.stocks.length]
         $scope.stock_inward_item.numeral = i
 
+      last_stock_inward_item = _.last($scope.stocks)
       $scope.stock_inward_item = {}
+      $scope.stock_inward_item.company_id = last_stock_inward_item.companyId
+      $scope.stock_inward_item.warehouse_id = last_stock_inward_item.warehouseId
+
+      $timeout ->
+        angular.element('[ng-model="stock_inward_item.company_id"]').val($scope.stock_inward_item.company_id)
+        angular.element('[ng-model="stock_inward_item.warehouse_id"]').val($scope.stock_inward_item.warehouse_id)
 
     $scope.getSubTotal = ->
       _.sum $scope.stocks, (object) ->

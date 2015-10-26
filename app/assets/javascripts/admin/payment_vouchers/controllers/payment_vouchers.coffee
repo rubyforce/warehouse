@@ -1,6 +1,6 @@
 @payment_vouchers.controller 'PaymentVouchersController', [
-  '$scope', '$state', 'PaymentVoucher', 'Ledger', 'Expense', 'Employee'
-  ($scope, $state, PaymentVoucher, Ledger, Expense, Employee) ->
+  '$scope', '$state', 'PaymentVoucher', 'Ledger', 'Expense', 'Employee', 'Vendor'
+  ($scope, $state, PaymentVoucher, Ledger, Expense, Employee, Vendor) ->
     $state.go('payment_vouchers.new')
 
     PaymentVoucher.get().then (payment_vouchers) ->
@@ -14,5 +14,8 @@
 
     Employee.get().then (employees) ->
       $scope.employees = employees
+
+    Vendor.get().then (vendors) ->
+      $scope.vendors = vendors
 
 ]

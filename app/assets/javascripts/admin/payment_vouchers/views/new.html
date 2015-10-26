@@ -17,8 +17,8 @@
           <label for='paymentVoucher.vehicle_company_i' class="control-label">Payment to</label>
         </div>
         <div class="col-sm-6">
-          <select name="paymentVoucher.ledger_id" class="form-control" ng-model="paymentVoucher.ledger_id" required>
-            <option ng-repeat="ledger in ledgers" value='{{ledger.id}}'>{{ledger.name}}</option>
+          <select name="paymentVoucher.ledger_id" class="form-control" ng-model="paymentVoucher.vendor_id" required>
+            <option ng-repeat="vendor in vendors" value='{{vendor.id}}'>{{vendor.name}}</option>
           </select>
         </div>
       </div>

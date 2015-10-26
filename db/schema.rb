@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023124844) do
+ActiveRecord::Schema.define(version: 20151026093759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(version: 20151023124844) do
     t.string   "status"
     t.integer  "numeral"
     t.date     "bank_date"
+    t.integer  "vendor_id"
   end
 
   create_table "rate_masters", force: :cascade do |t|
@@ -298,6 +299,7 @@ ActiveRecord::Schema.define(version: 20151023124844) do
     t.decimal  "total"
     t.decimal  "cash"
     t.string   "credit"
+    t.decimal  "final_total"
   end
 
   create_table "stock_outward_items", force: :cascade do |t|
@@ -335,6 +337,8 @@ ActiveRecord::Schema.define(version: 20151023124844) do
     t.date     "bank_date"
     t.integer  "outstanding_payment_id"
     t.decimal  "amount"
+    t.decimal  "total"
+    t.decimal  "final_total"
   end
 
   create_table "users", force: :cascade do |t|
