@@ -80,9 +80,6 @@
         angular.element('[ng-model="stock_outward_item.ledger_id"]').val($scope.stock_outward_item.ledger_id)
         angular.element('[ng-model="stock_outward_item.warehouse_id"]').val($scope.stock_outward_item.warehouse_id)
 
-      $scope.getSubTotal()
-      $scope.getSumTaxes()
-
     $scope.getSubTotal = ->
       _.sum $scope.stock_items, 'amount'
 
