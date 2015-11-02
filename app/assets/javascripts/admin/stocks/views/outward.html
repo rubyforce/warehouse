@@ -81,7 +81,7 @@
                   <label for='qty' class="control-label">Qty.</label>
                 </div>
                 <div class="col-sm-8">
-                  <input name='qty' type='text' ng-model='stock_outward_item.qty' class="form-control"/>
+                  <input name='qty' type='text' ng-model='stock_outward_item.qty' class="form-control" quantity-validator/>
                   <input type="hidden" name='reason.qty' type='text' ng-model='stock_inward_item.qty' class="form-control"/>
                 </div>
               </div>

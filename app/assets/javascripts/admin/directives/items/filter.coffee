@@ -5,7 +5,6 @@
       ($scope, $http, $timeout) ->
         $scope.bySelectors = (item) ->
           if $scope.search?.companyId?
-            debugger
             return item.companyId is parseInt($scope.search.companyId, 10)
           true
     ]

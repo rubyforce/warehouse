@@ -54,6 +54,7 @@
       tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
       $scope.sumTaxes.push(tax)
       total = $scope.stock_outward_item.amount + tax
+
       if $scope.stock_outward_item.discount?
         totalWithDiscount = (total * $scope.stock_outward_item.discount)/100
         $scope.totals.push(totalWithDiscount)
