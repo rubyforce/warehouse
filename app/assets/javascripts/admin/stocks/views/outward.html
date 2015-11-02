@@ -2,7 +2,10 @@
   <div class="panel-heading">Stock Outward</div>
   <div class="panel-body" ng-controller="CreateOutwardsController">
     <form name='form' class="form-horizontal">
-      <div class="alert alert-success" role="alert" ng-show="alert">Successfully added.</div>
+      <div class='messages'>
+        <div class="alert alert-success" role="alert" ng-show="alert">Successfully added.</div>
+      </div>
+
       <!-- First Column -->
       <div class="col-sm-12">
         <div class="row">
@@ -111,7 +114,7 @@
         </div>
       </div>
       <div class="center" style="text-align: center">
-        <button type="submit" class="btn btn-default" ng-click='add()' ng-disabled="hideButton()">Add</button>
+        <button type="submit" class="btn btn-default" ng-click='add()' ng-disabled="form.$invalid">Add</button>
         <button type="submit" class="btn btn-default" ng-click='reset()'>Reset</button>
       </div>
     </form>

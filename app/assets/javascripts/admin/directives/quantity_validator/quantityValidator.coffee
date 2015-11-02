@@ -5,8 +5,8 @@
       restrict: 'A'
       require: 'ngModel'
       link: ($scope, $element, attributes, $formController) ->
-        errorTemplate = $compile('<span class=\'error\' style=\'color: red\' ng-show=\'isInvalid\'>Quantity could not be high than allowed number. Item quantity is {{ minQuantity }}</span>')($scope)
-        $element.after errorTemplate
+        errorTemplate = $compile('<div class="alert bg-danger" role="danger" ng-show=\'isInvalid\'>Quantity could not be high than allowed number. Item quantity is {{ minQuantity }}</div>')($scope)
+        angular.element('.messages').append errorTemplate
 
         isValid = ->
           if !$scope.stock_outward_item.qty
