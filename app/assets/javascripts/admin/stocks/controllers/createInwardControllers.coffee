@@ -78,7 +78,11 @@
       _.sum $scope.sumTaxes
 
     $scope.getTotal = ->
-      _.sum $scope.totals
+      total = _.sum $scope.totals
+      if $scope.stock_inward.discount?
+        (total * $scope.stock_inward.discount)/100
+      else
+        total
 
     $scope.create = ->
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
