@@ -1,4 +1,4 @@
-@directives.directive 'quantityValidator', [
+@directives.directive 'quantityStockOutValidator', [
   '$compile'
   ($compile) ->
     {
