@@ -67,12 +67,12 @@
           </div>
           <div class="col-sm-9">
             <div class="col-sm-12">
-              <div class="form-group">
+              <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cheque No.'">
                 <div class="col-sm-2">
                   <label for='cash' class="control-label">Cash</label>
                 </div>
                 <div class="col-sm-8">
-                  <input name='cash' type='text' ng-model='outstanding_payment.cash' class="form-control" ng-disabled="outstanding_payment.payment_method != 'Cash'" />
+                  <input name='cash' type='text' ng-model='outstanding_payment.cash' class="form-control"/>
                 </div>
               </div>
 
