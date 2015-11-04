@@ -71,13 +71,13 @@
                   <label for='requisition_item.qty' class="control-label">Qty.</label>
                 </div>
                 <div class="col-sm-4">
-                  <input name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control"/>
-                  <input type="hidden" name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control" quantity-requisition-validator/>
+                  <input name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control" quantity-requisition-validator required/>
+                  <input type="hidden" name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control"/>
                 </div>
               </div>
             </div>
             <div class="col-sm-4" style="text-align: center;">
-              <button type="submit" class="btn btn-default" ng-click='add()'>Add</button>
+              <button type="submit" class="btn btn-default" ng-click='add()' ng-disabled="form.$invalid">Add</button>
               <button type="submit" class="btn btn-default" ng-click='reset()'>Reset</button>
             </div>
           </div>
