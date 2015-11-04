@@ -1,139 +1,144 @@
-<form name='form' ng-controller='CreateOutstandingPaymentsController' class="form-horizontal" ng-submit='create()'>
-  <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new outstanding payment.</div>
-  <div class="col-sm-6">
-    <div class="form-group">
-      <div class="col-sm-4">
-        <label for='paymentVoucher.date' class="control-label">To Date</label>
-      </div>
+<div class="panel panel-default">
+  <div class="panel-heading">Invoice Management</div>
+  <div class="panel-body">
+    <form name='form' ng-controller='CreateOutstandingPaymentsController' class="form-horizontal" ng-submit='create()'>
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new outstanding payment.</div>
       <div class="col-sm-6">
-        <div class="input-group">
-          <input name='paymentVoucher.date' ng-model='outstanding_payment.date' class="form-control" date-options />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Second Column -->
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <div class="panel-body scrolling">
-        <div class="col-sm-12">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="center">Invoice No.</th>
-                <th class="center">Customer Name</th>
-                <th class="center">Amount</th>
-                <th class="center">Due Date</th>
-                <th class="center">Days Since Due</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-index="{{$index}}" ng-repeat="s in items">
-                <td class="center">{{s.invoiceNo}}</td>
-                <td class="center">{{s.ledgerName}}</td>
-                <td class="center">{{s.finalTotal}}</td>
-                <td class="center">{{s.date}}</td>
-                <td class="center">{{s.daySinceDue}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">Payment Markup {{markUp.invoiceNo}}</div>
-      <div class="panel-body">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-            <div class="form-group">
-              <div>
-                <label for='payment_method' class="control-label">Payment Method:</label>
-              </div>
-              <div>
-                <label for='cash' class="radio-inline">
-                  <input name='cash' id='cash' type="radio" value="Cash" ng-model="outstanding_payment.payment_method">Cash
-                </label>
-                <label for='bank' class="radio-inline">
-                  <input name='bank' id='bank' type="radio" value="Cheque No." ng-model="outstanding_payment.payment_method">Cheque No.
-                </label>
-              </div>
+        <div class="form-group">
+          <div class="col-sm-4">
+            <label for='paymentVoucher.date' class="control-label">To Date</label>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input name='paymentVoucher.date' ng-model='outstanding_payment.date' class="form-control" date-options />
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
             </div>
           </div>
-          <div class="col-sm-9">
+        </div>
+      </div>
+      <!-- End Second Column -->
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-body scrolling">
             <div class="col-sm-12">
-              <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cheque No.'">
-                <div class="col-sm-2">
-                  <label for='cash' class="control-label">Cash</label>
-                </div>
-                <div class="col-sm-8">
-                  <input name='cash' type='text' ng-model='outstanding_payment.cash' class="form-control"/>
-                </div>
-              </div>
-
-              <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cash'">
-                <div class="col-sm-2">
-                  <label for='cash' class="control-label">Amount</label>
-                </div>
-                <div class="col-sm-8">
-                  <input name='amount' type='text' ng-model='outstanding_payment.amount' class="form-control" />
-                </div>
-              </div>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="center">Invoice No.</th>
+                    <th class="center">Customer Name</th>
+                    <th class="center">Amount</th>
+                    <th class="center">Due Date</th>
+                    <th class="center">Days Since Due</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-index="{{$index}}" ng-repeat="s in items">
+                    <td class="center">{{s.invoiceNo}}</td>
+                    <td class="center">{{s.ledgerName}}</td>
+                    <td class="center">{{s.finalTotal}}</td>
+                    <td class="center">{{s.date}}</td>
+                    <td class="center">{{s.daySinceDue}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <div class="col-sm-4">
-                      <label for='cheque' class="control-label">Cheque No.</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">Payment Markup {{markUp.invoiceNo}}</div>
+          <div class="panel-body">
+            <div class="col-sm-12">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <div>
+                    <label for='payment_method' class="control-label">Payment Method:</label>
+                  </div>
+                  <div>
+                    <label for='cash' class="radio-inline">
+                      <input name='cash' id='cash' type="radio" value="Cash" ng-model="outstanding_payment.payment_method">Cash
+                    </label>
+                    <label for='bank' class="radio-inline">
+                      <input name='bank' id='bank' type="radio" value="Cheque No." ng-model="outstanding_payment.payment_method">Cheque No.
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-9">
+                <div class="col-sm-12">
+                  <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cheque No.'">
+                    <div class="col-sm-2">
+                      <label for='cash' class="control-label">Cash</label>
                     </div>
-                    <div class="col-sm-6">
-                      <input name='cheque' type='text' ng-model='outstanding_payment.cheque_no' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" />
+                    <div class="col-sm-8">
+                      <input name='cash' type='text' ng-model='outstanding_payment.cash' class="form-control"/>
+                    </div>
+                  </div>
+
+                  <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cash'">
+                    <div class="col-sm-2">
+                      <label for='cash' class="control-label">Amount</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input name='amount' type='text' ng-model='outstanding_payment.amount' class="form-control" />
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <div class="col-sm-2">
-                      <label for='datetime' class="control-label">Date</label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <div class="col-sm-4">
+                          <label for='cheque' class="control-label">Cheque No.</label>
+                        </div>
+                        <div class="col-sm-6">
+                          <input name='cheque' type='text' ng-model='outstanding_payment.cheque_no' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" />
+                        </div>
+                      </div>
                     </div>
                     <div class="col-sm-6">
-                      <div class="input-group">
-                        <input name='datetime' ng-model='outstanding_payment.bank_date' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" date-options/>
-                        <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                      <div class="form-group">
+                        <div class="col-sm-2">
+                          <label for='datetime' class="control-label">Date</label>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="input-group">
+                            <input name='datetime' ng-model='outstanding_payment.bank_date' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" date-options/>
+                            <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="form-group">
-                <div class="col-sm-2">
-                  <label for='bank' class="control-label">Bank Name</label>
-                </div>
-                <div class="col-sm-8">
-                  <input name='bank' type='text' ng-model='outstanding_payment.bank_name' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" />
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <div class="col-sm-2">
+                      <label for='bank' class="control-label">Bank Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input name='bank' type='text' ng-model='outstanding_payment.bank_name' class="form-control" ng-disabled="outstanding_payment.payment_method == null || outstanding_payment.payment_method == 'Cash'" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="form-group ui buttons">
-    <div class=" col-sm-12">
-      <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Submit</button>
-      <button type="submit" class="btn btn-default" ng-click="reset()">Reset</button>
-    </div>
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="submit" class="btn btn-default" ng-disabled='form.$invalid'>Submit</button>
+          <button type="submit" class="btn btn-default" ng-click="reset()">Reset</button>
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+</div>
