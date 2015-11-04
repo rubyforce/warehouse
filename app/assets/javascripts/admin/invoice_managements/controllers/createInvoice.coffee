@@ -31,6 +31,7 @@
             item.invoiceNo = s.invoiceNo
             item.date = s.date
             item.paymentMethod = s.paymentMethod
+            item.finalTotal = s.finalTotal
           s.stockOutwardItems
         .flatten()
         .value()
