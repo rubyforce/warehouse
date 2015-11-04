@@ -34,18 +34,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <div class="col-sm-6">
-              <div class="form-group">
-                <div class="col-sm-4">
-                  <label for='meal.meal_id' class="control-label">Distribution Company</label>
-                </div>
-                <div class="col-sm-6">
-                  <select name='requisition_item.company_id' ng-model='requisition_item.company_id' class="form-control" required>
-                    <option ng-repeat="c in companies" ng-value='{{c.id}}'>{{c.name}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+            <requisition-filter></requisition-filter>
             <div class="col-sm-6">
               <div class="form-group">
                 <div class="col-sm-6" style="text-align: right">
@@ -69,7 +58,7 @@
                 </div>
                 <div class="col-sm-6">
                   <select name='requisition_item.item_id' ng-model='requisition_item.item_id' class="form-control" required>
-                    <option ng-repeat="item in items" ng-value='{{item.id}}'>{{item.name}}</option>
+                    <option ng-repeat="item in items | filter:bySelectors" data-index="{{$index}}" ng-value='{{item.id}}'>{{item.name}}</option>
                   </select>
                 </div>
               </div>
