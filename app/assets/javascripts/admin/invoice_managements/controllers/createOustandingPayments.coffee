@@ -40,19 +40,19 @@
         .flatten() # [1,2,3,4,5]
         .value()
 
-    $scope.selectedStock = null
+    selectedStock = null
     select = (property) ->
-      $scope.selectedStock = property
+      selectedStock = property
 
     $scope.reset = ->
       $scope.outstanding_payment = build()
       $scope.outstanding_payment.payment_method = "Cash"
-      $scope.selectedStock = null
+      selectedStock = null
 
     $scope.create = ->
-      return unless $scope.selectedStock?
+      return unless selectedStock?
 
-      $scope.outstanding_payment.stock_outward_id = $scope.selectedStock.id
+      $scope.outstanding_payment.stock_outward_id = selectedStock.id
       $scope.outstanding_payment.create().then (response) ->
         protocol = $location.protocol()
         host = $window.location.host
