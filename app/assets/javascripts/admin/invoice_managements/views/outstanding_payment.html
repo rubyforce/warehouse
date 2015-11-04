@@ -75,6 +75,15 @@
                   <input name='cash' type='text' ng-model='outstanding_payment.cash' class="form-control" ng-disabled="outstanding_payment.payment_method != 'Cash'" />
                 </div>
               </div>
+
+              <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cash'">
+                <div class="col-sm-2">
+                  <label for='cash' class="control-label">Amount</label>
+                </div>
+                <div class="col-sm-8">
+                  <input name='amount' type='text' ng-model='outstanding_payment.amount' class="form-control" />
+                </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
