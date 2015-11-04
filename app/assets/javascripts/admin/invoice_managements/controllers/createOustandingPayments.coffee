@@ -36,12 +36,14 @@
             item.createdAt = s.createdAt
             item.date = s.date
             item.daySinceDue = s.daysSinceDue
+            item.finalTotal = s.finalTotal
           s.stockOutwardItems
         .flatten() # [1,2,3,4,5]
         .value()
 
     selectedStock = null
     select = (property) ->
+      debugger
       selectedStock = property
       $scope.markUp = selectedStock
       if $scope.outstanding_payment.payment_method == 'Cash'
