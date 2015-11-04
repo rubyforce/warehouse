@@ -43,6 +43,7 @@
     $scope.selectedStock = null
     select = (property) ->
       $scope.selectedStock = property
+      $scope.outstanding_payment.amount = $scope.selectedStock.stockOutwardItems[0].amount
 
     $scope.reset = ->
       $scope.outstanding_payment = build()
