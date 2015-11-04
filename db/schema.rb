@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102190629) do
+ActiveRecord::Schema.define(version: 20151104174900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,8 +133,13 @@ ActiveRecord::Schema.define(version: 20151102190629) do
   create_table "daily_meals", force: :cascade do |t|
     t.date     "date"
     t.decimal  "total_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "no_of_student1"
+    t.integer  "no_of_student2"
+    t.integer  "no_of_student3"
+    t.integer  "no_of_student4"
+    t.integer  "no_of_student5"
   end
 
   create_table "dashboards", force: :cascade do |t|
@@ -178,20 +183,25 @@ ActiveRecord::Schema.define(version: 20151102190629) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"
-    t.string   "middle_name"
     t.string   "last_name"
-    t.date     "birthday"
+    t.string   "job_title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "gender"
-    t.string   "marital_status"
-    t.string   "year"
     t.text     "address"
-    t.string   "contact_no"
+    t.string   "middle_name"
     t.string   "qualification"
-    t.string   "entry_no"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.decimal  "salary"
+    t.string   "contact_no"
+    t.string   "entry_no",      default: "auto"
+    t.string   "status"
+    t.string   "year"
+    t.string   "salary_check"
+    t.string   "remark"
     t.integer  "paid_type_id"
-    t.decimal  "salary_rate"
+    t.integer  "section_id"
+    t.integer  "pay_band_id"
+    t.date     "birthday"
   end
 
   create_table "expense_receipts", force: :cascade do |t|
@@ -360,6 +370,7 @@ ActiveRecord::Schema.define(version: 20151102190629) do
     t.string   "payment_method"
     t.date     "bank_date"
     t.integer  "stock_outward_id"
+    t.decimal  "amount"
   end
 
   create_table "package_types", force: :cascade do |t|
@@ -369,7 +380,7 @@ ActiveRecord::Schema.define(version: 20151102190629) do
   end
 
   create_table "paid_types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -605,7 +616,6 @@ ActiveRecord::Schema.define(version: 20151102190629) do
     t.string   "father_name"
     t.string   "mother_name"
     t.string   "birth_place"
-    t.string   "caste"
     t.string   "nationality"
     t.string   "remarks"
     t.string   "last_school"
