@@ -5,7 +5,9 @@
   <div class="panel-heading">Requisition</div>
   <div class="panel-body" ng-controller='CreateRequisitionsController'>
     <form name='form' class="form-horizontal">
-      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new requisition.</div>
+      <div class="messages">
+        <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new requisition.</div>
+      </div>
       <!-- First Column -->
       <div class="col-sm-12">
         <div class="row">
@@ -70,7 +72,7 @@
                 </div>
                 <div class="col-sm-4">
                   <input name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control"/>
-                  <input type="hidden" name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control"/>
+                  <input type="hidden" name='requisition_item.qty' type='text' ng-model='requisition_item.qty' class="form-control" quantity-requisition-validator/>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 @directives.directive 'quantityStockInValidator', [
-  '$compile'
-  ($compile) ->
+  '$compile', 'Item'
+  ($compile, Item) ->
     {
       restrict: 'A'
       require: 'ngModel'
