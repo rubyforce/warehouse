@@ -17,6 +17,9 @@
 
     $scope.$watch 'items', makeTableSelectable
 
+    $scope.$watch 'search.companyId', selectedItem
+    $scope.$watch 'search.companyId', makeTableSelectable
+
     selectedItem = null
     select = (property)->
       selectedItem = property
@@ -33,7 +36,7 @@
     $scope.create = ->
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt(selectedItem.id, 10)).value()
       return unless selectedItem?
-
+      debugger
       item.id = selectedItem.id
       new Item(item).update().then ->
         $scope.alert = true

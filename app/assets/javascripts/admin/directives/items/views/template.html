@@ -1,6 +1,12 @@
 <div class="col-sm-12">
-  <label for='comapanyId' class="control-label">Select Company</label>
-  <select name='search.companyId' ng-model='search.companyId' class="form-control">
-    <option ng-repeat="company in companies" value="{{company.id}}">{{company.name}}</option>
-  </select>
+  <div class="col-sm-4" style="margin-left: 376px;">
+    <div class="col-sm-3">
+      <label for='comapanyId' class="control-label">Company</label>
+    </div>
+    <div class="col-sm-8">
+      <select name='companyId' ng-model='search.companyId' class="form-control">
+       <option ng-repeat="company in companies" value="{{company.id}}">{{company.name}}</option>
+      </select>
+    </div>
+  </div>
 </div>
