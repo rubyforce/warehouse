@@ -14,7 +14,7 @@
             property = $scope.items[element.data('index')]
             $scope.$apply ->
               $scope.selectedItem = property
-    $scope.$watch 'items', makeTableSelectable
+    $scope.$watch 'items', getItems
 
     getItems = ->
       if $scope.selectedItem?
