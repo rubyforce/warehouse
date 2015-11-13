@@ -19,7 +19,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="f in items | filter:bySelectors" data-index="{{$index}}">
+              <tr ng-repeat="f in filteredItems" data-index="{{$index}}">
                 <td>{{f.name}}</td>
                 <td><input type="text" name="f.rate" ng-model="f.rate" class="form-control"></td>
                 <td>{{f.minQty}}</td>
