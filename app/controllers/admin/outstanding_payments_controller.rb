@@ -49,4 +49,9 @@ class Admin::OutstandingPaymentsController < ApplicationController
 
     render :layout => "print"
   end
+
+  def outstanding_id
+    @outstanding_payment = OutstandingPayment.order('id asc').last
+    render :json => @outstanding_payment
+  end
 end

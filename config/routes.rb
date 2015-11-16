@@ -80,6 +80,9 @@ Greenarea::Application.routes.draw do
       member do
         get :print
       end
+      collection do
+        get :outstanding_id
+      end
     end
 
     resources :invoices
