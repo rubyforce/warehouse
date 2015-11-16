@@ -27,7 +27,6 @@
     render = ->
       $scope.items = _($scope.stock_outwards).chain()
         .map (s) ->
-          debugger
           for item in s.stockOutwardItems
             item.invoiceNo = s.invoiceNo
             item.date = s.date
