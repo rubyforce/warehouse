@@ -54,6 +54,7 @@
 
     selectedStock = null
     select = (property) ->
+      debugger
       selectedStock = property
       $scope.markUp = "- Invoice No." + " " + selectedStock.invoiceNo
       if $scope.outstanding_payment.payment_method == 'Cash'
