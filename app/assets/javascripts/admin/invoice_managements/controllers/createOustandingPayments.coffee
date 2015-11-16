@@ -8,13 +8,12 @@
     $http.get("admin/outstanding_payments/outstanding_id")
       .success (response) ->
         $timeout ->
-          debugger
           if response == null
-            outstandingNo = "00001"
+            $scope.outstandingNo = "00001"
           else
             sum = response.id + 1
             number = numeral(sum/10000).format('0.0000').replace(/\./,'')
-            outstandingNo = number
+            $scope.outstandingNo = number
 
     build = ->
       new OutstandingPayment({
@@ -56,6 +55,8 @@
     select = (property) ->
       debugger
       selectedStock = property
+      selectedStock.receiptNo = $scope.outstandingNo
+
       $scope.markUp = "- Invoice No." + " " + selectedStock.invoiceNo
       if $scope.outstanding_payment.payment_method == 'Cash'
         $scope.outstanding_payment.amount = null
