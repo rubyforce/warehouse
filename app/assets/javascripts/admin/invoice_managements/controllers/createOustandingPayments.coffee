@@ -1,9 +1,20 @@
 @invoice_managements.controller 'CreateOutstandingPaymentsController', [
-  '$scope', 'OutstandingPayment', '$timeout', '$location', '$window'
-  ($scope, OutstandingPayment, $timeout, $location, $window) ->
+  '$scope', 'OutstandingPayment', '$timeout', '$location', '$window', '$http'
+  ($scope, OutstandingPayment, $timeout, $location, $window, $http) ->
     $scope.alert = false
 
     $scope.items = []
+
+    $http.get("admin/outstanding_payments/outstanding_id")
+      .success (response) ->
+        $timeout ->
+          debugger
+          if response == null
+            outstandingNo = "00001"
+          else
+            sum = response.id + 1
+            number = numeral(sum/10000).format('0.0000').replace(/\./,'')
+            outstandingNo = number
 
     build = ->
       new OutstandingPayment({
