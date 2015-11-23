@@ -39,10 +39,6 @@
       $scope.stock_inward_item.itemId = item.id
       $scope.stock_inward_item.tax = item.tax
 
-      company = _($scope.companies).chain().find((c) -> parseInt(c.id, 10) is parseInt($scope.stock_inward_item.company_id, 10)).value()
-      $scope.stock_inward_item.companyName = company.name
-      $scope.stock_inward_item.companyId = company.id
-
       warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_inward_item.warehouse_id, 10)).value()
       $scope.stock_inward_item.warehouseName = warehouse.name
       $scope.stock_inward_item.warehouseId = warehouse.id
