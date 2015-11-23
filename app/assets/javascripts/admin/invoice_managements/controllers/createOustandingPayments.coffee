@@ -53,7 +53,6 @@
 
     selectedStock = null
     select = (property) ->
-      debugger
       selectedStock = property
       selectedStock.receiptNo = $scope.outstandingNo
 
