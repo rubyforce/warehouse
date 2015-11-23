@@ -32,7 +32,6 @@
     $scope.alert = false
 
     $scope.add = ->
-      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.vehicle_loading_item.item_id, 10)).value()
       $scope.vehicle_loading_item.itemName = item.name
       $scope.vehicle_loading_item.itemId = item.id

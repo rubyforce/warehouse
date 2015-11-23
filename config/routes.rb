@@ -96,6 +96,8 @@ Greenarea::Application.routes.draw do
       end
     end
 
+    resources :vehicle_unloadings
+
     resources :vehicle_loading_items
   end
 

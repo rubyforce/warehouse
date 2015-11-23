@@ -1,6 +1,6 @@
 @vehicle_stocks.controller 'VehicleStocksController', [
-  '$scope', '$state', 'Item', 'Warehouse', 'Device', 'Company', 'Vehicle', 'VehicleLoading'
-  ($scope, $state, Item, Warehouse, Device, Company, Vehicle, VehicleLoading) ->
+  '$scope', '$state', 'Item', 'Warehouse', 'Device', 'Company', 'Vehicle', 'VehicleLoading', 'VehicleUnloading'
+  ($scope, $state, Item, Warehouse, Device, Company, Vehicle, VehicleLoading, VehicleUnloading) ->
     $state.go('vehicle_stocks.vehicle_loading')
 
     Item.get().then (items) ->
@@ -20,4 +20,7 @@
 
     VehicleLoading.get().then (vehicle_loadings) ->
       $scope.vehicle_loadings = vehicle_loadings
+
+    VehicleLoading.get().then (vehicle_unloadings) ->
+      $scope.vehicle_unloadings = vehicle_unloadings
 ]
