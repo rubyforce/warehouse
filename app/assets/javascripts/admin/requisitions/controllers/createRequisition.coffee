@@ -25,6 +25,7 @@
     $scope.requisition = build()
 
     $scope.add = ->
+      debugger
       item = _($scope.items).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.requisition_item.item_id, 10)).value()
       $scope.requisition_item.itemName = item.name
       $scope.requisition_item.itemId = item.id
