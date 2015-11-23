@@ -40,10 +40,10 @@
       $scope.stock_outward_item.rate = item.rate
       $scope.stock_outward_item.tax = item.tax
       $scope.stock_outward_itemitemId = item.id
-
+      debugger
       # update item minqty
       calcQty = new Item(id: item.id)
-      final_qty = $scope.stock_outward_item.qty - item.minQty
+      final_qty = item.minQty - $scope.stock_outward_item.qty
       calcQty.minQty = final_qty
       calcQty.update()
 
