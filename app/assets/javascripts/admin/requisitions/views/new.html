@@ -36,18 +36,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <div class="col-sm-6">
-              <div class="form-group">
-                <div class="col-sm-4">
-                  <label for='search.companyId' class="control-label">Distribution Company</label>
-                </div>
-                <div class="col-sm-6">
-                  <select name='search.companyId' ng-model='requisition_item.company_id' class="form-control" required>
-                    <option ng-repeat="c in companies" ng-value='{{c.id}}'>{{c.name}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+            <requisition-filter></requisition-filter>
 
             <div class="col-sm-6">
               <div class="form-group">
