@@ -43,5 +43,10 @@
 
         $scope.payment_vouchers.push(new PaymentVoucher(response))
 
+        # reset fields
+        $scope.paymentVoucher = build()
+        $scope.paymentVoucher.voucher_no = $scope.r
+        $scope.paymentVoucher.payment_method= 0
+
         $scope.alert = true
 ]
