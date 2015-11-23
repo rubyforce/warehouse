@@ -39,6 +39,12 @@
       $scope.stock_inward_item.itemId = item.id
       $scope.stock_inward_item.tax = item.tax
 
+      # update item minqty
+      calcQty = new Item(id: item.id)
+      final_qty = $scope.stock_inward_item.qty - item.minQty
+      calcQty.minQty = final_qty
+      calcQty.update()
+
       warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_inward_item.warehouse_id, 10)).value()
       $scope.stock_inward_item.warehouseName = warehouse.name
       $scope.stock_inward_item.warehouseId = warehouse.id
