@@ -1,6 +1,6 @@
 @stocks.controller 'CreateOutwardsController', [
-  '$scope', '$http', '$timeout', 'StockOutward'
-  ($scope, $http, $timeout, StockOutward) ->
+  '$scope', '$http', '$timeout', 'StockOutward', 'Item'
+  ($scope, $http, $timeout, StockOutward, Item) ->
     $scope.stock_outward_date = $.datepicker.formatDate("dd/mm/yy", new Date())
     $scope.alert = false
     $scope.stock_items = []
@@ -40,6 +40,12 @@
       $scope.stock_outward_item.rate = item.rate
       $scope.stock_outward_item.tax = item.tax
       $scope.stock_outward_itemitemId = item.id
+
+      # update item minqty
+      calcQty = new Item(id: item.id)
+      final_qty = $scope.stock_outward_item.qty - item.minQty
+      calcQty.minQty = final_qty
+      calcQty.update()
 
       ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
       $scope.stock_outward_item.ledgerName = ledger.name
