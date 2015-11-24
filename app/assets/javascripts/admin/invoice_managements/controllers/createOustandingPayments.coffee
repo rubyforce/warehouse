@@ -34,8 +34,20 @@
             property = $scope.stock_outwards[element.data('index')]
             $scope.$apply ->
               select(property)
+      render()
 
     $scope.$watch 'stock_outwards', makeTableSelectable
+
+    render = ->
+      $scope.items = _($scope.stock_outwards).chain()
+        .each (stock) ->
+            if stock.amount is stock.total
+              stock.status = "Paid"
+            else if stock.paymentMethod is "Credit"
+              stock.status = "Full Credit"
+            else
+              stock.status = "Partially Paid"
+        .value()
 
     selectedStock = null
     select = (property) ->
