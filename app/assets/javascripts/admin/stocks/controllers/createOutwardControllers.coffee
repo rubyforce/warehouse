@@ -48,13 +48,13 @@
       calcQty.update()
 
       ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
-      $scope.stock_outward_item.ledgerName = ledger.name
-      $scope.stock_outward_item.contactNo = ledger.contactNo
-      $scope.stock_outward_item.ledgerId = ledger.id
+      $scope.stock_outward.ledgerName = ledger.name
+      $scope.stock_outward.contactNo = ledger.contactNo
+      $scope.stock_outward.ledgerId = ledger.id
 
       warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_outward_item.warehouse_id, 10)).value()
-      $scope.stock_outward_item.warehouseName = warehouse.name
-      $scope.stock_outward_item.warehouseId = warehouse.id
+      $scope.stock_outward.warehouseName = warehouse.name
+      $scope.stock_outward.warehouseId = warehouse.id
 
       $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
       tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
