@@ -46,6 +46,17 @@
         .flatten()
         .value()
 
+    cssClass = ->
+      for i in $scope.items
+        _($scope.invoices).find (s) ->
+          if s.stockOutwardId == i.stockOutwardId && s.cancelTransaction?
+            console.log "canceled"
+          else if s.stockOutwardId == i.stockOutwardId && s.chequeBounce?
+            console.log "bounced"
+
+    $scope.$watch 'items', cssClass
+
+
 
     selectedStock = null
     select = (property)->

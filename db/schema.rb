@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117102708) do
+ActiveRecord::Schema.define(version: 20151119085201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -601,6 +601,8 @@ ActiveRecord::Schema.define(version: 20151117102708) do
     t.decimal  "total"
     t.decimal  "final_total"
     t.string   "receipt_no"
+    t.string   "cancel_transaction"
+    t.string   "cheque_bounce"
   end
 
   create_table "students", force: :cascade do |t|
