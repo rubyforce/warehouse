@@ -35,10 +35,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr data-index="{{$index}}" ng-repeat="i in items">
+                  <tr data-index="{{$index}}" ng-repeat="i in items" ng-class="{canceled: i.cancelTransaction == 'Canceled', bounced: i.chequeBounce == 'Bounced'}">
                     <td class="center">{{i.invoiceNo}}</td>
                     <td class="center">{{i.ledgerName}}</td>
-                    <td class="center"></td>
+                    <td class="center" ng-show="i.cancelTransaction == 'Canceled'"></td>
+                    <td class="center" ng-hide="i.cancelTransaction == 'Canceled'">{{i.total}}</td>
                     <td class="center">{{i.date}}</td>
                     <td class="center">{{i.status}}</td>
                     <td class="center">{{i.paymentMethod}}</td>
