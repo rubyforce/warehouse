@@ -34,22 +34,8 @@
             property = $scope.stock_outwards[element.data('index')]
             $scope.$apply ->
               select(property)
-      render()
 
     $scope.$watch 'stock_outwards', makeTableSelectable
-
-    render = ->
-      $scope.items = _($scope.stock_outwards).chain()
-        .map (s) ->
-          for item in s.stockOutwardItems
-            item.invoiceNo = s.invoiceNo
-            item.createdAt = s.createdAt
-            item.date = s.date
-            item.daySinceDue = s.daysSinceDue
-            item.finalTotal = s.finalTotal
-          s.stockOutwardItems
-        .flatten() # [1,2,3,4,5]
-        .value()
 
     selectedStock = null
     select = (property) ->
