@@ -2,6 +2,7 @@
   <div class="panel-heading">Vehicle Unloading</div>
   <div class="panel-body">
     <div  ng-controller="CreateVehicleUnloadingController">
+      <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new vehicle unloading.</div>
       <div class="col-sm-12">
         <div class="col-sm-4" style="margin-left: 376px;">
           <div class="col-sm-3">
@@ -15,8 +16,11 @@
         </div>
       </div>
       <form name='form' class="form-horizontal">
-        </br>
-        <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new vehicle unloading.</div>
+        </br></br></br>
+        <div class="col-sm-6">
+          <h4 style="text-align: center">Total Stock in Vehicle No. MH 04 CD 1100</h4>
+        </div>
+        <div class="col-sm-6"><h4 style="text-align: center">Rs 225000 /-</h4></div>
 
         <div class="panel-body scrolling">
           <table id='objects-list' class="table table-bordered table-striped scrolling">
