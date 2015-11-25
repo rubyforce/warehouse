@@ -83,7 +83,6 @@
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
       $scope.stock_inward.total = $scope.getTotal()
       new StockInward($scope.stock_inward).create().then (response) ->
-        debugger
         protocol = $location.protocol()
         host = $window.location.host
         domain = "#{protocol}://#{host}" # Example: http://example.com
