@@ -98,12 +98,12 @@
                 <% @outstanding_payment.stock_outward.stock_outward_items.each_with_index do |item, i| %>
                   <tr>
                     <td class="center" class="td"><%= (i + 1) %></td>
-                    <td class="center" class="td"><%= @outstanding_payment.stock_outward.invoice_no %></td>
-                    <td class="center" class="td"><%= @outstanding_payment.stock_outward.voucher_no %></td>
-                    <td class="center" class="td"><%= @outstanding_payment.date.strftime("%d/%m/%y") %></td>
-                    <td class="center" class="td"><%= item.ledger_name %> <%= item.contact_no %></td>
-                    <td class="center" class="td"><%= item.amount %></td>
-                    <td class="center" class="td"><%= @outstanding_payment.stock_outward.days_since_due %></td>
+                    <td class="center" class="td" style="text-align: center"><%= @outstanding_payment.stock_outward.invoice_no %></td>
+                    <td class="center" class="td" style="text-align: center"><%= @outstanding_payment.stock_outward.voucher_no %></td>
+                    <td class="center" class="td" style="text-align: center"><%= @outstanding_payment.stock_outward.date.strftime("%d/%m/%y") %></td>
+                    <td class="center" class="td" style="text-align: center"><%= @outstanding_payment.stock_outward.ledger_name %> <%= @outstanding_payment.stock_outward.contact_no %></td>
+                    <td class="center" class="td" style="text-align: center"><%= @outstanding_payment.stock_outward.total %></td>
+                    <td class="center" class="td" style="text-align: center"><%= @outstanding_payment.stock_outward.days_since_due %></td>
                   </tr>
                 <% end %>
               </tbody>
