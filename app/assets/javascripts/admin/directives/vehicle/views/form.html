@@ -1,0 +1,24 @@
+<div class="panel-body scrolling">
+  <table id='objects-list' class="table table-bordered table-striped scrolling">
+    <thead>
+      <tr>
+        <th style="text-align: center">S/N</th>
+        <th style="text-align: center">Item Name</th>
+        <th style="text-align: center">Qty</th>
+        <th style="text-align: center">Return</th>
+        <th style="text-align: center">Breakage</th>
+        <th style="text-align: center">Faulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='i in vehicleLoadingItems | filter:bySelector'>
+        <td>1</td>
+        <td style="text-align: center">{{i.properties.name}}</td>
+        <td style="text-align: center">125</td>
+        <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
+        <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
+        <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
