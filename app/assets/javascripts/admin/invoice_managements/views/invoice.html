@@ -27,6 +27,7 @@
                 <thead>
                   <tr>
                     <th class="center">Invoice No.</th>
+                    <th class="center">Voucher No.</th>
                     <th class="center">Customer Name</th>
                     <th class="center">Amount</th>
                     <th class="center">Paid Date</th>
@@ -37,6 +38,7 @@
                 <tbody>
                   <tr data-index="{{$index}}" ng-repeat="i in items" ng-class="{canceled: i.cancelTransaction == 'Canceled', bounced: i.chequeBounce == 'Bounced'}">
                     <td class="center">{{i.invoiceNo}}</td>
+                    <td class="center">{{i.voucherNo}}</td>
                     <td class="center">{{i.ledgerName}}</td>
                     <td class="center" ng-show="i.cancelTransaction == 'Canceled'"></td>
                     <td class="center" ng-hide="i.cancelTransaction == 'Canceled'">{{i.total}}</td>
