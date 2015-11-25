@@ -56,10 +56,6 @@
     $scope.create = ->
       $scope.vehicle_loading.vehicle_loading_itemsAttributes = $scope.vehicle_stocks
       new VehicleLoading($scope.vehicle_loading).create().then (response) ->
-        protocol = $location.protocol()
-        host = $window.location.host
-        domain = "#{protocol}://#{host}" # Example: http://example.com
-        $window.open("#{domain}/admin/vehicle_loadings/#{response.id}/print",'_blank')
 
         $scope.vehicle_loadings.push(new VehicleLoading(response))
 
