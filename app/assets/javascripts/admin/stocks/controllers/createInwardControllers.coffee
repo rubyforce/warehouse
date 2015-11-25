@@ -17,7 +17,8 @@
     build = ->
       new StockInward({
         date: $.datepicker.formatDate("dd/mm/yy", new Date()),
-        voucherNo: $scope.rev
+        voucherNo: $scope.rev,
+        paymentMethod: "Cash"
       })
 
     $scope.stock_inward = build()
@@ -84,6 +85,7 @@
       $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
       $scope.stock_inward.total = $scope.getTotal()
       new StockInward($scope.stock_inward).create().then (response) ->
+        debugger
         protocol = $location.protocol()
         host = $window.location.host
         domain = "#{protocol}://#{host}" # Example: http://example.com
