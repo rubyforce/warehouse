@@ -6,14 +6,46 @@
         </br>
         <div class="alert alert-success" role="alert" ng-show="alert">You successfully added a new vehicle unloading.</div>
 
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-12">
-              <label class="col-sm-8 control-label">Total stock in vehicle no. {{vehicle_loading.vehicle.name}}</label>
-            </div
-          </div>
+        <div class="panel-body scrolling">
+          <table id='objects-list' class="table table-bordered table-striped scrolling">
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Item Name</th>
+                <th>Qty</th>
+                <th>Return</th>
+                <th>Breakage</th>
+                <th>Faulty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Pepsi 250Ml</td>
+                <td>125</td>
+                <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
+                <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
+                <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </form>
+
+      <div class="form-group">
+        <div class="col-sm-1">
+          <label for='vehicle_loading.note' class="control-label">Note</label>
+        </div>
+        <div class="col-sm-4">
+          <textarea name="vehicle_loading.note" ng-model="vehicle_loading.note" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="form-group ui buttons">
+        <div class=" col-sm-12">
+          <button type="submit" class="btn btn-default" ng-click="create()">Submit</button>
+          <a ng-click="reset()" class="btn btn-default">Cancel</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
