@@ -37,8 +37,7 @@
       $scope.vehicle_loading_item.itemId = item.id
       $scope.vehicle_loading_item.rate = item.rate
 
-      debugger
-      vehicle = _($scope.vehicles).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.vehicle_loading_item.vehicle_id, 10)).value()
+      vehicle = _($scope.vehicles).chain().find((i)-> parseInt(i.id, 10) is parseInt($scope.vehicle_loading.vehicle_id, 10)).value()
       $scope.vehicle_loading_item.vehicleName = vehicle.name
       $scope.vehicle_loading_item.vehicleId = vehicle.id
 

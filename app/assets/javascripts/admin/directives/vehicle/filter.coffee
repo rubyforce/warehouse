@@ -4,7 +4,6 @@
         '$scope', '$timeout'
         ($scope, $timeout) ->
           $scope.bySelector = (vehicle_loading) ->
-            debugger
             return unless $scope.search?.vehicleId?
             item = _.find($scope.vehicle_loading_items, (s2) -> s2.id is vehicle_loading.vehicleId)
 

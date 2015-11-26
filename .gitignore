@@ -22,4 +22,4 @@ config/database.yml
 tags
 .DS_Store
 config/settings.local.yml
-
+db/schema.rb
