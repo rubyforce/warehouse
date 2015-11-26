@@ -86,12 +86,8 @@
               <thead>
                 <tr>
                   <th style="text-align: center;" class="th">S/N</th>
-                  <th style="text-align: center;" class="th">Invoice No.</th>
-                  <th style="text-align: center;" class="th">Voucher No.</th>
-                  <th style="text-align: center;" class="th">Date</th>
-                  <th style="text-align: center;" class="th">Payment Name with contacy No.</th>
-                  <th style="text-align: center;" class="th">Amount</th>
-                  <th style="text-align: center;" class="th">Due since Days</th>
+                  <th style="text-align: center;" class="th">Item Name</th>
+                  <th style="text-align: center;" class="th">Qty.</th>
                 </tr>
               </thead>
 
@@ -99,12 +95,8 @@
               <% @vehicle_loading.vehicle_loading_items.each_with_index do |item, i| %>
                 <tr>
                   <td class="center" class="td"><%= (i + 1) %></td>
-                  <td></td>
-                  <td class="center" class="td"><%= @vehicle_loading.voucher_no %></td>
-                  <td class="center" class="td"><%= @vehicle_loading.date %></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td class="center" class="td"><%= item.item_name %></td>
+                  <td class="center" class="td"><%= item.qty %></td>
                 </tr>
               <% end %>
               </tbody>
