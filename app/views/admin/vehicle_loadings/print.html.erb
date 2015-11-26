@@ -15,12 +15,13 @@
     h3 {
       text-align: center;
     }
-    .table-bordered {
-      width: 80%
+    .table-width {
+      width: 85%
     }
     table, th, td
     {
       border-collapse:collapse;
+      width:75%;
       border: 1px solid black;
     }
     .panel-border {
@@ -55,7 +56,6 @@
       </div>
   </div>
 </div>
-<!-- Column with discoint -->
 <div class="content">
   <div class="container">
     <div class="header">
@@ -72,33 +72,35 @@
       </div>
     </div>
 
+    <div class="col-sm-12">
+      <div class="form-group">
+        <h5 style="text-align: center">Stock loaded to vehicle no. <%= @vehicle_loading.vehicle.name %> from <%= @vehicle_loading.created_at.strftime("%d/%m/%y") %> to <%= @vehicle_loading.date.strftime("%d/%m/%y") %></h5>
+      </div>
+    </div>
+
     <div class="update_form">
       <div class="row">
         <div class="col-sm-12">
           <div class="panel panel-default" style="">
-            <% @vehicle_loading.vehicle_loading_items.each_with_index do |item, i| %>
-              <div>
-                <h4>Vehicle: <%= item.vehicle.name %> Warehouse: <%= item.warehouse.name %> Device Id: <%= item.device.device_id %></h4>
-              </div>
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th width="10%" style="text-align: center;" class="th">S/N</th>
-                    <th width="25%" style="text-align: center;" class="th">Item name</th>
-                    <th width="25%" style="text-align: center;" class="th">Qty</th>
-                    <th width="25%" style="text-align: center;" class="th">S. Qty</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="center" class="td" style="text-align: center;"><%= (i + 1) %></td>
-                    <td class="center" class="td"><%= item.item_name %></td>
-                    <td class="center" class="td"><%= item.qty %></td>
-                    <td class="center" class="td"><%= item.s_qty %></td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="text-align: center;" class="th">S/N</th>
+                  <th style="text-align: center;" class="th">Item Name</th>
+                  <th style="text-align: center;" class="th">Qty.</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              <% @vehicle_loading.vehicle_loading_items.each_with_index do |item, i| %>
+                <tr>
+                  <td class="center" class="td"><%= (i + 1) %></td>
+                  <td class="center" class="td"><%= item.item_name %></td>
+                  <td class="center" class="td"><%= item.qty %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
