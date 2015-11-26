@@ -2,8 +2,6 @@
   '$scope', '$http', '$timeout', 'StockInward', '$location', '$window'
   ($scope, $http, $timeout, StockInward, $location, $window) ->
 
-    $scope.stock_inward_date = $.datepicker.formatDate("dd/mm/yy", new Date())
-
     $http.get('admin/stock_inwards/inward_id')
       .success (response) ->
         $timeout ->
@@ -17,7 +15,8 @@
     build = ->
       new StockInward({
         date: $.datepicker.formatDate("dd/mm/yy", new Date()),
-        voucherNo: $scope.rev
+        voucherNo: $scope.rev,
+        paymentMethod: "Cash"
       })
 
     $scope.stock_inward = build()

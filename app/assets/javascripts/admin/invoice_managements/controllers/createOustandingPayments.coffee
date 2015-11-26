@@ -58,7 +58,7 @@
       if $scope.outstanding_payment.payment_method == 'Cash'
         $scope.outstanding_payment.amount = null
       else
-        $scope.outstanding_payment.amount = selectedStock.stockOutwardItems[0].amount
+        $scope.outstanding_payment.amount = selectedStock.total
 
     $scope.reset = ->
       $scope.outstanding_payment = build()

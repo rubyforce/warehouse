@@ -103,6 +103,10 @@
     $scope.create = ->
       $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
       $scope.stock_outward.total = $scope.getTotal()
+
+      if $scope.stock_outward.paymentMethod == "Credit"
+        $scope.stock_outward.voucherNo = null
+
       new StockOutward($scope.stock_outward).create().then (response) ->
         $scope.stock_outwards.push(new StockOutward(response))
 
