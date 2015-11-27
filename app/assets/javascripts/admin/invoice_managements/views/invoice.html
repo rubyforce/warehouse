@@ -41,7 +41,7 @@
                     <td class="center">{{i.voucherNo}}</td>
                     <td class="center">{{i.ledgerName}}</td>
                     <td class="center" ng-show="i.cancelTransaction == 'Canceled'"></td>
-                    <td class="center" ng-hide="i.cancelTransaction == 'Canceled'">{{i.total}}</td>
+                    <td class="center" ng-hide="i.cancelTransaction == 'Canceled'">{{i.finalTotal || i.total}}</td>
                     <td class="center">{{i.date}}</td>
                     <td class="center">{{i.status}}</td>
                     <td class="center">{{i.paymentMethod}}</td>
