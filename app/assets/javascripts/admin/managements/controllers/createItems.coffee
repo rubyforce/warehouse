@@ -5,7 +5,6 @@
 
     $scope.select = (item) ->
       $scope.item = item
-      $scope.item.company = company_id
 
     $scope.new = ->
       $scope.item = new Item()
