@@ -48,7 +48,7 @@
 
       $scope.tax = ($scope.stock_inward_item.amount * $scope.stock_inward_item.tax)/100
       $scope.sumTaxes.push($scope.tax)
-
+      debugger
       $scope.total = $scope.stock_inward_item.amount + $scope.tax
 
       total = $scope.total
@@ -76,7 +76,7 @@
     $scope.getSumTaxes = -> _.sum $scope.sumTaxes
 
     $scope.getTotal = ->
-      total = $scope.getSubTotal()
+      total =  _.sum $scope.totals
       if $scope.stock_inward.discount?
         total * (1- $scope.stock_inward.discount/100)
       else
