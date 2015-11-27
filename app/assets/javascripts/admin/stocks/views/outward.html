@@ -42,7 +42,7 @@
                   <label for='company_id' class="control-label">Party Name</label>
                 </div>
                 <div class="col-sm-6">
-                  <select name='company_id' ng-model='stock_outward_item.ledger_id' class="form-control" required>
+                  <select name='company_id' ng-model='stock_outward.ledger_id' class="form-control" required>
                     <option ng-repeat="l in ledgers" ng-value='{{l.id}}'>{{l.name}}</option>
                   </select>
                 </div>
@@ -56,7 +56,7 @@
                   <label for='warehouse_id' class="control-label">Warehouse</label>
                 </div>
                 <div class="col-sm-6">
-                   <select name='warehouse_id' ng-model='stock_outward_item.warehouse_id' class="form-control" required>
+                   <select name='warehouse_id' ng-model='stock_outward.warehouse_id' class="form-control" required>
                     <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
                   </select>
                 </div>
@@ -183,8 +183,8 @@
                   </div>
                   <div class="form-group">
                     <label for='credit' class="radio-inline">
-                        <input name='credit' id='credit' type="radio" value="Credit" ng-model="stock_outward.paymentMethod">Full Credit
-                      </label>
+                      <input name='credit' id='credit' type="radio" value="Credit" ng-model="stock_outward.paymentMethod">Full Credit
+                    </label>
                   </div>
                 </div>
                 <div class="col-sm-9">
@@ -202,7 +202,7 @@
                         <label for='bank' class="control-label">Credit</label>
                       </div>
                       <div class="col-sm-10">
-                        <input name='credit' type='text' ng-model='stock_outward.credit' class="form-control" ng-disabled="stock_outward.paymentMethod != 'Credit'" />
+                        <input name='credit' type='text' ng-model='stock_outward.credit' class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'" />
                       </div>
                     </div>
                   </div>
@@ -273,7 +273,7 @@
             <label for='reason' class="col-sm-4 control-label">Discount</label>
             <div class="col-sm-5">
               <div class="input-group">
-                <input type="text" name="reason" ng-model="stock_outward.discount" class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'">
+                <input type="text" name="reason" ng-model="stock_outward.discount" class="form-control">
                 <div class="input-group-addon">%</div>
               </div>
             </div>
@@ -290,7 +290,7 @@
               <h5>{{getTotal()}}</h5>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" ng-show="showFinalTotal()">
             <label for='reason' class="col-sm-4 control-label">Final Total</label>
             <div class="col-sm-4">
               <input type="text" name="finalTotal" ng-model="stock_outward.final_total" class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'">

@@ -39,7 +39,7 @@
       $scope.stock_outward_item.itemName = item.name
       $scope.stock_outward_item.rate = item.rate
       $scope.stock_outward_item.tax = item.tax
-      $scope.stock_outward_itemitemId = item.id
+      $scope.stock_outward_item.itemId = item.id
 
       # update item minqty
       calcQty = new Item(id: item.id)
@@ -47,12 +47,12 @@
       calcQty.minQty = final_qty
       calcQty.update()
 
-      ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward_item.ledger_id, 10)).value()
+      ledger = _($scope.ledgers).chain().find((l) -> parseInt(l.id, 10) is parseInt($scope.stock_outward.ledger_id, 10)).value()
       $scope.stock_outward.ledgerName = ledger.name
       $scope.stock_outward.contactNo = ledger.contactNo
       $scope.stock_outward.ledgerId = ledger.id
 
-      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_outward_item.warehouse_id, 10)).value()
+      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_outward.warehouse_id, 10)).value()
       $scope.stock_outward.warehouseName = warehouse.name
       $scope.stock_outward.warehouseId = warehouse.id
 
@@ -62,7 +62,7 @@
       total = $scope.stock_outward_item.amount + tax
 
       if $scope.stock_outward_item.discount?
-        totalWithDiscount = (total * $scope.stock_outward_item.discount)/100
+        totalWithDiscount = total * (1 - $scope.stock_outward_item.discount / 100)
         $scope.totals.push(totalWithDiscount)
       else
         $scope.totals.push(total)
@@ -78,31 +78,37 @@
       for i in [1..$scope.stock_items.length]
         $scope.stock_outward_item.numeral = i
 
-      last_stock_outward_item = _.last($scope.stock_items)
-      $scope.stock_outward_item = {}
-      $scope.stock_outward_item.ledger_id = last_stock_outward_item.ledgerId
-      $scope.stock_outward_item.warehouse_id = last_stock_outward_item.warehouseId
+    $scope.getSubTotal = -> _.sum $scope.totals
 
-      $timeout ->
-        angular.element('[ng-model="stock_outward_item.ledger_id"]').val($scope.stock_outward_item.ledger_id)
-        angular.element('[ng-model="stock_outward_item.warehouse_id"]').val($scope.stock_outward_item.warehouse_id)
-
-    $scope.getSubTotal = ->
-      _.sum $scope.stock_items, 'amount'
-
-    $scope.getSumTaxes = ->
-      _.sum $scope.sumTaxes
+    $scope.getSumTaxes = -> _.sum $scope.sumTaxes
 
     $scope.getTotal = ->
-      total = _.sum $scope.totals
+      total = $scope.getSubTotal()
+
       if $scope.stock_outward.discount?
-        (total * $scope.stock_outward.discount)/100
+        total * (1 - $scope.stock_outward.discount / 100)
       else
         total
 
+    $scope.showFinalTotal = ->
+      return false unless $scope.stock_outward?
+
+      total = $scope.getTotal()
+      s = $scope.stock_outward
+
+      return s.cash < total if s.cash?
+      return s.credit < total if s.credit?
+      return s.amount < total if s.amount?
+
+      false
+
     $scope.create = ->
-      $scope.stock_outward.stock_outward_itemsAttributes = $scope.stock_items
-      $scope.stock_outward.total = $scope.getTotal()
+      $scope.stock_outward.stockOutwardItemsAttributes = $scope.stock_items
+
+      if $scope.stock_outward.final_total?
+        $scope.stock_outward.total = $scope.stock_outward.final_total
+      else
+        $scope.stock_outward.total = $scope.getTotal()
 
       if $scope.stock_outward.paymentMethod == "Credit"
         $scope.stock_outward.voucherNo = null
@@ -118,5 +124,4 @@
         $scope.reset()
 
         $scope.alert = true
-
 ]

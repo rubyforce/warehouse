@@ -38,9 +38,9 @@
       $scope.stock_inward_item.itemId = item.id
       $scope.stock_inward_item.tax = item.tax
 
-      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_inward_item.warehouse_id, 10)).value()
-      $scope.stock_inward_item.warehouseName = warehouse.name
-      $scope.stock_inward_item.warehouseId = warehouse.id
+      warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_inward.warehouse_id, 10)).value()
+      $scope.stock_inward.warehouseName = warehouse.name
+      $scope.stock_inward.warehouseId = warehouse.id
 
       $scope.stock_inward_item.amount = $scope.stock_inward_item.qty * $scope.stock_inward_item.purchaseRate
 
@@ -50,7 +50,13 @@
       $scope.sumTaxes.push($scope.tax)
 
       $scope.total = $scope.stock_inward_item.amount + $scope.tax
-      $scope.totals.push($scope.total)
+
+      total = $scope.total
+      if $scope.stock_inward_item.discount?
+        totalWithDiscount = total * (1 - $scope.stock_inward_item.discount / 100)
+        $scope.totals.push(totalWithDiscount)
+      else
+        $scope.totals.push(total)
 
       $scope.stocks.push($scope.stock_inward_item)
 
@@ -66,22 +72,32 @@
         angular.element('[ng-model="stock_inward_item.company_id"]').val($scope.stock_inward_item.company_id)
         angular.element('[ng-model="stock_inward_item.warehouse_id"]').val($scope.stock_inward_item.warehouse_id)
 
-    $scope.getSubTotal = ->
-      _.sum $scope.stocks, (object) ->
-        object.amount
-    $scope.getSumTaxes = ->
-      _.sum $scope.sumTaxes
+    $scope.getSubTotal = -> _.sum $scope.stocks, 'amount'
+    $scope.getSumTaxes = -> _.sum $scope.sumTaxes
 
     $scope.getTotal = ->
-      total = _.sum $scope.totals
+      total = $scope.getSubTotal()
       if $scope.stock_inward.discount?
-        (total * $scope.stock_inward.discount)/100
+        total * (1- $scope.stock_inward.discount/100)
       else
         total
 
+    $scope.showFinalTotal = ->
+      return false unless $scope.stock_inward?
+
+      total = $scope.getTotal()
+      s = $scope.stock_inward
+
+      return s.cash < total if s.cash?
+      return s.credit < total if s.credit?
+      return s.amount < total if s.amount?
+
+      false
+
     $scope.create = ->
-      $scope.stock_inward.stock_inward_itemsAttributes = $scope.stocks
+      $scope.stock_inward.stockInwardItemsAttributes = $scope.stocks
       $scope.stock_inward.total = $scope.getTotal()
+
       new StockInward($scope.stock_inward).create().then (response) ->
         protocol = $location.protocol()
         host = $window.location.host
@@ -99,5 +115,4 @@
         $scope.alert = true
 
       $scope.reset()
-
 ]
