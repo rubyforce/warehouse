@@ -78,12 +78,12 @@
       for i in [1..$scope.stock_items.length]
         $scope.stock_outward_item.numeral = i
 
-    $scope.getSubTotal = -> _.sum $scope.totals
+    $scope.getSubTotal = -> _.sum $scope.stock_items, 'amount'
 
     $scope.getSumTaxes = -> _.sum $scope.sumTaxes
 
     $scope.getTotal = ->
-      total = $scope.getSubTotal()
+      total = _.sum $scope.totals
 
       if $scope.stock_outward.discount?
         total * (1 - $scope.stock_outward.discount / 100)
