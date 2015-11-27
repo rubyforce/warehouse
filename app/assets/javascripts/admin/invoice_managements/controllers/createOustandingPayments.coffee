@@ -54,11 +54,14 @@
       selectedStock = property
       selectedStock.receiptNo = $scope.outstandingNo
 
+      $scope.outstanding_payment.amount = selectedStock.amount
+      $scope.outstanding_payment.cash = selectedStock.total
+      $scope.outstanding_payment.payment_method = selectedStock.paymentMethod
+      $scope.outstanding_payment.bank_date = selectedStock.bankDate
+      $scope.outstanding_payment.bank_name = selectedStock.bankName
+      $scope.outstanding_payment.cheque_no = selectedStock.chequeNo
+
       $scope.markUp = "- Invoice No." + " " + selectedStock.invoiceNo
-      if $scope.outstanding_payment.payment_method == 'Cash'
-        $scope.outstanding_payment.amount = null
-      else
-        $scope.outstanding_payment.amount = selectedStock.total
 
     $scope.reset = ->
       $scope.outstanding_payment = build()
