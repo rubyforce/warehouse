@@ -280,7 +280,7 @@
           <div class="form-group" ng-show="showFinalTotal()">
             <label for='reason' class="col-sm-4 control-label">Final Total</label>
             <div class="col-sm-4">
-              <input type="text" name="finalTotal" ng-model="stock_inward.final_total" class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'">
+              <input type="text" name="finalTotal" ng-model="stock_inward.final_total" class="form-control" ng-disabled="stock_inward.paymentMethod == 'Credit'">
             </div>
           </div>
         </div>
