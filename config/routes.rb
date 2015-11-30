@@ -96,7 +96,14 @@ Greenarea::Application.routes.draw do
       end
     end
 
-    resources :vehicle_unloadings
+    resources :vehicle_unloadings do
+      collection do
+        get :vehicle_unloading_id
+      end
+      member do
+        get :print
+      end
+    end
 
     resources :vehicle_unloading_items
 

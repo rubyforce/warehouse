@@ -43,4 +43,16 @@ class Admin::VehicleUnloadingsController < ApplicationController
 
     render :json => @vehicle_unloading
   end
+
+  def vehicle_unloading_id
+    @vehicle_unloading = VehicleUnloading.order('id asc').last
+
+    render :json => @vehicle_unloading
+  end
+
+  def print
+    @vehicle_unloading = VehicleUnloading.find(params[:id])
+
+    render :layout => 'print'
+  end
 end
