@@ -90,6 +90,14 @@
       else
         total
 
+    showTotal = ->
+      if $scope.stock_outward.paymentMethod == 'Cash'
+        $scope.stock_outward.cash = $scope.getTotal()
+      else
+        $scope.stock_outward.amount = $scope.getTotal()
+
+    $scope.$watch showTotal
+
     $scope.showFinalTotal = ->
       return false unless $scope.stock_outward?
 
