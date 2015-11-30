@@ -76,17 +76,17 @@
     $scope.getSumTaxes = -> _.sum $scope.sumTaxes
 
     $scope.getTotal = ->
-      $scope.sum =  _.sum $scope.totals
+      total =  _.sum $scope.totals
       if $scope.stock_inward.discount?
-        $scope.sum * (1- $scope.stock_inward.discount/100)
+        total * (1- $scope.stock_inward.discount/100)
       else
-        $scope.sum
+        total
 
     showTotal = ->
       if $scope.stock_inward.paymentMethod == 'Cash'
-        $scope.stock_inward.cash = $scope.sum
+        $scope.stock_inward.cash = $scope.getTotal()
       else
-        $scope.stock_inward.amount = $scope.sum
+        $scope.stock_inward.amount = $scope.getTotal()
 
     $scope.$watch showTotal
 
