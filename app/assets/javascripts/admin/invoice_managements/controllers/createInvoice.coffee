@@ -16,6 +16,7 @@
             property = $scope.stock_outwards[element.data('index')]
             $scope.$apply ->
               selectedStock = property
+              $scope.markUp = "- Invoice No." + " " + selectedStock.invoiceNo
       render()
 
     $scope.$watch 'stock_outwards', makeTableSelectable
