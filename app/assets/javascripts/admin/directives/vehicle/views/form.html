@@ -1,24 +1,38 @@
-<div class="panel-body scrolling">
-  <table id='objects-list' class="table table-bordered table-striped scrolling">
-    <thead>
-      <tr>
-        <th style="text-align: center">S/N</th>
-        <th style="text-align: center">Item Name</th>
-        <th style="text-align: center">Qty</th>
-        <th style="text-align: center">Return</th>
-        <th style="text-align: center">Breakage</th>
-        <th style="text-align: center">Faulty</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat='i in vehicleLoadingItems | filter:bySelector'>
-        <td>1</td>
-        <td style="text-align: center">{{i.properties.name}}</td>
-        <td style="text-align: center">125</td>
-        <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
-        <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
-        <td><input type="text" name="rate" ng-model="rate" class="form-control"></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="col-sm-12">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <div class="col-sm-3">
+        <label for='meal.meal_id' class="control-label">Vehicle</label>
+      </div>
+      <div class="col-sm-6">
+        <select name='vehicle_stock_item.vehicle_id' ng-model='search.vehicleId' class="form-control" required>
+          <option ng-repeat="v in vehicles" ng-value='{{v.id}}'>{{v.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <div class="col-sm-4" style="text-align: right">
+        <label for='reason.qty' class="control-label">Warehouse</label>
+      </div>
+      <div class="col-sm-6">
+         <select name='vehicle_stock_item.warehouse_id' ng-model='search.warehouse_id' class="form-control" required>
+          <option ng-repeat="w in warehouses" ng-value='{{w.id}}'>{{w.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <div class="col-sm-6" style="text-align: right">
+        <label for='device_id' class="control-label">Device id</label>
+      </div>
+      <div class="col-sm-4">
+         <select name='vehicle_stock_item.device_id' ng-model='search.device_id' class="form-control" required>
+          <option ng-repeat="d in devices" ng-value='{{d.id}}'>{{d.deviceId}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
 </div>
