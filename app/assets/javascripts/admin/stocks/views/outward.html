@@ -162,96 +162,97 @@
       <div class="col-sm-12">
         <!-- First Column -->
         <div class="row">
-        <div class="col-sm-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">Payment Markup</div>
-            <div class="panel-body">
-              <div class="col-sm-12">
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <div>
-                      <label for='payment_method' class="control-label">Payment Method:</label>
+          <div class="col-sm-8">
+            <div class="panel panel-default">
+              <div class="panel-heading">Payment Markup</div>
+              <div class="panel-body">
+                <div class="col-sm-12">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div>
+                        <label for='payment_method' class="control-label">Payment Method:</label>
+                      </div>
+                      <div>
+                        <label for='cash' class="radio-inline">
+                          <input name='cash' id='cash' type="radio" value="Cash" ng-model="stock_outward.paymentMethod">Cash
+                        </label>
+                        <label for='bank' class="radio-inline">
+                          <input name='bank' id='bank' type="radio" value="Cheque" ng-model="stock_outward.paymentMethod">Cheque No.
+                        </label>
+                      </div>
                     </div>
-                    <div>
-                      <label for='cash' class="radio-inline">
-                        <input name='cash' id='cash' type="radio" value="Cash" ng-model="stock_outward.paymentMethod">Cash
+                    <div class="form-group">
+                      <label for='credit' class="radio-inline">
+                        <input name='credit' id='credit' type="radio" value="Credit" ng-model="stock_outward.paymentMethod">Full Credit
                       </label>
-                      <label for='bank' class="radio-inline">
-                        <input name='bank' id='bank' type="radio" value="Cheque" ng-model="stock_outward.paymentMethod">Cheque No.
-                      </label>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for='credit' class="radio-inline">
-                      <input name='credit' id='credit' type="radio" value="Credit" ng-model="stock_outward.paymentMethod">Full Credit
-                    </label>
-                  </div>
-                </div>
-                <div class="col-sm-9">
-                  <div class="col-sm-12" ng-hide="stock_outward.paymentMethod == 'Cheque'">
-                    <div class="form-group" ng-hide="stock_outward.paymentMethod == 'Credit'">
-                      <div class="col-sm-2">
-                        <label for='bank' class="control-label">Cash</label>
-                      </div>
-                      <div class="col-sm-10">
-                        <input name='cash' type='text' ng-model='stock_outward.cash' class="form-control" ng-disabled="stock_outward.paymentMethod != 'Cash'" />
-                      </div>
-                    </div>
-                    <div class="form-group" ng-show="stock_outward.paymentMethod == 'Credit'">
-                      <div class="col-sm-2">
-                        <label for='bank' class="control-label">Credit</label>
-                      </div>
-                      <div class="col-sm-10">
-                        <input name='credit' type='text' ng-model='stock_outward.credit' class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-group" ng-hide="stock_outward.paymentMethod == 'Credit' || stock_outward.paymentMethod =='Cash'">
-                      <div class="col-sm-2">
-                        <label for='bank' class="control-label">Amount</label>
-                      </div>
-                      <div class="col-sm-10">
-                        <input name='cash' type='text' ng-model='stock_outward.amount' class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <div class="col-sm-4">
-                            <label for='cheque' class="control-label">Cheque No.</label>
-                          </div>
-                          <div class="col-sm-8">
-                            <input name='cheque' type='text' ng-model='stock_outward.cheque_no' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" />
-                          </div>
+                  <div class="col-sm-9">
+                    <div class="col-sm-12" ng-hide="stock_outward.paymentMethod == 'Cheque'">
+                      <div class="form-group" ng-hide="stock_outward.paymentMethod == 'Credit'">
+                        <div class="col-sm-2">
+                          <label for='bank' class="control-label">Cash</label>
+                        </div>
+                        <div class="col-sm-10">
+                          <input name='cash' type='text' ng-model='stock_outward.cash' class="form-control" ng-disabled="stock_outward.paymentMethod != 'Cash'" />
                         </div>
                       </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <div class="col-sm-2">
-                            <label for='datetime' class="control-label">Date</label>
+                      <div class="form-group" ng-show="stock_outward.paymentMethod == 'Credit'">
+                        <div class="col-sm-2">
+                          <label for='bank' class="control-label">Credit</label>
+                        </div>
+                        <div class="col-sm-10">
+                          <input name='credit' type='text' ng-model='stock_outward.credit' class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group" ng-hide="stock_outward.paymentMethod == 'Credit' || stock_outward.paymentMethod =='Cash'">
+                        <div class="col-sm-2">
+                          <label for='bank' class="control-label">Amount</label>
+                        </div>
+                        <div class="col-sm-10">
+                          <input name='cash' type='text' ng-model='stock_outward.amount' class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <div class="col-sm-4">
+                              <label for='cheque' class="control-label">Cheque No.</label>
+                            </div>
+                            <div class="col-sm-8">
+                              <input name='cheque' type='text' ng-model='stock_outward.cheque_no' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" />
+                            </div>
                           </div>
-                          <div class="col-sm-10">
-                            <div class="input-group">
-                              <input name='datetime' ng-model='stock_outward.bank_date' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" date-options/>
-                              <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                              </span>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <div class="col-sm-2">
+                              <label for='datetime' class="control-label">Date</label>
+                            </div>
+                            <div class="col-sm-10">
+                              <div class="input-group">
+                                <input name='datetime' ng-model='stock_outward.bank_date' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" date-options/>
+                                <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <div class="col-sm-2">
-                        <label for='bank' class="control-label">Bank Name</label>
-                      </div>
-                      <div class="col-sm-10">
-                        <input name='bank' type='text' ng-model='stock_outward.bank_name' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" />
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="col-sm-2">
+                          <label for='bank' class="control-label">Bank Name</label>
+                        </div>
+                        <div class="col-sm-10">
+                          <input name='bank' type='text' ng-model='stock_outward.bank_name' class="form-control" ng-disabled="stock_outward.paymentMethod == null || stock_outward.paymentMethod == 'Cash' || stock_outward.paymentMethod == 'Credit'" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -259,44 +260,43 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- Secon Column -->
+          <!-- Secon Column -->
 
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for='reason' class="col-sm-4 control-label">Sub Total</label>
-            <div class="col-sm-8">
-              <h5>{{getSubTotal()}}</h5>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for='reason' class="col-sm-4 control-label">Sub Total</label>
+              <div class="col-sm-8">
+                <h5>{{getSubTotal()}}</h5>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for='reason' class="col-sm-4 control-label">Discount</label>
-            <div class="col-sm-5">
-              <div class="input-group">
-                <input type="text" name="reason" ng-model="stock_outward.discount" class="form-control">
-                <div class="input-group-addon">%</div>
+            <div class="form-group">
+              <label for='reason' class="col-sm-4 control-label">Discount</label>
+              <div class="col-sm-5">
+                <div class="input-group">
+                  <input type="text" name="reason" ng-model="stock_outward.discount" class="form-control">
+                  <div class="input-group-addon">%</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for='reason' class="col-sm-4 control-label">Taxes</label>
+              <div class="col-sm-4">
+                <h5>(+){{getSumTaxes()}}</h5>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for='reason' class="col-sm-4 control-label">Total</label>
+              <div class="col-sm-4">
+                <h5>{{getTotal()}}</h5>
+              </div>
+            </div>
+            <div class="form-group" ng-show="showFinalTotal()">
+              <label for='reason' class="col-sm-4 control-label">Final Total</label>
+              <div class="col-sm-4">
+                <input type="text" name="finalTotal" ng-model="stock_outward.final_total" class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'">
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for='reason' class="col-sm-4 control-label">Taxes</label>
-            <div class="col-sm-4">
-              <h5>(+){{getSumTaxes()}}</h5>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for='reason' class="col-sm-4 control-label">Total</label>
-            <div class="col-sm-4">
-              <h5>{{getTotal()}}</h5>
-            </div>
-          </div>
-          <div class="form-group" ng-show="showFinalTotal()">
-            <label for='reason' class="col-sm-4 control-label">Final Total</label>
-            <div class="col-sm-4">
-              <input type="text" name="finalTotal" ng-model="stock_outward.final_total" class="form-control" ng-disabled="stock_outward.paymentMethod == 'Credit'">
-            </div>
-          </div>
-        </div>
         </div>
       </div>
     </div>
