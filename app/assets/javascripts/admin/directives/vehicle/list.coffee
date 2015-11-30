@@ -3,14 +3,13 @@
     controller = [
       '$scope', '$timeout'
       ($scope, $timeout) ->
-        $scope.bySelectorVehicle = (vehicle_loading) ->
+        $scope.bySelectorVehicle = (vehicle) ->
           return unless $scope.search?.vehicleId?
-          debugger
-          item = _.find($scope.vehicle_loading_items, (s2) -> s2.id is vehicle_loading.vehicleId)
+          item = _.find($scope.vehicle_loadings, (s2) -> s2.id is vehicle.id)
 
           for s in item.vehicleLoadingItems
             return true if s.vehicleId is parseInt($scope.search.vehicleId, 10)
-        false
+        true
     ]
 
     restrict: 'E'
