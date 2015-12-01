@@ -56,10 +56,12 @@
       $scope.stock_outward.warehouseName = warehouse.name
       $scope.stock_outward.warehouseId = warehouse.id
 
-      $scope.stock_outward_item.amount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
-      tax = ($scope.stock_outward_item.amount * $scope.stock_outward_item.tax)/100
+      $scope.stock_outward_item.subAmount = $scope.stock_outward_item.qty * $scope.stock_outward_item.rate
+      tax = ($scope.stock_outward_item.subAmount * $scope.stock_outward_item.tax)/100
       $scope.sumTaxes.push(tax)
-      total = $scope.stock_outward_item.amount + tax
+      total = $scope.stock_outward_item.subAmount + tax
+
+      debugger
 
       if $scope.stock_outward_item.discount?
         totalWithDiscount = total * (1 - $scope.stock_outward_item.discount / 100)
@@ -71,14 +73,14 @@
       to_s = to_i.toString()
       $scope.toWords = toWords(to_s).toUpperCase()
 
-      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount', 'contactNo']).value()
+      $scope.stock_outward_item = _($scope.stock_outward_item).pick(['itemName', 'itemId', 'ledgerName', 'ledgerId', 'warehouseName', 'warehouseId', 'qty', 'numeral', 'id', 'sQty', 'discount', 'rate', 'amount', 'contactNo', 'subAmount']).value()
 
       $scope.stock_items.push($scope.stock_outward_item)
 
       for i in [1..$scope.stock_items.length]
         $scope.stock_outward_item.numeral = i
 
-    $scope.getSubTotal = -> _.sum $scope.stock_items, 'amount'
+    $scope.getSubTotal = -> _.sum $scope.stock_items, 'subAmount'
 
     $scope.getSumTaxes = -> _.sum $scope.sumTaxes
 
