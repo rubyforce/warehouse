@@ -1,6 +1,6 @@
 @stocks.controller 'CreateInwardsController', [
-  '$scope', '$http', '$timeout', 'StockInward', '$location', '$window'
-  ($scope, $http, $timeout, StockInward, $location, $window) ->
+  '$scope', '$http', '$timeout', 'StockInward', '$location', '$window', 'Item'
+  ($scope, $http, $timeout, StockInward, $location, $window, Item) ->
 
     $http.get('admin/stock_inwards/inward_id')
       .success (response) ->
@@ -37,6 +37,12 @@
       $scope.stock_inward_item.itemName = item.name
       $scope.stock_inward_item.itemId = item.id
       $scope.stock_inward_item.tax = item.tax
+
+      # update item minqty
+      calcQty = new Item(id: item.id)
+      final_qty = parseInt(item.minQty, 10) + parseInt($scope.stock_inward_item.qty, 10)
+      calcQty.minQty = final_qty
+      calcQty.update()
 
       warehouse = _($scope.warehouses).chain().find((w) -> parseInt(w.id, 10) is parseInt($scope.stock_inward.warehouse_id, 10)).value()
       $scope.stock_inward.warehouseName = warehouse.name

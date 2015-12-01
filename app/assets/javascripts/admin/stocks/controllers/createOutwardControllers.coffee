@@ -43,7 +43,7 @@
 
       # update item minqty
       calcQty = new Item(id: item.id)
-      final_qty = item.minQty - $scope.stock_outward_item.qty
+      final_qty = parseInt(item.minQty, 10) - parseInt($scope.stock_outward_item.qty, 10)
       calcQty.minQty = final_qty
       calcQty.update()
 
