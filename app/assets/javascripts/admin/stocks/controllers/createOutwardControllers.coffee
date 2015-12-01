@@ -61,13 +61,13 @@
       $scope.sumTaxes.push(tax)
       total = $scope.stock_outward_item.subAmount + tax
 
-      debugger
-
       if $scope.stock_outward_item.discount?
         totalWithDiscount = total * (1 - $scope.stock_outward_item.discount / 100)
         $scope.totals.push(totalWithDiscount)
+        $scope.stock_outward_item.amount = totalWithDiscount
       else
         $scope.totals.push(total)
+        $scope.stock_outward_item.amount = total
 
       to_i = parseInt(_.sum($scope.totals), 10)
       to_s = to_i.toString()
