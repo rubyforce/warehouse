@@ -65,6 +65,7 @@
         $scope.totals.push(total)
 
       $scope.stocks.push($scope.stock_inward_item)
+      showTotal()
 
       for i in [1..$scope.stocks.length]
         $scope.stock_inward_item.numeral = i
@@ -91,10 +92,13 @@
     showTotal = ->
       if $scope.stock_inward.paymentMethod == 'Cash'
         $scope.stock_inward.cash = $scope.getTotal()
-      else
+        $scope.stock_inward.amount = null
+      else if $scope.stock_inward.paymentMethod == 'Cheque'
         $scope.stock_inward.amount = $scope.getTotal()
-
-    $scope.$watch showTotal
+        $scope.stock_inward.cash = null
+      else
+        $scope.stock_inward.amount = null
+        $scope.stock_inward.cash = null
 
     $scope.showFinalTotal = ->
       return false unless $scope.stock_inward?
