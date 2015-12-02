@@ -80,6 +80,8 @@
       for i in [1..$scope.stock_items.length]
         $scope.stock_outward_item.numeral = i
 
+      $scope.stock_outward_item = {}
+
     $scope.getSubTotal = -> _.sum $scope.stock_items, 'subAmount'
 
     $scope.getSumTaxes = -> _.sum $scope.sumTaxes
