@@ -41,12 +41,13 @@
     render = ->
       $scope.items = _($scope.stock_outwards).chain()
         .each (stock) ->
-            if stock.amount is stock.total
+            if stock.cash is stock.total
               stock.status = "Paid"
             else if stock.paymentMethod is "Credit"
               stock.status = "Full Credit"
             else
               stock.status = "Partially Paid"
+
         .value()
 
     selectedStock = null
