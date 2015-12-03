@@ -70,6 +70,8 @@
       for i in [1..$scope.stocks.length]
         $scope.stock_inward_item.numeral = i
 
+      $scope.$watch 'stock_inward.paymentMethod', showTotal
+
       last_stock_inward_item = _.last($scope.stocks)
       $scope.stock_inward_item = {}
       $scope.stock_inward_item.company_id = last_stock_inward_item.companyId
@@ -99,6 +101,8 @@
       else
         $scope.stock_inward.amount = null
         $scope.stock_inward.cash = null
+
+    $scope.$watch 'stock_inward.paymentMethod', showTotal
 
     $scope.showFinalTotal = ->
       return false unless $scope.stock_inward?
