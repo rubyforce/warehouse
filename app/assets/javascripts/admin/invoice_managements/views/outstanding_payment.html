@@ -37,7 +37,8 @@
                   <tr data-index="{{$index}}" ng-repeat="s in items" ng-hide="s.status == 'Paid'">
                     <td class="center">{{s.invoiceNo}}</td>
                     <td class="center">{{s.ledgerName}}</td>
-                    <td class="center">{{s.finalTotal || s.total}}</td>
+                    <td class="center" ng-show="s.finalSummary">{{s.finalSummary}}</td>
+                    <td class="center" ng-hide="s.finalSummary">{{s.finalTotal || s.total}}</td>
                     <td class="center">{{s.date}}</td>
                     <td class="center">{{s.daysSinceDue}}</td>
                   </tr>
