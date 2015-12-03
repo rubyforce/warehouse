@@ -81,7 +81,8 @@
         $scope.stock_outward_item.numeral = i
 
       $scope.stock_outward_item = {}
-      showTotal()
+
+      $scope.$watch 'stock_outward.paymentMethod', showTotal
 
     $scope.getSubTotal = -> _.sum $scope.stock_items, 'subAmount'
 
@@ -105,6 +106,8 @@
       else
         $scope.stock_outward.amount = null
         $scope.stock_outward.cash = null
+
+    $scope.$watch 'stock_outward.paymentMethod', showTotal
 
     $scope.showFinalTotal = ->
       return false unless $scope.stock_outward?
