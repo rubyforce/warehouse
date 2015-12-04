@@ -57,7 +57,7 @@
 
       $scope.outstanding_payment.amount = selectedStock.amount
       $scope.outstanding_payment.cash = selectedStock.total
-      $scope.outstanding_payment.payment_method = selectedStock.paymentMethod
+      $scope.outstanding_payment.paymentMethod = selectedStock.paymentMethod
       $scope.outstanding_payment.bank_date = selectedStock.bankDate
       $scope.outstanding_payment.bank_name = selectedStock.bankName
       $scope.outstanding_payment.cheque_no = selectedStock.chequeNo
