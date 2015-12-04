@@ -125,9 +125,6 @@
       if $scope.stock_outward.paymentMethod == 'Cash'
         if $scope.stock_outward.cash? && parseInt($scope.stock_outward.cash, 10) < $scope.stock_outward.total
           $scope.stock_outward.final_summary = $scope.stock_outward.total - parseInt($scope.stock_outward.cash, 10)
-      else if $scope.stock_outward.paymentMethod == 'Cheque'
-        if $scope.stock_outward.amount? && parseInt($scope.stock_outward.amount, 10) < $scope.stock_outward.total
-          $scope.stock_outward.final_summary = $scope.stock_outward.total - parseInt($scope.stock_outward.amount, 10)
 
     $scope.create = ->
       $scope.stock_outward.stockOutwardItemsAttributes = $scope.stock_items
