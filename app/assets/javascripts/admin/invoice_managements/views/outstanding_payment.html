@@ -64,14 +64,14 @@
                       <input name='cash' id='cash' type="radio" value="Cash" ng-model="outstanding_payment.payment_method">Cash
                     </label>
                     <label for='bank' class="radio-inline">
-                      <input name='bank' id='bank' type="radio" value="Cheque No." ng-model="outstanding_payment.payment_method">Cheque No.
+                      <input name='bank' id='bank' type="radio" value="Cheque" ng-model="outstanding_payment.payment_method">Cheque No.
                     </label>
                   </div>
                 </div>
               </div>
               <div class="col-sm-9">
                 <div class="col-sm-12">
-                  <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cheque No.'">
+                  <div class="form-group" ng-hide="outstanding_payment.payment_method =='Cheque'">
                     <div class="col-sm-2">
                       <label for='cash' class="control-label">Cash</label>
                     </div>
